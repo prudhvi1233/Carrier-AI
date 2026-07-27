@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, GitBranch, Globe } from 'lucide-react';
 import AuthLayout from '../components/AuthLayout';
@@ -7,16 +7,31 @@ import PasswordInput from '../components/PasswordInput';
 import SocialLogin from '../components/SocialLogin';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { authService } from '../services/authService';
+import toast from 'react-hot-toast';
 
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate login
-    login({ name: 'Alex Developer', email: 'alex@example.com' });
-    navigate('/dashboard');
+    setLoading(true);
+    try {
+      const data = await authService.login(email, password);
+      // The context handles fetching user details properly with getMe now
+      login(data.access_token, { email });
+      toast.success('Successfully logged in!');
+      navigate('/dashboard');
+    } catch (err) {
+      toast.error('Invalid email or password');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,6 +49,8 @@ export default function Login() {
           label="Email" 
           id="email" 
           type="email" 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com" 
           icon={Mail} 
           required 
@@ -42,6 +59,8 @@ export default function Login() {
         <PasswordInput 
           label="Password" 
           id="password" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••••" 
           required 
         />
@@ -63,9 +82,14 @@ export default function Login() {
 
         <button 
           type="submit"
-          className="w-full py-3 mt-2 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold hover:shadow-lg hover:shadow-accent-blue/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+          disabled={loading}
+          className="w-full py-3 mt-2 flex items-center justify-center rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold hover:shadow-lg hover:shadow-accent-blue/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
         >
-          Login
+          {loading ? (
+            <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          ) : (
+            "Login"
+          )}
         </button>
       </form>
 

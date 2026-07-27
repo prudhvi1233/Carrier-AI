@@ -1,0 +1,27 @@
+2026-07-27 22:28:47.747 | INFO     | app.main:startup_event:131 - Starting up the application...
+2026-07-27 22:28:47.747 | INFO     | app.main:startup_event:132 - Initializing database schema...
+2026-07-27 22:28:47.750 | INFO     | app.main:startup_event:135 - Database schema initialized.
+2026-07-27 22:30:23.767 | INFO     | app.api.support:contact_support:19 - --- New Support Request ---
+2026-07-27 22:30:23.767 | INFO     | app.api.support:contact_support:20 - To: prudhvibehara34@gmail.com
+2026-07-27 22:30:23.769 | INFO     | app.api.support:contact_support:21 - Subject: regarding cv
+2026-07-27 22:30:23.773 | INFO     | app.api.support:contact_support:22 - Message: heyy
+2026-07-27 22:30:23.774 | INFO     | app.api.support:contact_support:23 - ---------------------------
+2026-07-27 22:30:24.021 | WARNING  | app.api.support:contact_support:33 - SMTP credentials not configured. Logging email instead.
+2026-07-27 22:37:48.258 | INFO     | app.api.support:contact_support:19 - --- New Support Request ---
+2026-07-27 22:37:48.259 | INFO     | app.api.support:contact_support:20 - To: prudhvibehara34@gmail.com
+2026-07-27 22:37:48.259 | INFO     | app.api.support:contact_support:21 - Subject: regarding cv
+2026-07-27 22:37:48.260 | INFO     | app.api.support:contact_support:22 - Message: heyy
+2026-07-27 22:37:48.260 | INFO     | app.api.support:contact_support:23 - ---------------------------
+2026-07-27 22:37:48.260 | WARNING  | app.api.support:contact_support:33 - SMTP credentials not configured. Logging email instead.
+2026-07-27 22:38:47.955 | INFO     | app.api.support:contact_support:19 - --- New Support Request ---
+2026-07-27 22:38:47.955 | INFO     | app.api.support:contact_support:20 - To: prudhvibehara34@gmail.com
+2026-07-27 22:38:47.955 | INFO     | app.api.support:contact_support:21 - Subject: hello
+2026-07-27 22:38:47.955 | INFO     | app.api.support:contact_support:22 - Message: hiii everyone
+2026-07-27 22:38:47.956 | INFO     | app.api.support:contact_support:23 - ---------------------------
+2026-07-27 22:38:47.956 | WARNING  | app.api.support:contact_support:33 - SMTP credentials not configured. Logging email instead.
+2026-07-27 22:42:54.795 | INFO     | app.api.support:contact_support:19 - --- New Support Request ---
+2026-07-27 22:42:54.796 | INFO     | app.api.support:contact_support:20 - To: prudhvibehara34@gmail.com
+2026-07-27 22:42:54.796 | INFO     | app.api.support:contact_support:21 - Subject: regarding cv
+2026-07-27 22:42:54.796 | INFO     | app.api.support:contact_support:22 - Message: heyy 
+2026-07-27 22:42:54.797 | INFO     | app.api.support:contact_support:23 - ---------------------------
+2026-07-27 22:42:54.797 | WARNING  | app.api.support:contact_support:33 - SMTP credentials not configured. Logging email instead.

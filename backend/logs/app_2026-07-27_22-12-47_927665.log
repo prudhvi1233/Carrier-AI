@@ -1,0 +1,9 @@
+2026-07-27 22:12:47.937 | INFO     | app.main:startup_event:131 - Starting up the application...
+2026-07-27 22:12:47.937 | INFO     | app.main:startup_event:132 - Initializing database schema...
+2026-07-27 22:12:47.948 | INFO     | app.main:startup_event:135 - Database schema initialized.
+2026-07-27 22:16:01.239 | INFO     | app.api.support:contact_support:19 - --- New Support Request ---
+2026-07-27 22:16:01.240 | INFO     | app.api.support:contact_support:20 - To: prudhvibehara34@gmail.com
+2026-07-27 22:16:01.240 | INFO     | app.api.support:contact_support:21 - Subject: regarding cv
+2026-07-27 22:16:01.245 | INFO     | app.api.support:contact_support:22 - Message: heyy
+2026-07-27 22:16:01.245 | INFO     | app.api.support:contact_support:23 - ---------------------------
+2026-07-27 22:27:38.441 | INFO     | app.main:shutdown_event:139 - Shutting down the application...

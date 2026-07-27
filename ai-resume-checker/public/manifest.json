@@ -1,0 +1,17 @@
+{
+  "short_name": "CareerAI",
+  "name": "CareerAI - Smart Resume Management",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#030014",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#030014",
+  "description": "AI-powered platform to build, analyze, and optimize your resume."
+}

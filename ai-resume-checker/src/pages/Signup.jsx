@@ -1,21 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, User, GitBranch, Globe } from 'lucide-react';
+import { Mail, User, GitBranch, Globe, Phone } from 'lucide-react';
 import AuthLayout from '../components/AuthLayout';
 import InputField from '../components/InputField';
 import PasswordInput from '../components/PasswordInput';
 import SocialLogin from '../components/SocialLogin';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { authService } from '../services/authService';
+import toast from 'react-hot-toast';
 
 export default function Signup() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login({ name: 'New User', email: 'newuser@example.com' });
-    navigate('/dashboard');
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+    
+    setLoading(true);
+    try {
+      await authService.register(email, password, fullName, phone || null);
+      toast.success('Account created successfully!');
+      
+      const loginData = await authService.login(email, password);
+      login(loginData.access_token, { email, full_name: fullName });
+      
+      navigate('/dashboard');
+    } catch (err) {
+      const errorMessage = err.response?.data?.detail || 'Failed to create account';
+      toast.error(typeof errorMessage === 'string' ? errorMessage : 'Validation error occurred');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -31,6 +58,8 @@ export default function Signup() {
         <InputField 
           label="Full Name" 
           id="name" 
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
           placeholder="John Doe" 
           icon={User} 
           required 
@@ -40,14 +69,28 @@ export default function Signup() {
           label="Email" 
           id="email" 
           type="email" 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com" 
           icon={Mail} 
           required 
+        />
+
+        <InputField 
+          label="Phone (Optional)" 
+          id="phone" 
+          type="tel" 
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="+1 (555) 000-0000" 
+          icon={Phone} 
         />
         
         <PasswordInput 
           label="Password" 
           id="password" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••••" 
           showStrength={true}
           required 
@@ -56,6 +99,8 @@ export default function Signup() {
         <PasswordInput 
           label="Confirm Password" 
           id="confirmPassword" 
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder="••••••••" 
           required 
         />
@@ -77,9 +122,14 @@ export default function Signup() {
 
         <button 
           type="submit"
-          className="w-full py-3 mt-2 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold hover:shadow-lg hover:shadow-accent-blue/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+          disabled={loading}
+          className="w-full py-3 mt-2 flex justify-center items-center rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold hover:shadow-lg hover:shadow-accent-blue/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
         >
-          Register
+          {loading ? (
+            <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          ) : (
+            "Register"
+          )}
         </button>
       </form>
 

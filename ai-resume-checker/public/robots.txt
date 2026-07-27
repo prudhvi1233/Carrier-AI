@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Exclude private routes
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /job-tracker
+Disallow: /resume-builder/*
+Disallow: /interview-mentor
+Disallow: /career-assistant
+Disallow: /upload
+
+Sitemap: https://careerai.com/sitemap.xml

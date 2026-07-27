@@ -1,0 +1,108 @@
+.executive-resume {
+  font-family: 'Times New Roman', Times, serif;
+  color: #1e293b;
+  background: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 48px;
+  text-align: left;
+}
+
+.exec-header {
+  text-align: center;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.exec-header h1 {
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.exec-contact {
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  color: #475569;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.exec-section {
+  margin-bottom: 20px;
+}
+
+.exec-section-title {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #0f172a;
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+.exec-summary {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #334155;
+  text-align: justify;
+}
+
+.exec-item {
+  margin-bottom: 16px;
+}
+.exec-item:last-child {
+  margin-bottom: 0;
+}
+
+.exec-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.exec-item-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #0f172a;
+}
+
+.exec-item-subtitle {
+  font-size: 12px;
+  font-style: italic;
+  color: #475569;
+}
+
+.exec-item-date {
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: bold;
+}
+
+.exec-item-desc {
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: #334155;
+  margin-top: 4px;
+  white-space: pre-wrap;
+}
+
+.exec-skills-list {
+  font-family: 'Arial', sans-serif;
+  font-size: 11px;
+  color: #334155;
+  line-height: 1.6;
+}

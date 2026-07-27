@@ -1,0 +1,21 @@
+2026-07-27 16:30:18.306 | INFO     | app.main:startup_event:131 - Starting up the application...
+2026-07-27 16:30:18.307 | INFO     | app.main:startup_event:132 - Initializing database schema...
+2026-07-27 16:30:18.353 | INFO     | app.main:startup_event:135 - Database schema initialized.
+2026-07-27 16:31:08.373 | INFO     | app.utils.file_handler:save_file:86 - File saved locally: eebe1a4059ba49faae373976ae52354c.pdf (109351 bytes)
+2026-07-27 16:34:48.812 | INFO     | app.utils.file_handler:save_file:86 - File saved locally: 1b491e0e1369491ba631bbada125d0d1.pdf (632856 bytes)
+2026-07-27 16:34:49.015 | ERROR    | app.main:global_exception_handler:61 - Global Exception: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.ProgrammingError) Error binding parameter 1: type 'list' is not supported
+[SQL: UPDATE profiles SET skills=?, updated_at=CURRENT_TIMESTAMP WHERE profiles.id = ?]
+[parameters: (['r', 'e', 'a', 'c', 't', ',', ' ', 'p', 'y', 'h', 'o', 'n', '• Programming: Python', 'Java', 'Sql', '• Frameworks: Html', 'Css', '• Databases/Tools: Mysql', 'Github', '• Soft Skills: Adaptable', 'Team Player', 'Problem-Solving'], 2)]
+(Background on this error at: https://sqlalche.me/e/20/f405) (Background on this error at: https://sqlalche.me/e/20/7s2a) | Path: /api/v1/resume/upload
+2026-07-27 16:35:02.628 | INFO     | app.utils.file_handler:save_file:86 - File saved locally: 0bcab49e445e4d06901a05d77a8eee0b.pdf (632856 bytes)
+2026-07-27 16:35:02.789 | ERROR    | app.main:global_exception_handler:61 - Global Exception: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.ProgrammingError) Error binding parameter 1: type 'list' is not supported
+[SQL: UPDATE profiles SET skills=?, updated_at=CURRENT_TIMESTAMP WHERE profiles.id = ?]
+[parameters: (['r', 'e', 'a', 'c', 't', ',', ' ', 'p', 'y', 'h', 'o', 'n', '• Programming: Python', 'Java', 'Sql', '• Frameworks: Html', 'Css', '• Databases/Tools: Mysql', 'Github', '• Soft Skills: Adaptable', 'Team Player', 'Problem-Solving'], 2)]
+(Background on this error at: https://sqlalche.me/e/20/f405) (Background on this error at: https://sqlalche.me/e/20/7s2a) | Path: /api/v1/resume/upload
+2026-07-27 16:35:57.709 | INFO     | app.utils.file_handler:save_file:86 - File saved locally: 91f39a37323642d8adacb8ea559b924c.pdf (632856 bytes)
+2026-07-27 16:35:57.811 | ERROR    | app.main:global_exception_handler:61 - Global Exception: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.ProgrammingError) Error binding parameter 1: type 'list' is not supported
+[SQL: UPDATE profiles SET skills=?, updated_at=CURRENT_TIMESTAMP WHERE profiles.id = ?]
+[parameters: (['r', 'e', 'a', 'c', 't', ',', ' ', 'p', 'y', 'h', 'o', 'n', '• Programming: Python', 'Java', 'Sql', '• Frameworks: Html', 'Css', '• Databases/Tools: Mysql', 'Github', '• Soft Skills: Adaptable', 'Team Player', 'Problem-Solving'], 2)]
+(Background on this error at: https://sqlalche.me/e/20/f405) (Background on this error at: https://sqlalche.me/e/20/7s2a) | Path: /api/v1/resume/upload
+2026-07-27 16:36:49.028 | INFO     | app.utils.file_handler:save_file:86 - File saved locally: 58ef5748538e4cb486162a95957ece97.pdf (109351 bytes)
+2026-07-27 16:37:18.393 | INFO     | app.main:shutdown_event:139 - Shutting down the application...

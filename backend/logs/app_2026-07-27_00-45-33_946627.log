@@ -1,0 +1,68 @@
+2026-07-27 00:45:33.953 | INFO     | app.main:startup_event:128 - Starting up the application...
+2026-07-27 00:45:33.954 | INFO     | app.main:startup_event:129 - Initializing database schema...
+2026-07-27 00:45:33.977 | INFO     | app.main:startup_event:132 - Database schema initialized.
+2026-07-27 00:48:25.291 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 1 validation error:
+  {'type': 'model_attributes_type', 'loc': ('body',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': b'username=test%40example.com&password=password'}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 16, in login
+    POST /api/v1/auth/login | Path: /api/v1/auth/login
+2026-07-27 00:48:25.297 | ERROR    | app.main:global_exception_handler:61 - Global Exception: Object of type bytes is not JSON serializable | Path: /api/v1/auth/login
+2026-07-27 00:48:26.382 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 1 validation error:
+  {'type': 'missing', 'loc': ('body', 'full_name'), 'msg': 'Field required', 'input': {'email': 'test404@example.com', 'password': 'password', 'name': 'Test'}}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 11, in register
+    POST /api/v1/auth/register | Path: /api/v1/auth/register
+2026-07-27 00:48:26.411 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 1 validation error:
+  {'type': 'model_attributes_type', 'loc': ('body',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': b'username=test404%40example.com&password=password'}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 16, in login
+    POST /api/v1/auth/login | Path: /api/v1/auth/login
+2026-07-27 00:48:26.412 | ERROR    | app.main:global_exception_handler:61 - Global Exception: Object of type bytes is not JSON serializable | Path: /api/v1/auth/login
+2026-07-27 00:49:11.770 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 2 validation errors:
+  {'type': 'missing', 'loc': ('body', 'full_name'), 'msg': 'Field required', 'input': {'email': 'testabc@abc.com', 'password': 'pass', 'name': 'test'}}
+  {'type': 'string_too_short', 'loc': ('body', 'password'), 'msg': 'String should have at least 8 characters', 'input': 'pass', 'ctx': {'min_length': 8}}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 11, in register
+    POST /api/v1/auth/register | Path: /api/v1/auth/register
+2026-07-27 00:49:11.773 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 1 validation error:
+  {'type': 'model_attributes_type', 'loc': ('body',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': b'username=testabc@abc.com&password=pass'}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 16, in login
+    POST /api/v1/auth/login | Path: /api/v1/auth/login
+2026-07-27 00:49:11.773 | ERROR    | app.main:global_exception_handler:61 - Global Exception: Object of type bytes is not JSON serializable | Path: /api/v1/auth/login
+2026-07-27 00:49:46.390 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 1 validation error:
+  {'type': 'missing', 'loc': ('body', 'full_name'), 'msg': 'Field required', 'input': {'email': 'test404@example.com', 'password': 'password', 'name': 'Test'}}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 11, in register
+    POST /api/v1/auth/register | Path: /api/v1/auth/register
+2026-07-27 00:49:46.392 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 1 validation error:
+  {'type': 'model_attributes_type', 'loc': ('body',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': b'username=test404%40example.com&password=password'}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 16, in login
+    POST /api/v1/auth/login | Path: /api/v1/auth/login
+2026-07-27 00:49:46.392 | ERROR    | app.main:global_exception_handler:61 - Global Exception: Object of type bytes is not JSON serializable | Path: /api/v1/auth/login
+2026-07-27 00:50:38.413 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 2 validation errors:
+  {'type': 'missing', 'loc': ('body', 'full_name'), 'msg': 'Field required', 'input': {'email': 'testurl@abc.com', 'password': 'pass', 'name': 'test'}}
+  {'type': 'string_too_short', 'loc': ('body', 'password'), 'msg': 'String should have at least 8 characters', 'input': 'pass', 'ctx': {'min_length': 8}}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 11, in register
+    POST /api/v1/auth/register | Path: /api/v1/auth/register
+2026-07-27 00:50:38.415 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 1 validation error:
+  {'type': 'model_attributes_type', 'loc': ('body',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': b'username=testurl@abc.com&password=pass'}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 16, in login
+    POST /api/v1/auth/login | Path: /api/v1/auth/login
+2026-07-27 00:50:38.417 | ERROR    | app.main:global_exception_handler:61 - Global Exception: Object of type bytes is not JSON serializable | Path: /api/v1/auth/login
+2026-07-27 00:51:07.078 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 2 validation errors:
+  {'type': 'missing', 'loc': ('body', 'full_name'), 'msg': 'Field required', 'input': {'email': 'test5@abc.com', 'password': 'pass', 'name': 'test'}}
+  {'type': 'string_too_short', 'loc': ('body', 'password'), 'msg': 'String should have at least 8 characters', 'input': 'pass', 'ctx': {'min_length': 8}}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 11, in register
+    POST /api/v1/auth/register | Path: /api/v1/auth/register
+2026-07-27 00:51:07.080 | WARNING  | app.main:validation_exception_handler:73 - Validation Error: 1 validation error:
+  {'type': 'model_attributes_type', 'loc': ('body',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': b'username=test5@abc.com&password=pass'}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 16, in login
+    POST /api/v1/auth/login | Path: /api/v1/auth/login
+2026-07-27 00:51:07.080 | ERROR    | app.main:global_exception_handler:61 - Global Exception: Object of type bytes is not JSON serializable | Path: /api/v1/auth/login
+2026-07-27 01:53:02.376 | INFO     | app.main:shutdown_event:136 - Shutting down the application...
