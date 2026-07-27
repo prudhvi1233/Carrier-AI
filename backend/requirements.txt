@@ -12,3 +12,4 @@ google-generativeai
 aiofiles
 slowapi
 loguru
+python-docx
