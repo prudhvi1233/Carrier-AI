@@ -10,3 +10,4 @@ python-multipart
 PyMuPDF
 google-generativeai
 aiofiles
+slowapi
