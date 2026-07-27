@@ -11,3 +11,4 @@ PyMuPDF
 google-generativeai
 aiofiles
 slowapi
+loguru
