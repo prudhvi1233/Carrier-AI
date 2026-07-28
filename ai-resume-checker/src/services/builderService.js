@@ -1,46 +1,35 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/api/v1';
-
-const getAuthHeaders = () => {
-  const token = localStorage.getItem('access_token');
-  return {
-    headers: { Authorization: `Bearer ${token}` }
-  };
-};
+import api from './api';
 
 export const builderService = {
   initResume: async () => {
-    const response = await axios.get(`${API_URL}/resume-builder/init`, getAuthHeaders());
+    const response = await api.get(`/resume-builder/init`);
     return response.data;
   },
 
   getHistory: async () => {
-    const response = await axios.get(`${API_URL}/resume-builder/history`, getAuthHeaders());
+    const response = await api.get(`/resume-builder/history`);
     return response.data;
   },
 
   saveDraft: async (draftData) => {
-    const response = await axios.post(`${API_URL}/resume-builder/save`, draftData, getAuthHeaders());
+    const response = await api.post(`/resume-builder/save`, draftData);
     return response.data;
   },
 
   improveTextWithAI: async (text, instruction) => {
-    const response = await axios.post(`${API_URL}/resume-builder/ai/improve`, { text, instruction }, getAuthHeaders());
+    const response = await api.post(`/resume-builder/ai/improve`, { text, instruction });
     return response.data.improved_text;
   },
 
   exportPdf: async (resumeData) => {
-    const response = await axios.post(`${API_URL}/resume-builder/export/pdf`, resumeData, {
-      ...getAuthHeaders(),
+    const response = await api.post(`/resume-builder/export/pdf`, resumeData, {
       responseType: 'blob'
     });
     return response.data;
   },
 
   exportDocx: async (resumeData) => {
-    const response = await axios.post(`${API_URL}/resume-builder/export/docx`, resumeData, {
-      ...getAuthHeaders(),
+    const response = await api.post(`/resume-builder/export/docx`, resumeData, {
       responseType: 'blob'
     });
     return response.data;

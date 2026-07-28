@@ -1,20 +1,10 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/api/v1/career-coach';
-
-// Utility to get auth headers
-const getAuthHeaders = () => {
-  const token = localStorage.getItem('access_token');
-  return {
-    headers: { Authorization: `Bearer ${token}` }
-  };
-};
+import api from './api';
 
 export const careerCoachService = {
   // Send a message to the AI coach
   sendMessage: async (message) => {
     try {
-      const response = await axios.post(`${API_URL}/chat`, { message }, getAuthHeaders());
+      const response = await api.post(`/career-coach/chat`, { message });
       return response.data; // { reply: string }
     } catch (error) {
       if (error.response?.data?.detail) {
@@ -27,7 +17,7 @@ export const careerCoachService = {
   // Get previous chat history
   getHistory: async () => {
     try {
-      const response = await axios.get(`${API_URL}/history`, getAuthHeaders());
+      const response = await api.get(`/career-coach/history`);
       return response.data; // Array of ChatMessageBase
     } catch (error) {
       console.error('Failed to load chat history:', error);
@@ -38,7 +28,7 @@ export const careerCoachService = {
   // Clear chat history
   clearHistory: async () => {
     try {
-      const response = await axios.delete(`${API_URL}/history`, getAuthHeaders());
+      const response = await api.delete(`/career-coach/history`);
       return response.data;
     } catch (error) {
       console.error('Failed to clear chat history:', error);

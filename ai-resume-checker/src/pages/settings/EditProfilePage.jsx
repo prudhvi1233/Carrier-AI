@@ -5,6 +5,7 @@ import { Camera, Save, ArrowLeft, User as UserIcon, Phone, MapPin, Briefcase, Gr
 import { profileService } from '../../services/profileService';
 import { useAuth } from '../../context/AuthContext';
 import { useGlobalState } from '../../context/GlobalStateContext';
+import api from '../../services/api';
 
 export default function EditProfilePage() {
   const navigate = useNavigate();
@@ -78,17 +79,14 @@ export default function EditProfilePage() {
       const formDataUpload = new FormData();
       formDataUpload.append('file', file);
       
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8000/api/v1/profile/upload-photo', {
-        method: 'POST',
+      const response = await api.post('/profile/upload-photo', formDataUpload, {
         headers: {
-          'Authorization': `Bearer ${token}`
-        },
-        body: formDataUpload
+          'Content-Type': 'multipart/form-data'
+        }
       });
       
-      if (response.ok) {
-        const data = await response.json();
+      if (response.status === 200) {
+        const data = response.data;
         setFormData(prev => ({ ...prev, profile_photo: data.url }));
         updateUser({ avatar: data.url });
         triggerRefresh(); 
