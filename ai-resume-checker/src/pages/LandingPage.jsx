@@ -19,6 +19,7 @@ export default function LandingPage() {
         <FAQ />
       </main>
       <Footer />
+      
     </div>
   );
 }

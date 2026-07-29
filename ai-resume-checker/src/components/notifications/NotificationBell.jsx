@@ -1,34 +1,50 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Bell } from 'lucide-react';
 import { motion } from 'framer-motion';
 import NotificationDropdown from './NotificationDropdown';
-
-// Mock initial notifications
-const initialNotifications = [
-  { id: 1, type: 'analysis', title: 'Resume Analysis Completed', message: 'Your AI analysis is ready.', time: '5 min ago', isRead: false },
-  { id: 2, type: 'builder', title: 'Draft Saved', message: 'Resume draft saved successfully.', time: '12 min ago', isRead: false },
-  { id: 3, type: 'resume', title: 'ATS Score Improved', message: 'Congratulations! Your ATS score increased to 92%.', time: '1 hr ago', isRead: true },
-  { id: 4, type: 'resume', title: 'Resume Downloaded', message: 'Resume exported successfully.', time: '2 hrs ago', isRead: true },
-  { id: 5, type: 'account', title: 'Password Updated', message: 'Security settings changed.', time: '1 day ago', isRead: true },
-];
+import { notificationService } from '../../services/notificationService';
+import { useAuth } from '../../context/AuthContext';
 
 export default function NotificationBell() {
   const [isOpen, setIsOpen] = useState(false);
-  const [notifications, setNotifications] = useState(initialNotifications);
-  const menuRef = useRef(null);
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const { isAuthenticated } = useAuth();
+  
+  const timeoutRef = useRef(null);
 
-  const unreadCount = notifications.filter(n => !n.isRead).length;
-
-  // Close menu on click outside
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
+  const fetchNotifications = useCallback(async () => {
+    if (!isAuthenticated) return;
+    try {
+      const data = await notificationService.getNotifications();
+      setNotifications(data);
+      const countData = await notificationService.getUnreadCount();
+      setUnreadCount(countData.count);
+    } catch (error) {
+      console.error('Failed to fetch notifications', error);
     }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    fetchNotifications();
+    
+    // Poll every 30 seconds
+    const intervalId = setInterval(fetchNotifications, 30000);
+    return () => clearInterval(intervalId);
+  }, [fetchNotifications]);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 300); // 300ms delay before closing
+  };
 
   // Close menu on Escape key
   useEffect(() => {
@@ -41,24 +57,55 @@ export default function NotificationBell() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
-  const handleMarkAsRead = (id) => {
-    setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
+  const handleMarkAsRead = async (id) => {
+    try {
+      await notificationService.markAsRead(id);
+      setNotifications(prev => prev.map(n => n.id === id ? { ...n, is_read: true } : n));
+      setUnreadCount(prev => Math.max(0, prev - 1));
+    } catch (error) {
+      console.error('Failed to mark notification as read', error);
+    }
   };
 
-  const handleMarkAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+  const handleMarkAllAsRead = async () => {
+    try {
+      await notificationService.markAllAsRead();
+      setNotifications(prev => prev.map(n => ({ ...n, is_read: true })));
+      setUnreadCount(0);
+    } catch (error) {
+      console.error('Failed to mark all as read', error);
+    }
   };
 
-  const handleDelete = (id) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await notificationService.deleteNotification(id);
+      setNotifications(prev => prev.filter(n => n.id !== id));
+      // Re-fetch to get correct unread count since we deleted one
+      fetchNotifications();
+    } catch (error) {
+      console.error('Failed to delete notification', error);
+    }
   };
 
-  const handleClearAll = () => {
-    setNotifications([]);
+  const handleClearAll = async () => {
+    try {
+      await notificationService.clearAll();
+      setNotifications([]);
+      setUnreadCount(0);
+    } catch (error) {
+      console.error('Failed to clear notifications', error);
+    }
   };
+
+  if (!isAuthenticated) return null;
 
   return (
-    <div className="relative" ref={menuRef}>
+    <div 
+      className="relative" 
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className={`relative p-2 rounded-xl transition-colors group border

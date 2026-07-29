@@ -10,52 +10,51 @@ export default function Footer() {
         <div className="md:col-span-1">
           <Link to="/" className="flex items-center gap-2 mb-4">
             <Brain className="w-6 h-6 text-purple-400" />
-            <span className="font-bold text-lg text-white">AI Resume Checker</span>
+            <span className="font-bold text-lg text-white">CareerAI</span>
           </Link>
-          <p className="text-sm">
-            Empowering job seekers with advanced AI to bypass Applicant Tracking Systems and land their dream roles.
+          <p className="text-gray-400 text-sm max-w-sm">
+            Empowering professionals to land their dream jobs with intelligent AI tools.
           </p>
         </div>
-
-        <div>
-          <h4 className="text-white font-semibold mb-4">Product</h4>
+        
+        <div className="space-y-4">
+          <h4 className="font-semibold text-white">Platform</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-            <li><a href="#how-it-works" className="hover:text-white transition-colors">How it works</a></li>
-            <li><a href="#testimonials" className="hover:text-white transition-colors">Testimonials</a></li>
-            <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Resume Analysis</a></li>
+            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Keyword Optimization</a></li>
+            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Mock Interviews</a></li>
+            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Resume Builder</a></li>
           </ul>
         </div>
 
-        <div>
-          <h4 className="text-white font-semibold mb-4">Company</h4>
+        <div className="space-y-4">
+          <h4 className="font-semibold text-white">Company</h4>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/contact" className="hover:text-white transition-colors">About Us</Link></li>
-            <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-            <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
           </ul>
         </div>
 
-        <div>
-          <h4 className="text-white font-semibold mb-4">Connect</h4>
+        <div className="space-y-4">
+          <h4 className="font-semibold text-white">Connect</h4>
           <div className="flex gap-4">
-            <a href="#" className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors text-white">
+            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-white transition-colors">
               <MessageCircle className="w-5 h-5" />
             </a>
-            <a href="#" className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors text-white">
-              <GitBranch className="w-5 h-5" />
-            </a>
-            <a href="#" className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors text-white">
+            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-white transition-colors">
               <Briefcase className="w-5 h-5" />
+            </a>
+            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-white transition-colors">
+              <GitBranch className="w-5 h-5" />
             </a>
           </div>
         </div>
-
       </div>
       
-      <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/5 text-sm text-center">
-        <p>&copy; {new Date().getFullYear()} AI Resume Checker. All rights reserved.</p>
+      <div className="mt-16 pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
+        <p>&copy; {new Date().getFullYear()} CareerAI. All rights reserved.</p>
       </div>
     </footer>
   );

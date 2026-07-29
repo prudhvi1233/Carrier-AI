@@ -7,7 +7,7 @@ export default function Testimonials() {
     {
       name: 'Sarah Jenkins',
       role: 'Product Manager',
-      content: "I applied to 50+ jobs with no response. After using AI Resume Checker, my ATS score went from 42% to 89%, and I landed interviews at three top tech companies in a week.",
+      content: "I applied to 50+ jobs with no response. After using CareerAI, my ATS score went from 42% to 89%, and I landed interviews at three top tech companies in a week.",
       image: 'https://i.pravatar.cc/150?u=a042581f4e29026024d'
     },
     {

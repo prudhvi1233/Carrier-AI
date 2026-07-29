@@ -33,3 +33,34 @@ def login(user_credentials: schemas.UserCreate, db: Session = Depends(dependenci
     
     access_token = auth.create_access_token(data={"sub": user.email})
     return {"access_token": access_token, "token_type": "bearer"}
+
+@router.post("/forgot-password")
+def forgot_password(request: schemas.ForgotPasswordRequest, db: Session = Depends(dependencies.get_db)):
+    user = db.query(models.User).filter(models.User.email == request.email).first()
+    if not user:
+        # For security, we usually don't reveal if the user exists or not
+        return {"message": "If that email is in our system, we have sent a reset link."}
+    
+    token = auth.create_password_reset_token(email=user.email)
+    reset_link = f"http://localhost:5173/reset-password?token={token}"
+    
+    # Send actual email via SMTP
+    from app.services.email_service import send_reset_email
+    send_reset_email(user.email, reset_link)
+    
+    return {"message": "If that email is in our system, we have sent a reset link."}
+
+@router.post("/reset-password")
+def reset_password(request: schemas.ResetPasswordRequest, db: Session = Depends(dependencies.get_db)):
+    email = auth.verify_password_reset_token(request.token)
+    if not email:
+        raise HTTPException(status_code=400, detail="Invalid or expired reset token")
+        
+    user = db.query(models.User).filter(models.User.email == email).first()
+    if not user:
+        raise HTTPException(status_code=400, detail="User not found")
+        
+    user.password_hash = auth.get_password_hash(request.new_password)
+    db.commit()
+    
+    return {"message": "Password has been successfully reset"}

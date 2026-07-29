@@ -27,6 +27,17 @@ def update_my_profile(profile_data: ProfileUpdate, current_user: User = Depends(
     """Updates the logged-in user's profile."""
     profile = update_profile(db, current_user.id, profile_data)
     log_activity(db, current_user.id, 'general', 'Updated your profile information')
+    
+    from app.services.notification_service import send_notification
+    send_notification(
+        db=db,
+        user_id=current_user.id,
+        title="Profile Updated",
+        message="Your profile details were updated successfully.",
+        type="info",
+        icon="user"
+    )
+    
     return profile
 
 @router.delete("/")

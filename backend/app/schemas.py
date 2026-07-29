@@ -36,6 +36,13 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: Optional[str] = None
 
+class ForgotPasswordRequest(BaseModel):
+    email: str
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+
 # --- Resume Schemas ---
 class ResumeAnalysisResponse(BaseModel):
     id: int

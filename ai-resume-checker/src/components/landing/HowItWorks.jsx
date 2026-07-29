@@ -5,23 +5,23 @@ export default function HowItWorks() {
   const steps = [
     {
       number: '01',
-      title: 'Upload Resume',
-      description: 'Drag and drop your current resume in PDF or Word format.',
+      title: 'Build or Upload Resume',
+      description: 'Create a beautiful ATS-friendly resume from scratch, or upload your existing one.',
     },
     {
       number: '02',
-      title: 'Add Job Description',
-      description: 'Paste the exact job description of the role you are targeting.',
+      title: 'Target Your Role',
+      description: 'Paste the exact job description of the position you are aiming for.',
     },
     {
       number: '03',
-      title: 'AI Analysis',
-      description: 'Our AI scans for keywords, formatting, and structural issues.',
+      title: 'Deep AI Analysis',
+      description: 'Get instant ATS scoring, keyword optimization, and actionable rewrite suggestions.',
     },
     {
       number: '04',
-      title: 'Get Results',
-      description: 'Receive your ATS score and a detailed, actionable improvement report.',
+      title: 'Ace the Interview',
+      description: 'Practice with our AI interviewer using mock questions generated directly from your resume.',
     },
   ];
 

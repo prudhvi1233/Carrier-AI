@@ -5,12 +5,14 @@ from app.database.database import Base
 class Notification(Base):
     __tablename__ = "notifications"
 
-    id = Column(String(36), primary_key=True)
-    user_id = Column(String(36), ForeignKey("users.id"))
-    type = Column(String(50))  # e.g., 'interview', 'improvement', 'insight', 'system'
-    message = Column(String(255))
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    title = Column(String(255), nullable=False)
+    message = Column(String(500), nullable=False)
+    type = Column(String(50), default="info")  # success, info, warning, error
+    icon = Column(String(50), nullable=True)
     is_read = Column(Boolean, default=False)
-    priority = Column(String(20), default="low") # low, medium, high
+    action_url = Column(String(500), nullable=True)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
 class Goal(Base):

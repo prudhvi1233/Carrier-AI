@@ -4,7 +4,7 @@ import { LayoutDashboard, ClipboardList, Bot, Mic, FileText, UploadCloud, Menu, 
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import UserMenu from './user-menu/UserMenu';
-import NotificationCenter from './NotificationCenter';
+import NotificationBell from './notifications/NotificationBell';
 import JobsDropdown from './navigation/JobsDropdown';
 import NavItem from './navigation/NavItem';
 
@@ -55,7 +55,7 @@ export default function TopNavbar() {
         {/* Right side items (Desktop) */}
         <div className="hidden lg:flex items-center gap-4">
           <div className="bg-black/20 rounded-full border border-white/5 p-1 flex items-center">
-            <NotificationCenter />
+            <NotificationBell />
           </div>
           
           <div className="w-px h-8 bg-white/10" />

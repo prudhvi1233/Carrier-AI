@@ -35,7 +35,7 @@ export default function Navbar() {
           <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 border border-white/10 group-hover:border-purple-500/50 transition-colors">
             <Brain className="w-6 h-6 text-purple-400 group-hover:text-blue-400 transition-colors" />
           </div>
-          <span className="font-bold text-xl tracking-tight text-white">AI Resume Checker</span>
+          <span className="font-bold text-xl tracking-tight text-white">CareerAI</span>
         </Link>
 
         {/* Desktop Navigation */}
