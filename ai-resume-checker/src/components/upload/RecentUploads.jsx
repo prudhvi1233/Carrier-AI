@@ -1,16 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, ChevronRight } from 'lucide-react';
+import { FileText, ChevronRight, Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import EmptyState from './EmptyState';
+import { resumeService } from '../../services/resumeService';
+import { analysisService } from '../../services/analysisService';
 
 export default function RecentUploads() {
-  // Using dummy data as requested for now
-  const dummyData = [
-    { id: 1, name: 'Frontend_Dev_Resume.pdf', score: 92, status: 'Analyzed', date: 'Oct 24, 2023' },
-    { id: 2, name: 'Software_Engineer_v2.pdf', score: 78, status: 'Analyzed', date: 'Oct 20, 2023' },
-  ];
+  const navigate = useNavigate();
+  const [recentUploads, setRecentUploads] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  if (dummyData.length === 0) {
+  useEffect(() => {
+    const fetchRecent = async () => {
+      try {
+        setLoading(true);
+        const [resumesData, analysisData] = await Promise.all([
+          resumeService.getResumeHistory(),
+          analysisService.getAnalysisHistory()
+        ]);
+        
+        const mappedResumes = resumesData.map(r => {
+          const analysis = analysisData.find(a => a.resume_id === r.id);
+          return {
+            id: r.id,
+            name: r.original_name || `Resume ${r.id}`,
+            date: new Date(r.uploaded_at).toLocaleDateString(),
+            status: analysis ? 'Analyzed' : 'Parsed',
+            score: analysis ? analysis.overall_score : '-',
+          };
+        });
+        
+        // Sort by newest and grab top 5
+        mappedResumes.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setRecentUploads(mappedResumes.slice(0, 5));
+      } catch (err) {
+        console.error('Failed to fetch recent uploads', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchRecent();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="glass-card flex items-center justify-center p-12">
+        <Loader2 className="animate-spin text-accent-blue" size={32} />
+      </div>
+    );
+  }
+
+  if (recentUploads.length === 0) {
     return <EmptyState />;
   }
 
@@ -32,12 +73,13 @@ export default function RecentUploads() {
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
-            {dummyData.map((item, idx) => (
+            {recentUploads.map((item, idx) => (
               <motion.tr 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * idx }}
                 key={item.id} 
+                onClick={() => navigate(`/analysis/${item.id}`)}
                 className="hover:bg-white/5 transition-colors group cursor-pointer"
               >
                 <td className="py-4 px-6 whitespace-nowrap">
@@ -52,12 +94,12 @@ export default function RecentUploads() {
                   {item.date}
                 </td>
                 <td className="py-4 px-6 whitespace-nowrap">
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-green-500/10 text-green-400 border-green-500/20">
+                  <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${item.status === 'Analyzed' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'}`}>
                     {item.status}
                   </span>
                 </td>
                 <td className="py-4 px-6 whitespace-nowrap">
-                  <span className="text-sm font-bold text-white">{item.score}/100</span>
+                  <span className="text-sm font-bold text-white">{item.score !== '-' ? `${item.score}/100` : 'Pending'}</span>
                 </td>
                 <td className="py-4 px-6 whitespace-nowrap text-right">
                   <button className="text-sm font-medium text-accent-blue hover:text-accent-purple transition-colors flex items-center justify-end gap-1 w-full">

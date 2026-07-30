@@ -21,6 +21,7 @@ import HistoryPage from './pages/HistoryPage';
 import SettingsPage from './pages/SettingsPage';
 import ResumeBuilderPage from './pages/ResumeBuilderPage';
 import ResumeWizardPage from './pages/ResumeWizardPage';
+import AIEditorWorkspace from './pages/AIEditorWorkspace';
 import JobMatchPage from './pages/JobMatchPage';
 import CareerAssistantPage from './pages/CareerAssistantPage';
 import JobRecommendationsPage from './pages/JobRecommendationsPage';
@@ -59,6 +60,7 @@ function App() {
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/resume-builder" element={<ResumeBuilderPage />} />
             <Route path="/resume-builder/create" element={<ResumeWizardPage />} />
+            <Route path="/resume-builder/ai-editor" element={<AIEditorWorkspace />} />
             <Route path="/analysis/:id" element={<AnalysisPage />} />
             <Route path="/job-match" element={<JobMatchPage />} />
             <Route path="/job-recommendations" element={<JobRecommendationsPage />} />

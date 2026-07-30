@@ -6,6 +6,12 @@ import CreativePortfolio from './ResumeTemplates/CreativePortfolio/CreativePortf
 import MinimalistClean from './ResumeTemplates/MinimalistClean/MinimalistClean';
 
 export default function LivePreview({ template, formData }) {
+  const [scale, setScale] = React.useState(1);
+
+  const handleZoomIn = () => setScale(prev => Math.min(prev + 0.1, 2));
+  const handleZoomOut = () => setScale(prev => Math.max(prev - 0.1, 0.5));
+  const handleResetZoom = () => setScale(1);
+
   const getTemplateComponent = () => {
     switch(template) {
       case 'modern':
@@ -27,26 +33,32 @@ export default function LivePreview({ template, formData }) {
       {/* Zoom Toolbar */}
       <div className="absolute top-4 right-4 z-10 flex gap-2">
         <div className="glass-card flex p-1">
-          <button className="p-2 text-gray-400 hover:text-white rounded hover:bg-white/10 transition-colors">
+          <button onClick={handleZoomOut} className="p-2 text-gray-400 hover:text-white rounded hover:bg-white/10 transition-colors">
             <ZoomOut size={16} />
           </button>
-          <div className="w-px bg-white/10 mx-1" />
-          <button className="p-2 text-gray-400 hover:text-white rounded hover:bg-white/10 transition-colors">
+          <div className="w-px bg-white/10 mx-1 flex items-center justify-center text-xs text-gray-400 w-8">
+            {Math.round(scale * 100)}%
+          </div>
+          <button onClick={handleZoomIn} className="p-2 text-gray-400 hover:text-white rounded hover:bg-white/10 transition-colors">
             <ZoomIn size={16} />
           </button>
         </div>
-        <button className="glass-card p-3 text-gray-400 hover:text-white rounded transition-colors">
+        <button onClick={handleResetZoom} className="glass-card p-3 text-gray-400 hover:text-white rounded transition-colors" title="Reset Zoom">
           <Maximize2 size={16} />
         </button>
       </div>
 
       <div className="flex-1 overflow-auto p-4 md:p-8 flex items-start justify-center hide-scrollbar">
-        {/* Paper Container */}
-        <div className="w-full max-w-[800px] aspect-[1/1.414] bg-white shadow-2xl origin-top transition-transform duration-300" id="pdf-export-container">
-          
-          {/* Render Unique Template Component */}
-          {getTemplateComponent()}
-
+        {/* Transform Wrapper */}
+        <div 
+            className="w-full max-w-[800px] aspect-[1/1.414] origin-top transition-transform duration-300 flex justify-center"
+            style={{ transform: `scale(${scale})` }}
+        >
+          {/* Paper Container - Unscaled for perfect html2pdf capture */}
+          <div className="w-full h-full bg-white shadow-2xl" id="pdf-export-container">
+            {/* Render Unique Template Component */}
+            {getTemplateComponent()}
+          </div>
         </div>
       </div>
     </div>

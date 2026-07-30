@@ -1,0 +1,14 @@
+2026-07-30 10:36:43.966 | INFO     | app.main:startup_event:134 - Starting up the application...
+2026-07-30 10:36:43.968 | INFO     | app.main:startup_event:135 - Initializing database schema...
+2026-07-30 10:36:44.013 | INFO     | app.main:startup_event:138 - Database schema initialized.
+2026-07-30 10:45:24.397 | WARNING  | app.main:validation_exception_handler:74 - Validation Error: 1 validation error:
+  {'type': 'string_type', 'loc': ('body', 'prompt'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\ai_editor.py", line 82, in suggest_edits
+    POST /api/v1/ai-editor/suggest | Path: /api/v1/ai-editor/suggest
+2026-07-30 10:45:29.627 | WARNING  | app.main:validation_exception_handler:74 - Validation Error: 1 validation error:
+  {'type': 'string_type', 'loc': ('body', 'prompt'), 'msg': 'Input should be a valid string', 'input': None}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\ai_editor.py", line 82, in suggest_edits
+    POST /api/v1/ai-editor/suggest | Path: /api/v1/ai-editor/suggest
+2026-07-30 11:23:26.772 | INFO     | app.main:shutdown_event:142 - Shutting down the application...

@@ -37,7 +37,10 @@ def analyze_resume(resume_id: str, force: bool = False, current_user: User = Dep
     try:
         analysis_data = ai_analysis_service.analyze_resume(text_to_analyze)
     except ValueError as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        error_msg = str(e)
+        if "Quota exceeded" in error_msg or "429" in error_msg:
+            raise HTTPException(status_code=429, detail="AI API Rate Limit Exceeded. Please wait about 30 seconds and try again.")
+        raise HTTPException(status_code=500, detail=error_msg)
 
     # Save to DB
     existing = db.query(Analysis).filter(Analysis.resume_id == resume_id).first()

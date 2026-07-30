@@ -3,6 +3,7 @@ from fastapi import HTTPException, status, UploadFile
 from app.models.resume import Resume
 from app.utils.file_handler import save_file, delete_file, validate_file
 from app.services.parser_service import process_resume
+from app.services.activity_service import log_activity
 import uuid
 import os
 
@@ -29,6 +30,12 @@ def upload_resume(db: Session, user_id: str, file: UploadFile) -> Resume:
     db.add(new_resume)
     db.commit()
     db.refresh(new_resume)
+    
+    # Log the activity
+    try:
+        log_activity(db, user_id, 'resume', f'Uploaded a new resume: {file.filename}')
+    except Exception as e:
+        print(f"Failed to log activity: {e}")
     
     # Automatically trigger parsing synchronously
     try:

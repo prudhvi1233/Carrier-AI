@@ -93,19 +93,7 @@ export default function Login() {
         </button>
       </form>
 
-      <div className="relative flex items-center justify-center mt-2">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-white/10"></div>
-        </div>
-        <div className="relative px-4 bg-transparent backdrop-blur-xl">
-          <span className="text-xs text-gray-500 uppercase tracking-wider">Or continue with</span>
-        </div>
-      </div>
 
-      <div className="flex gap-4">
-        <SocialLogin provider="Google" icon={Globe} onClick={() => {}} />
-        <SocialLogin provider="GitHub" icon={GitBranch} onClick={() => {}} />
-      </div>
 
       <p className="text-center text-sm text-gray-400 mt-4">
         Don't have an account?{' '}

@@ -75,9 +75,9 @@ export default function Profile() {
       
       <ProfileCard profile={profile} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
         {/* Profile Actions */}
-        <div className="lg:col-span-1 flex flex-col gap-4">
+        <div className="md:col-span-1 lg:col-span-1 flex flex-col gap-3 self-start sticky top-6">
           {profileActions.map((action, idx) => {
             const Icon = action.icon;
             return (
@@ -87,19 +87,19 @@ export default function Profile() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 + idx * 0.1 }}
                 onClick={() => action.path && navigate(action.path)}
-                className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all group w-full text-left"
+                className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all group w-full text-left"
               >
-                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${action.color} flex items-center justify-center shadow-lg`}>
-                  <Icon size={18} className="text-white" />
+                <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${action.color} flex items-center justify-center shadow-lg shrink-0`}>
+                  <Icon size={16} className="text-white" />
                 </div>
-                <span className="font-medium text-gray-200 group-hover:text-white transition-colors">{action.name}</span>
+                <span className="font-medium text-sm text-gray-200 group-hover:text-white transition-colors">{action.name}</span>
               </motion.button>
             );
           })}
         </div>
 
         {/* Stats & Account Info */}
-        <div className="lg:col-span-3 flex flex-col gap-6">
+        <div className="md:col-span-2 lg:col-span-4 flex flex-col gap-6">
           
           {/* Stats Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">

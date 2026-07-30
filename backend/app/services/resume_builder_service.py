@@ -244,7 +244,7 @@ Provide the rewritten or improved text directly, with NO conversational filler, 
         pisa.CreatePDF(BytesIO(html.encode('utf-8')), dest=pdf)
         return pdf.getvalue()
 
-    def generate_docx(self, content: dict):
+    def generate_docx(self, content: dict, template: str = "modern"):
         from docx import Document
         from docx.shared import Pt, Inches
         from docx.enum.text import WD_ALIGN_PARAGRAPH

@@ -34,6 +34,7 @@ from app.api.activity import router as activity_router
 from app.api.settings import router as settings_router
 from app.api.search import router as search_router
 from app.api.job_match import router as job_match_router
+from app.api.ai_editor import router as ai_editor_router
 
 settings = get_settings()
 
@@ -115,6 +116,7 @@ def create_app() -> FastAPI:
     app.include_router(settings_router, prefix="/api/v1/settings", tags=["Settings"])
     app.include_router(search_router, prefix="/api/v1/search", tags=["Search"])
     app.include_router(job_match_router, prefix="/api/v1/job-match", tags=["Job Match Analyzer"])
+    app.include_router(ai_editor_router, prefix="/api/v1/ai-editor", tags=["AI Resume Editor"])
     
     from app.api.support import router as support_router
     app.include_router(support_router, prefix="/api/v1/support", tags=["Support"])

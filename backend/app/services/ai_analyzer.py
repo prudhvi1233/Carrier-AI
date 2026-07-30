@@ -1,14 +1,16 @@
 import os
 import json
-from google import genai
-from google.genai import types
+import google.generativeai as genai
+from app.config.config import get_settings
 
 def analyze_resume(resume_text: str) -> dict:
-    api_key = os.getenv("GEMINI_API_KEY")
+    settings = get_settings()
+    api_key = settings.GEMINI_API_KEY
     if not api_key:
         raise ValueError("GEMINI_API_KEY environment variable not set")
     
-    client = genai.Client(api_key=api_key)
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel('gemini-flash-latest')
     
     prompt = f"""
 You are an expert ATS (Applicant Tracking System) and senior technical recruiter. 
@@ -31,17 +33,15 @@ Resume Text:
 {resume_text}
 """
     
-    response = client.models.generate_content(
-        model='gemini-2.5-flash',
-        contents=prompt,
-        config=types.GenerateContentConfig(
+    response = model.generate_content(
+        prompt,
+        generation_config=genai.types.GenerationConfig(
             response_mime_type="application/json",
         )
     )
     
     try:
-        result = json.loads(response.text)
-        return result
+        return json.loads(response.text)
     except json.JSONDecodeError:
         print("Failed to decode JSON from Gemini response:", response.text)
         return {}

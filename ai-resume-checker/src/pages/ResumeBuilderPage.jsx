@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Sparkles, FileText } from 'lucide-react';
+import { Plus, Sparkles, FileText, Bot } from 'lucide-react';
 import { motion } from 'framer-motion';
 import TemplateGallery from '../components/builder/TemplateGallery';
 import RecentDrafts from '../components/builder/RecentDrafts';
@@ -113,13 +113,23 @@ export default function ResumeBuilderPage() {
           </p>
         </div>
         
-        <button
-          onClick={handleCreateNew}
-          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold rounded-xl shadow-lg shadow-accent-blue/25 hover:shadow-accent-blue/40 transition-all hover:scale-105 active:scale-95"
-        >
-          <Sparkles size={18} />
-          Create New Resume
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate('/resume-builder/ai-editor')}
+            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-bold rounded-xl shadow-lg hover:bg-white/10 transition-all hover:scale-105 active:scale-95"
+          >
+            <Bot size={18} className="text-accent-purple" />
+            Edit with AI
+          </button>
+          
+          <button
+            onClick={handleCreateNew}
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold rounded-xl shadow-lg shadow-accent-blue/25 hover:shadow-accent-blue/40 transition-all hover:scale-105 active:scale-95"
+          >
+            <Sparkles size={18} />
+            Create New Resume
+          </button>
+        </div>
       </div>
 
       <RecentDrafts drafts={drafts} onEdit={handleEditDraft} />

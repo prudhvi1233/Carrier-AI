@@ -60,7 +60,8 @@ export default function UploadCard() {
       // UploadProgress component transition will call handleAnalysisComplete
     } catch (error) {
       setStatus('idle');
-      alert('Failed to upload and analyze resume');
+      const errorMsg = error.response?.data?.detail || 'Failed to upload and analyze resume';
+      alert(errorMsg);
       console.error(error);
     }
   };
