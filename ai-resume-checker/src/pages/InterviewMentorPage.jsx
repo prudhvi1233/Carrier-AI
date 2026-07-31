@@ -6,20 +6,16 @@ import { interviewService } from '../services/interviewService';
 
 import InterviewSetup from '../components/interview-mentor/InterviewSetup';
 import InterviewHistory from '../components/interview-mentor/InterviewHistory';
-import InterviewChat from '../components/interview-mentor/InterviewChat';
+import InterviewSimulator from '../components/interview-mentor/InterviewSimulator';
 import InterviewSummary from '../components/interview-mentor/InterviewSummary';
-import TipsSidebar from '../components/interview-mentor/TipsSidebar';
 import LoadingState from '../components/interview-mentor/LoadingState';
 
 export default function InterviewMentorPage() {
-  const [viewState, setViewState] = useState('SETUP'); // SETUP, LOADING, INTERVIEW, FEEDBACK, SUMMARY
+  const [viewState, setViewState] = useState('SETUP'); // SETUP, LOADING, INTERVIEW, SUMMARY
   const [history, setHistory] = useState([]);
   
   const [session, setSession] = useState(null);
   const [config, setConfig] = useState(null);
-  
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [currentFeedback, setCurrentFeedback] = useState(null);
 
   useEffect(() => {
     fetchHistory();
@@ -39,15 +35,14 @@ export default function InterviewMentorPage() {
       setViewState('LOADING');
       setConfig(setupConfig);
       
-      const newSession = await interviewService.startInterview(
+      const newSession = await interviewService.startDynamicInterview(
         setupConfig.role,
         setupConfig.type,
-        setupConfig.difficulty
+        setupConfig.difficulty,
+        setupConfig.persona
       );
       
       setSession(newSession);
-      setCurrentQuestionIndex(0);
-      setCurrentFeedback(null);
       setViewState('INTERVIEW');
     } catch (err) {
       console.error(err);
@@ -56,44 +51,10 @@ export default function InterviewMentorPage() {
     }
   };
 
-  const handleAnswerSubmit = async (answerText) => {
-    try {
-      setViewState('LOADING');
-      
-      const evaluation = await interviewService.submitAnswer(
-        session.id,
-        currentQuestionIndex,
-        answerText
-      );
-      
-      setCurrentFeedback(evaluation);
-      setViewState('FEEDBACK');
-    } catch (err) {
-      console.error(err);
-      toast.error('Failed to submit answer.');
-      setViewState('INTERVIEW');
-    }
-  };
-
-  const handleNextQuestion = async () => {
-    if (currentQuestionIndex + 1 < session.questions.length) {
-      setCurrentQuestionIndex(prev => prev + 1);
-      setCurrentFeedback(null);
-      setViewState('INTERVIEW');
-    } else {
-      // Complete interview
-      try {
-        setViewState('LOADING');
-        const completedSession = await interviewService.completeInterview(session.id);
-        setSession(completedSession);
-        setViewState('SUMMARY');
-        fetchHistory(); // Refresh history
-      } catch (err) {
-        console.error(err);
-        toast.error('Failed to complete interview.');
-        setViewState('FEEDBACK');
-      }
-    }
+  const handleInterviewComplete = (completedSession) => {
+    setSession(completedSession);
+    setViewState('SUMMARY');
+    fetchHistory();
   };
 
   const renderContent = () => {
@@ -118,31 +79,14 @@ export default function InterviewMentorPage() {
       );
     }
 
-    if (viewState === 'INTERVIEW' || viewState === 'FEEDBACK') {
-      const currentQuestion = session.questions[currentQuestionIndex];
-      // Map API structure to what component expects
-      const mappedQuestion = {
-        text: currentQuestion.question,
-        category: currentQuestion.category || currentQuestion.difficulty
-      };
-
+    if (viewState === 'INTERVIEW') {
       return (
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 overflow-y-auto custom-scrollbar">
-          <div className="lg:col-span-2 flex flex-col h-full">
-            <InterviewChat 
-              question={mappedQuestion}
-              questionNumber={currentQuestionIndex + 1}
-              totalQuestions={session.questions.length}
-              config={config}
-              viewState={viewState}
-              onAnswerSubmit={handleAnswerSubmit}
-              feedback={currentFeedback}
-              onNextQuestion={handleNextQuestion}
-            />
-          </div>
-          <div className="hidden lg:flex flex-col h-full">
-            <TipsSidebar category={mappedQuestion.category} />
-          </div>
+        <div className="flex-1 p-6 h-full">
+          <InterviewSimulator 
+            session={session} 
+            config={config} 
+            onComplete={handleInterviewComplete} 
+          />
         </div>
       );
     }

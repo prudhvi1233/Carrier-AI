@@ -10,7 +10,7 @@ def analyze_resume(resume_text: str) -> dict:
         raise ValueError("GEMINI_API_KEY environment variable not set")
     
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-flash-latest')
+    model = genai.GenerativeModel('gemini-3.5-flash')
     
     prompt = f"""
 You are an expert ATS (Applicant Tracking System) and senior technical recruiter. 

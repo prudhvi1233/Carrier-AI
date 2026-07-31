@@ -6,6 +6,13 @@
   body {
     @apply bg-primary text-white antialiased font-sans m-0 overflow-x-hidden;
   }
+
+  /* Hide native browser password reveal icon to prevent overlap with custom toggle */
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear,
+  input[type="password"]::-webkit-credentials-auto-fill-button {
+    display: none !important;
+  }
 }
 
 @layer utilities {

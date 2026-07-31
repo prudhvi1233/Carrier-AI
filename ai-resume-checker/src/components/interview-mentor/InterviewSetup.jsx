@@ -6,10 +6,11 @@ export default function InterviewSetup({ onStart }) {
   const [config, setConfig] = useState({
     role: 'Frontend Developer',
     difficulty: 'Intermediate',
-    type: 'Mixed',
-    duration: '30 Minutes',
+    type: 'Behavioral',
+    duration: '10 Minutes',
     language: 'English',
-    mode: 'Typing'
+    mode: 'Voice Simulator',
+    persona: 'Professional Female HR'
   });
 
   const roles = [
@@ -20,9 +21,10 @@ export default function InterviewSetup({ onStart }) {
 
   const types = ['Technical', 'HR', 'Behavioral', 'System Design', 'Coding', 'Mixed'];
   const difficulties = ['Beginner', 'Intermediate', 'Advanced', 'Expert'];
-  const durations = ['10 Minutes', '20 Minutes', '30 Minutes', '45 Minutes', '60 Minutes'];
-  const languages = ['English', 'Hindi', 'Telugu', 'Spanish', 'French'];
-  const modes = ['Typing', 'Voice (Beta)'];
+  const durations = ['5 Questions', '10 Questions', '15 Questions', 'Unlimited'];
+  const languages = ['English'];
+  const modes = ['Voice Simulator', 'Typing'];
+  const personas = ['Professional Female HR', 'Professional Male HR', 'Technical Software Engineer (Male)', 'Technical Software Engineer (Female)'];
 
   const handleStart = () => {
     onStart(config);
@@ -103,14 +105,14 @@ export default function InterviewSetup({ onStart }) {
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
-              <Languages size={16} /> Language
+              <Users size={16} /> Interviewer Persona
             </label>
             <select 
-              value={config.language} 
-              onChange={e => setConfig({...config, language: e.target.value})}
+              value={config.persona} 
+              onChange={e => setConfig({...config, persona: e.target.value})}
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-accent-blue/50 outline-none appearance-none"
             >
-              {languages.map(l => <option key={l} value={l}>{l}</option>)}
+              {personas.map(p => <option key={p} value={p}>{p}</option>)}
             </select>
           </div>
 

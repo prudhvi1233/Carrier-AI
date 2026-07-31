@@ -38,8 +38,12 @@ export default function Signup() {
       
       navigate('/dashboard');
     } catch (err) {
-      const errorMessage = err.response?.data?.detail || 'Failed to create account';
-      toast.error(typeof errorMessage === 'string' ? errorMessage : 'Validation error occurred');
+      const detail = err.response?.data?.detail;
+      if (Array.isArray(detail)) {
+        toast.error(detail[0].msg || 'Validation error occurred');
+      } else {
+        toast.error(typeof detail === 'string' ? detail : 'Failed to create account');
+      }
     } finally {
       setLoading(false);
     }

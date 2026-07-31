@@ -1,0 +1,14 @@
+2026-07-30 22:04:16.665 | INFO     | app.main:startup_event:134 - Starting up the application...
+2026-07-30 22:04:16.665 | INFO     | app.main:startup_event:135 - Initializing database schema...
+2026-07-30 22:04:16.670 | INFO     | app.main:startup_event:138 - Database schema initialized.
+2026-07-30 23:21:50.526 | WARNING  | app.main:validation_exception_handler:74 - Validation Error: 1 validation error:
+  {'type': 'string_too_short', 'loc': ('body', 'password'), 'msg': 'String should have at least 8 characters', 'input': 'qwertyu', 'ctx': {'min_length': 8}}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 11, in register
+    POST /api/v1/auth/register | Path: /api/v1/auth/register
+2026-07-30 23:21:57.342 | WARNING  | app.main:validation_exception_handler:74 - Validation Error: 1 validation error:
+  {'type': 'string_too_short', 'loc': ('body', 'password'), 'msg': 'String should have at least 8 characters', 'input': 'qwertyu', 'ctx': {'min_length': 8}}
+
+  File "C:\Users\USER\Desktop\summer_project\backend\app\api\auth.py", line 11, in register
+    POST /api/v1/auth/register | Path: /api/v1/auth/register
+2026-07-30 23:23:56.202 | INFO     | app.main:shutdown_event:142 - Shutting down the application...

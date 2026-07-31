@@ -9,20 +9,7 @@ def get_model():
     if not api_key:
         raise ValueError("GEMINI_API_KEY environment variable not set")
     genai.configure(api_key=api_key)
-    return genai.GenerativeModel('gemini-flash-latest')
-
-import os
-import json
-import google.generativeai as genai
-from app.config.config import get_settings
-
-def get_model():
-    settings = get_settings()
-    api_key = settings.GEMINI_API_KEY
-    if not api_key:
-        raise ValueError("GEMINI_API_KEY environment variable not set")
-    genai.configure(api_key=api_key)
-    return genai.GenerativeModel('gemini-flash-latest')
+    return genai.GenerativeModel('gemini-3.5-flash')
 
 def suggest_edits_for_blocks(blocks: list, user_prompt: str = None) -> dict:
     """

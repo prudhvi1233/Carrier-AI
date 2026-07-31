@@ -13,6 +13,76 @@ from app.services.interview_service import interview_service
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
+from pydantic import BaseModel
+from app.services.interview_simulator_service import interview_simulator_service
+
+class DynamicInterviewStartRequest(BaseModel):
+    job_role: str
+    interview_type: str
+    difficulty: str
+    interviewer_persona: str
+
+class DynamicInterviewTurnRequest(BaseModel):
+    answer: str
+
+@router.post("/dynamic/start", response_model=InterviewSessionResponse)
+def start_dynamic_interview(
+    request: DynamicInterviewStartRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    try:
+        session = interview_simulator_service.start_dynamic_session(
+            db, 
+            current_user.id, 
+            request.job_role, 
+            request.interview_type, 
+            request.difficulty,
+            request.interviewer_persona
+        )
+        return session
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Failed to start dynamic interview: {e}")
+        raise HTTPException(status_code=500, detail="Failed to start dynamic interview session")
+
+@router.post("/dynamic/{session_id}/turn")
+def submit_dynamic_answer(
+    session_id: str,
+    request: DynamicInterviewTurnRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    try:
+        result = interview_simulator_service.process_turn(
+            db,
+            current_user.id,
+            session_id,
+            request.answer
+        )
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Failed to process dynamic turn: {e}")
+        raise HTTPException(status_code=500, detail="Failed to process answer")
+
+@router.post("/dynamic/{session_id}/complete", response_model=InterviewSessionResponse)
+def complete_dynamic_interview(
+    session_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    try:
+        session = interview_simulator_service.complete_dynamic_interview(db, current_user.id, session_id)
+        return session
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Failed to complete dynamic interview: {e}")
+        raise HTTPException(status_code=500, detail="Failed to generate final report")
+
 @router.post("/start", response_model=InterviewSessionResponse)
 def start_interview(
     request: InterviewStartRequest,

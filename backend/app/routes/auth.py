@@ -14,7 +14,8 @@ def signup(user: schemas.UserCreate, db: Session = Depends(dependencies.get_db))
     new_user = models.User(
         email=user.email,
         full_name=user.full_name,
-        password_hash=hashed_password
+        password_hash=hashed_password,
+        phone=user.phone
     )
     db.add(new_user)
     db.commit()
@@ -22,8 +23,8 @@ def signup(user: schemas.UserCreate, db: Session = Depends(dependencies.get_db))
     return new_user
 
 @router.post("/login", response_model=schemas.Token)
-def login(user_credentials: schemas.UserCreate, db: Session = Depends(dependencies.get_db)):
-    # Reusing UserCreate schema just to accept email and password in JSON body for simplicity.
+def login(user_credentials: schemas.UserLogin, db: Session = Depends(dependencies.get_db)):
+    # Reusing UserLogin schema just to accept email and password in JSON body for simplicity.
     # Normally OAuth2PasswordRequestForm is used if using form data, but React fetches often send JSON.
     user = db.query(models.User).filter(models.User.email == user_credentials.email).first()
     if not user:

@@ -5,7 +5,7 @@ from loguru import logger
 
 settings = get_settings()
 genai.configure(api_key=settings.GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-flash-latest')
+model = genai.GenerativeModel('gemini-3.5-flash')
 
 class JobMatchService:
     def analyze_match(self, resume_text: str, job_title: str, job_description: str) -> dict:

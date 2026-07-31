@@ -23,6 +23,29 @@ export const interviewService = {
     return response.data;
   },
 
+  // Dynamic Simulator Endpoints
+  startDynamicInterview: async (jobRole, interviewType, difficulty, persona) => {
+    const response = await api.post(`/interview/dynamic/start`, {
+      job_role: jobRole,
+      interview_type: interviewType,
+      difficulty: difficulty,
+      interviewer_persona: persona
+    });
+    return response.data;
+  },
+
+  submitDynamicTurn: async (sessionId, answer) => {
+    const response = await api.post(`/interview/dynamic/${sessionId}/turn`, {
+      answer: answer
+    });
+    return response.data;
+  },
+
+  completeDynamicInterview: async (sessionId) => {
+    const response = await api.post(`/interview/dynamic/${sessionId}/complete`, {});
+    return response.data;
+  },
+
   getHistory: async () => {
     const response = await api.get(`/interview/history`);
     return response.data;
