@@ -113,7 +113,10 @@ export default function Dashboard() {
         {/* Right Column (1/3 width) */}
         <div className="flex flex-col gap-6">
           <div className="flex-none">
-            <CareerProgressWidget score={65} level="Intermediate" />
+            <CareerProgressWidget 
+              score={stats.average_resume_score || 0} 
+              level={(stats.average_resume_score || 0) >= 80 ? "Advanced" : (stats.average_resume_score || 0) >= 50 ? "Intermediate" : "Beginner"} 
+            />
           </div>
           
           <div className="flex-1 min-h-[300px]">

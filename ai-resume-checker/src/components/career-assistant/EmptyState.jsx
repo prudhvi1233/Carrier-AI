@@ -18,7 +18,7 @@ const SUGGESTED_PROMPTS = [
 
 export default function EmptyState({ onSelectPrompt }) {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-3xl mx-auto w-full">
+    <div className="flex-1 flex flex-col items-center justify-center p-6 pb-40 text-center max-w-3xl mx-auto w-full">
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

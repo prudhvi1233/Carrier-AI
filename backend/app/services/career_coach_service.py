@@ -17,7 +17,7 @@ if settings.GEMINI_API_KEY:
 
 class CareerCoachService:
     def __init__(self):
-        self.model = genai.GenerativeModel('gemini-3.5-flash')
+        self.model = genai.GenerativeModel('gemini-3.1-flash-lite')
 
     def _build_context(self, db: Session, user_id: str) -> str:
         # Retrieve User Info

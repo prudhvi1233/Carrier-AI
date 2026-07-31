@@ -12,7 +12,7 @@ if settings.GEMINI_API_KEY:
 
 class AIAnalysisService:
     def __init__(self):
-        self.model = genai.GenerativeModel('gemini-3.5-flash')
+        self.model = genai.GenerativeModel('gemini-3.1-flash-lite')
 
     def analyze_resume(self, resume_text: str) -> AnalysisCreate:
         if not settings.GEMINI_API_KEY:

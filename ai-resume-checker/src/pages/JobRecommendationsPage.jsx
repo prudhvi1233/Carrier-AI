@@ -20,8 +20,10 @@ export default function JobRecommendationsPage() {
 
   // Filters
   const [searchQuery, setSearchQuery] = useState('');
-  const [experienceFilter, setExperienceFilter] = useState('All');
-  const [salaryFilter, setSalaryFilter] = useState('All');
+  const [experienceFilters, setExperienceFilters] = useState([]);
+  const [jobTypeFilters, setJobTypeFilters] = useState([]);
+  const [companySizeFilters, setCompanySizeFilters] = useState([]);
+  const [minSalary, setMinSalary] = useState(3);
   const [sortBy, setSortBy] = useState('Highest Match');
 
   useEffect(() => {
@@ -88,16 +90,45 @@ export default function JobRecommendationsPage() {
         if (searchQuery && !job.job_title.toLowerCase().includes(searchQuery.toLowerCase()) && !job.companies.join(' ').toLowerCase().includes(searchQuery.toLowerCase())) {
           return false;
         }
-        if (experienceFilter !== 'All' && !job.experience_level.includes(experienceFilter)) {
-          return false;
+        
+        if (experienceFilters.length > 0) {
+          if (!experienceFilters.some(ef => job.experience_level?.toLowerCase().includes(ef.toLowerCase()))) {
+            return false;
+          }
         }
+        
+        if (jobTypeFilters.length > 0) {
+           const jobString = JSON.stringify(job).toLowerCase();
+           if (!jobTypeFilters.some(jtf => jobString.includes(jtf.toLowerCase()))) {
+             return false;
+           }
+        }
+        
+        if (companySizeFilters.length > 0) {
+           const jobString = JSON.stringify(job).toLowerCase();
+           if (!companySizeFilters.some(csf => jobString.includes(csf.toLowerCase()))) {
+             return false;
+           }
+        }
+        
+        if (minSalary > 3) {
+          const matches = job.salary_range?.match(/\d+/g);
+          if (matches && matches.length > 0) {
+            const numbers = matches.map(Number);
+            const maxVal = Math.max(...numbers);
+            if (maxVal < minSalary) {
+              return false;
+            }
+          }
+        }
+        
         return true;
       })
       .sort((a, b) => {
         if (sortBy === 'Highest Match') return b.match_percentage - a.match_percentage;
         return 0;
       });
-  }, [recommendations, searchQuery, experienceFilter, sortBy]);
+  }, [recommendations, searchQuery, experienceFilters, jobTypeFilters, companySizeFilters, minSalary, sortBy]);
 
   // Format job for RecommendationCard which expects specific keys
   const formatJobForCard = (job) => ({
@@ -179,8 +210,14 @@ export default function JobRecommendationsPage() {
             <FilterPanel 
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
-              experienceFilter={experienceFilter}
-              setExperienceFilter={setExperienceFilter}
+              experienceFilters={experienceFilters}
+              setExperienceFilters={setExperienceFilters}
+              jobTypeFilters={jobTypeFilters}
+              setJobTypeFilters={setJobTypeFilters}
+              companySizeFilters={companySizeFilters}
+              setCompanySizeFilters={setCompanySizeFilters}
+              minSalary={minSalary}
+              setMinSalary={setMinSalary}
               sortBy={sortBy}
               setSortBy={setSortBy}
             />

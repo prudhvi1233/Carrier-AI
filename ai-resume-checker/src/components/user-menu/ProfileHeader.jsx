@@ -3,7 +3,15 @@ import { User, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ProfileHeader({ user }) {
-  const completion = 85; // Mock profile completion percentage
+  const calculateCompletion = (u) => {
+    if (!u) return 0;
+    let score = 20; // Base score
+    if (u.name) score += 40;
+    if (u.email) score += 30;
+    if (u.avatar) score += 10;
+    return score;
+  };
+  const completion = calculateCompletion(user);
 
   return (
     <div className="p-4 border-b border-white/10">

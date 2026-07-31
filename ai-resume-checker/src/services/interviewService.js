@@ -54,5 +54,10 @@ export const interviewService = {
   getSession: async (sessionId) => {
     const response = await api.get(`/interview/${sessionId}`);
     return response.data;
+  },
+
+  deleteHistory: async (sessionId) => {
+    const response = await api.delete(`/interview/${sessionId}`);
+    return response.data;
   }
 };

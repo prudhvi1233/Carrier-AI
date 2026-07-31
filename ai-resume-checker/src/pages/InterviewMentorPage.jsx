@@ -30,6 +30,17 @@ export default function InterviewMentorPage() {
     }
   };
 
+  const handleDeleteHistory = async (id) => {
+    try {
+      await interviewService.deleteHistory(id);
+      toast.success('Interview history deleted');
+      fetchHistory(); // Refresh the list
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to delete history');
+    }
+  };
+
   const handleStart = async (setupConfig) => {
     try {
       setViewState('LOADING');
@@ -73,7 +84,7 @@ export default function InterviewMentorPage() {
             <InterviewSetup onStart={handleStart} />
           </div>
           <div className="flex flex-col h-full">
-            <InterviewHistory history={history} />
+            <InterviewHistory history={history} onDelete={handleDeleteHistory} />
           </div>
         </div>
       );

@@ -42,8 +42,13 @@ export default function ActionToolbar({ job, onViewDetails, isComparing, onCompa
         <GitCompare size={14} />
       </button>
 
-      <button className="p-2 bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/5 rounded-lg transition-colors" title="Save Job">
-        <Bookmark size={14} />
+      <button 
+        onClick={handleAddToApplications} 
+        disabled={isSaved || isAdding}
+        className={`p-2 rounded-lg transition-colors border ${isSaved ? 'bg-accent-blue/20 text-accent-blue border-accent-blue/30' : 'bg-white/5 text-gray-400 hover:text-white border-white/5 hover:bg-white/10'}`} 
+        title={isSaved ? "Saved" : "Save Job"}
+      >
+        <Bookmark size={14} className={isSaved ? "fill-current" : ""} />
       </button>
       
       <button 

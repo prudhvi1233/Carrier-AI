@@ -55,10 +55,16 @@ def get_dashboard_summary(current_user: User = Depends(get_current_user), db: Se
         }
         
     avg_score = db.query(func.avg(Analysis.overall_score)).filter(Analysis.user_id == current_user.id).scalar()
+    highest_score = db.query(func.max(Analysis.overall_score)).filter(Analysis.user_id == current_user.id).scalar()
+    
+    from app.models.resume_draft import ResumeDraft
+    saved_drafts = db.query(ResumeDraft).filter(ResumeDraft.user_id == current_user.id).count()
     
     return {
         "total_uploaded_resumes": total_uploaded_resumes,
         "average_score": avg_score if avg_score else 0,
+        "highest_score": highest_score if highest_score else 0,
+        "saved_drafts": saved_drafts,
         "latest_analysis": latest_analysis,
         "recent_activity": recent_activity
     }

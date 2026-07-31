@@ -158,3 +158,22 @@ def get_interview_session(
     if not session:
         raise HTTPException(status_code=404, detail="Interview session not found")
     return session
+
+@router.delete("/{session_id}")
+def delete_interview_session(
+    session_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    session = db.query(InterviewSession).filter(InterviewSession.id == session_id, InterviewSession.user_id == current_user.id).first()
+    if not session:
+        raise HTTPException(status_code=404, detail="Interview session not found")
+    
+    try:
+        db.delete(session)
+        db.commit()
+        return {"detail": "Interview session deleted successfully"}
+    except Exception as e:
+        logger.error(f"Failed to delete interview session: {e}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail="Failed to delete interview session")

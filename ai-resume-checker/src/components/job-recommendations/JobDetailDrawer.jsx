@@ -1,9 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MapPin, DollarSign, Briefcase, Zap, AlertTriangle, Lightbulb } from 'lucide-react';
 import SkillTags from './SkillTags';
+import toast from 'react-hot-toast';
+import { jobTrackerService } from '../../services/jobService';
 
 export default function JobDetailDrawer({ isOpen, job, onClose }) {
+  const [isSaving, setIsSaving] = useState(false);
+  const [isApplying, setIsApplying] = useState(false);
+
+  if (!isOpen || !job) return null;
+
+  const handleSaveJob = async () => {
+    setIsSaving(true);
+    try {
+      await jobTrackerService.addSavedJob({
+        company: job.company,
+        role: job.role,
+        status: 'Saved',
+        notes: `AI Match Score: ${job.matchScore}%\n\nWhy this matches: ${job.matchExplanation}`
+      });
+      toast.success(`${job.role} saved to Job Tracker!`);
+    } catch (err) {
+      toast.error('Failed to save job.');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleApplyJob = async () => {
+    setIsApplying(true);
+    try {
+      await jobTrackerService.addSavedJob({
+        company: job.company,
+        role: job.role,
+        status: 'Applied',
+        notes: `AI Match Score: ${job.matchScore}%\n\nWhy this matches: ${job.matchExplanation}`,
+        applied_date: new Date().toISOString()
+      });
+      toast.success(`Application tracked!`);
+      if (job.applyUrl) {
+        window.open(job.applyUrl, '_blank');
+      }
+    } catch (err) {
+      toast.error('Failed to track application.');
+    } finally {
+      setIsApplying(false);
+    }
+  };
   if (!isOpen || !job) return null;
 
   return (
@@ -102,11 +146,19 @@ export default function JobDetailDrawer({ isOpen, job, onClose }) {
 
         {/* Sticky Action Bar */}
         <div className="fixed bottom-0 right-0 w-full md:w-[600px] p-4 bg-secondary/80 backdrop-blur-xl border-t border-white/10 flex gap-3">
-          <button className="flex-1 bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl transition-colors">
-            Save Job
+          <button 
+            onClick={handleSaveJob}
+            disabled={isSaving}
+            className="flex-1 bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl transition-colors disabled:opacity-50"
+          >
+            {isSaving ? 'Saving...' : 'Save Job'}
           </button>
-          <button className="flex-1 bg-accent-blue hover:bg-blue-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-accent-blue/20 transition-colors">
-            Apply Now
+          <button 
+            onClick={handleApplyJob}
+            disabled={isApplying}
+            className="flex-1 bg-accent-blue hover:bg-blue-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-accent-blue/20 transition-colors disabled:opacity-50"
+          >
+            {isApplying ? 'Processing...' : 'Apply Now'}
           </button>
         </div>
       </motion.div>

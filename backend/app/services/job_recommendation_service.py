@@ -17,7 +17,7 @@ if settings.GEMINI_API_KEY:
 
 class JobRecommendationService:
     def __init__(self):
-        self.model = genai.GenerativeModel('gemini-3.5-flash')
+        self.model = genai.GenerativeModel('gemini-3.1-flash-lite')
 
     def generate_recommendations(self, db: Session, user_id: str):
         if not settings.GEMINI_API_KEY:
@@ -88,7 +88,7 @@ You MUST return ONLY valid JSON matching the exact structure below. Do not retur
       "job_title": "string",
       "match_percentage": number (0-100),
       "experience_level": "string",
-      "salary_range": "string (e.g., '$80k - $120k')",
+      "salary_range": "string (e.g., '₹8L - ₹12L')",
       "why_match": "string (1-2 sentences explaining why this fits their profile)",
       "required_skills": ["string", "string"],
       "missing_skills": ["string", "string"],

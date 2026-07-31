@@ -20,7 +20,7 @@ if settings.GEMINI_API_KEY:
 
 class ResumeBuilderService:
     def __init__(self):
-        self.model = genai.GenerativeModel('gemini-3.5-flash')
+        self.model = genai.GenerativeModel('gemini-3.1-flash-lite')
 
     def _clean_json(self, text: str) -> dict:
         if text.startswith("```json"):

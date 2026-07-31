@@ -1,7 +1,7 @@
 import React from 'react';
 import { History, Eye, RotateCcw, Trash2 } from 'lucide-react';
 
-export default function InterviewHistory({ history }) {
+export default function InterviewHistory({ history, onDelete }) {
   return (
     <div className="glass-card overflow-hidden">
       <div className="p-4 border-b border-white/10 bg-white/5 flex items-center gap-2">
@@ -29,7 +29,11 @@ export default function InterviewHistory({ history }) {
               <button className="flex items-center justify-center p-1.5 bg-white/5 hover:bg-white/10 rounded text-gray-400 hover:text-white transition-colors">
                 <RotateCcw size={14} />
               </button>
-              <button className="flex items-center justify-center p-1.5 bg-white/5 hover:bg-red-500/20 rounded text-gray-400 hover:text-red-400 transition-colors">
+              <button 
+                onClick={() => onDelete(item.id)}
+                className="flex items-center justify-center p-1.5 bg-white/5 hover:bg-red-500/20 rounded text-gray-400 hover:text-red-400 transition-colors"
+                title="Delete History"
+              >
                 <Trash2 size={14} />
               </button>
             </div>
