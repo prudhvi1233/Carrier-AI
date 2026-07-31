@@ -46,12 +46,6 @@ export default function UserDropdown({ isOpen, onClose, user, onLogout }) {
               <div className="h-px w-full bg-white/5 my-1" />
 
               <div className="py-2 flex flex-col">
-                <DropdownItem icon={Settings} label="Settings" to="/settings" onClick={onClose} />
-              </div>
-
-              <div className="h-px w-full bg-white/5 my-1" />
-
-              <div className="py-2 flex flex-col">
                 {isAdmin && (
                   <DropdownItem 
                     icon={Shield} 

@@ -18,7 +18,6 @@ import Contact from './pages/Contact';
 import UploadPage from './pages/UploadPage';
 import AnalysisPage from './pages/AnalysisPage';
 import HistoryPage from './pages/HistoryPage';
-import SettingsPage from './pages/SettingsPage';
 import ResumeBuilderPage from './pages/ResumeBuilderPage';
 import ResumeWizardPage from './pages/ResumeWizardPage';
 import AIEditorWorkspace from './pages/AIEditorWorkspace';
@@ -57,7 +56,6 @@ function App() {
             <Route path="/profile/edit" element={<EditProfilePage />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/history" element={<HistoryPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
             <Route path="/resume-builder" element={<ResumeBuilderPage />} />
             <Route path="/resume-builder/create" element={<ResumeWizardPage />} />
             <Route path="/resume-builder/ai-editor" element={<AIEditorWorkspace />} />
