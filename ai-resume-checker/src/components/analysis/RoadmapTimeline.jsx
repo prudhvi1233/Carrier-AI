@@ -20,12 +20,12 @@ export default function RoadmapTimeline({ suggestions = [] }) {
         <div className="p-2.5 bg-accent-purple/10 rounded-xl border border-accent-purple/20">
           <Map size={20} className="text-accent-purple" />
         </div>
-        <h3 className="text-lg font-semibold text-white">Improvement Roadmap</h3>
+        <h3 className="text-lg font-semibold text-foreground">Improvement Roadmap</h3>
       </div>
       
       <div className="flex-1 relative">
         {/* Vertical Line */}
-        <div className="absolute left-3.5 top-2 bottom-6 w-0.5 bg-white/10" />
+        <div className="absolute left-3.5 top-2 bottom-6 w-0.5 bg-overlay-hover" />
 
         <div className="flex flex-col gap-8 relative z-10">
           {groups.map((group, groupIdx) => (
@@ -34,7 +34,7 @@ export default function RoadmapTimeline({ suggestions = [] }) {
                 <div className={`w-7 h-7 rounded-full ${group.color} flex items-center justify-center border-4 border-[#0a0a0a] shadow-lg relative z-10`}>
                   <div className="w-1.5 h-1.5 bg-white rounded-full" />
                 </div>
-                <h4 className="text-sm font-bold text-white uppercase tracking-wider">{group.title}</h4>
+                <h4 className="text-sm font-bold text-foreground uppercase tracking-wider">{group.title}</h4>
               </div>
               
               <ul className="ml-11 flex flex-col gap-2">
@@ -44,7 +44,7 @@ export default function RoadmapTimeline({ suggestions = [] }) {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: (groupIdx * 0.2) + (idx * 0.1) }}
-                    className="text-sm text-gray-400 bg-white/5 px-4 py-2.5 rounded-lg border border-white/5"
+                    className="text-sm text-muted bg-overlay px-4 py-2.5 rounded-lg border border-border"
                   >
                     {item.description}
                   </motion.li>

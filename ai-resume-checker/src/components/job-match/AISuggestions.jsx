@@ -12,8 +12,8 @@ export default function AISuggestions({ suggestions }) {
   };
 
   return (
-    <div className="bg-secondary/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl">
-      <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+    <div className="bg-secondary/40 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-xl">
+      <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
         <Lightbulb className="text-yellow-400" size={24} />
         AI Suggestions
       </h3>
@@ -37,12 +37,12 @@ export default function AISuggestions({ suggestions }) {
               <div>
                 <div className="flex items-center gap-3 mb-1">
                   <span className={`text-sm font-bold ${config.color}`}>{suggestion.priority} Priority</span>
-                  <span className="text-xs text-gray-400 px-2 py-0.5 bg-white/10 rounded-full">{suggestion.category}</span>
+                  <span className="text-xs text-muted px-2 py-0.5 bg-overlay-hover rounded-full">{suggestion.category}</span>
                   <span className="text-xs text-green-400 font-medium ml-auto flex items-center gap-1">
                     Impact: {suggestion.estimated_impact}
                   </span>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-muted text-sm leading-relaxed">
                   {suggestion.description}
                 </p>
               </div>

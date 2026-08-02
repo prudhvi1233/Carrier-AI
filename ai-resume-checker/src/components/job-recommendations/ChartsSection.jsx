@@ -7,7 +7,7 @@ export default function ChartsSection() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       
       <div className="glass-card p-6">
-        <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Your Job Match Distribution</h3>
+        <h3 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wider">Your Job Match Distribution</h3>
         <div className="h-48 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={mockChartData.jobMatchDistribution} layout="vertical" margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
@@ -29,7 +29,7 @@ export default function ChartsSection() {
       </div>
 
       <div className="glass-card p-6">
-        <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Top Skills in Demand (For You)</h3>
+        <h3 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wider">Top Skills in Demand (For You)</h3>
         <div className="h-48 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={mockChartData.skillsDemand} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>

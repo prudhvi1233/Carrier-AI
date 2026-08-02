@@ -35,7 +35,7 @@ export default function ResumeChecker() {
         <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-accent-blue to-accent-purple bg-clip-text text-transparent mb-4">
           AI Resume Analyzer
         </h1>
-        <p className="text-gray-400 text-lg">
+        <p className="text-muted text-lg">
           Upload your resume and paste the job description. Our AI will analyze your match and suggest improvements.
         </p>
       </div>
@@ -52,7 +52,7 @@ export default function ResumeChecker() {
           >
             {/* Upload Area */}
             <div 
-              className={`glass-card p-8 flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed transition-all cursor-pointer ${file ? 'border-accent-blue bg-accent-blue/5' : 'border-white/20 hover:border-accent-blue/50 hover:bg-white/5'}`}
+              className={`glass-card p-8 flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed transition-all cursor-pointer ${file ? 'border-accent-blue bg-accent-blue/5' : 'border-white/20 hover:border-accent-blue/50 hover:bg-overlay'}`}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
               onClick={() => document.getElementById('resume-upload').click()}
@@ -65,14 +65,14 @@ export default function ResumeChecker() {
                 onChange={(e) => e.target.files && setFile(e.target.files[0])}
               />
               
-              <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-colors ${file ? 'bg-accent-blue/20 text-accent-blue' : 'bg-white/5 text-gray-400'}`}>
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-colors ${file ? 'bg-accent-blue/20 text-accent-blue' : 'bg-overlay text-muted'}`}>
                 {file ? <FileText size={32} /> : <UploadCloud size={32} />}
               </div>
               
-              <h3 className="text-xl font-semibold text-white mb-2">
+              <h3 className="text-xl font-semibold text-foreground mb-2">
                 {file ? 'File Selected' : 'Upload Resume'}
               </h3>
-              <p className="text-gray-400 text-center text-sm px-4">
+              <p className="text-muted text-center text-sm px-4">
                 {file ? file.name : 'Drag & drop your PDF or DOCX file here, or click to browse.'}
               </p>
               
@@ -89,15 +89,15 @@ export default function ResumeChecker() {
 
             {/* Job Description Area */}
             <div className="glass-card p-6 flex flex-col h-full min-h-[300px]">
-              <label htmlFor="jd" className="text-white font-semibold mb-2 block">
+              <label htmlFor="jd" className="text-foreground font-semibold mb-2 block">
                 Job Description
               </label>
-              <p className="text-xs text-gray-400 mb-4">
+              <p className="text-xs text-muted mb-4">
                 Paste the job description here for targeted feedback.
               </p>
               <textarea 
                 id="jd" 
-                className="flex-1 w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm focus:outline-none focus:ring-2 focus:ring-accent-purple/50 focus:border-accent-purple/50 resize-none transition-all placeholder:text-white/20"
+                className="flex-1 w-full bg-overlay border border-border rounded-xl p-4 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent-purple/50 focus:border-accent-purple/50 resize-none transition-all placeholder:text-foreground/20"
                 placeholder="We are looking for a highly skilled Software Engineer..."
                 required
               ></textarea>
@@ -108,9 +108,9 @@ export default function ResumeChecker() {
               <button 
                 type="submit"
                 disabled={!file || isScanning}
-                className={`flex items-center gap-2 px-12 py-4 rounded-xl text-white font-bold text-lg transition-all duration-300 ${
+                className={`flex items-center gap-2 px-12 py-4 rounded-xl text-foreground font-bold text-lg transition-all duration-300 ${
                   (!file || isScanning) 
-                    ? 'bg-white/10 text-white/50 cursor-not-allowed' 
+                    ? 'bg-overlay-hover text-foreground/50 cursor-not-allowed' 
                     : 'bg-gradient-to-r from-accent-blue to-accent-purple hover:shadow-lg hover:shadow-accent-blue/25 hover:scale-[1.02] active:scale-[0.98]'
                 }`}
               >
@@ -140,7 +140,7 @@ export default function ResumeChecker() {
               <div className="relative w-48 h-48 flex items-center justify-center">
                 {/* Simulated Circular Progress */}
                 <svg className="w-full h-full transform -rotate-90">
-                  <circle cx="96" cy="96" r="80" fill="transparent" stroke="currentColor" strokeWidth="12" className="text-white/10" />
+                  <circle cx="96" cy="96" r="80" fill="transparent" stroke="currentColor" strokeWidth="12" className="text-foreground/10" />
                   <motion.circle 
                     cx="96" cy="96" r="80" 
                     fill="transparent" 
@@ -154,18 +154,18 @@ export default function ResumeChecker() {
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-5xl font-bold text-white">85</span>
-                  <span className="text-sm text-gray-400">/ 100</span>
+                  <span className="text-5xl font-bold text-foreground">85</span>
+                  <span className="text-sm text-muted">/ 100</span>
                 </div>
               </div>
               <div className="max-w-md text-center md:text-left">
-                <h2 className="text-3xl font-bold text-white mb-4">Great Match!</h2>
-                <p className="text-gray-300 leading-relaxed">
+                <h2 className="text-3xl font-bold text-foreground mb-4">Great Match!</h2>
+                <p className="text-muted leading-relaxed">
                   Your resume is strongly aligned with the job description. With a few minor tweaks to highlight your leadership experience, you'll be a top candidate.
                 </p>
                 <button 
                   onClick={() => setShowResults(false)}
-                  className="mt-6 px-6 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white font-medium transition-colors"
+                  className="mt-6 px-6 py-2 rounded-lg bg-overlay-hover hover:bg-white/20 border border-border text-foreground font-medium transition-colors"
                 >
                   Scan Another Resume
                 </button>
@@ -177,7 +177,7 @@ export default function ResumeChecker() {
               <div className="glass-card p-6">
                 <div className="flex items-center gap-2 mb-6">
                   <CheckCircle className="text-green-400" size={24} />
-                  <h3 className="text-xl font-bold text-white">Strengths</h3>
+                  <h3 className="text-xl font-bold text-foreground">Strengths</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
@@ -187,7 +187,7 @@ export default function ResumeChecker() {
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-2 shrink-0" />
-                      <span className="text-gray-300">{item}</span>
+                      <span className="text-muted">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -196,7 +196,7 @@ export default function ResumeChecker() {
               <div className="glass-card p-6">
                 <div className="flex items-center gap-2 mb-6">
                   <TrendingUp className="text-yellow-400" size={24} />
-                  <h3 className="text-xl font-bold text-white">To Improve</h3>
+                  <h3 className="text-xl font-bold text-foreground">To Improve</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
@@ -206,7 +206,7 @@ export default function ResumeChecker() {
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 mt-2 shrink-0" />
-                      <span className="text-gray-300">{item}</span>
+                      <span className="text-muted">{item}</span>
                     </li>
                   ))}
                 </ul>

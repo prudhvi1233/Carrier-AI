@@ -28,7 +28,7 @@ export default function EmptyState({ onSelectPrompt }) {
         <div className="absolute inset-0 bg-accent-blue/20 blur-3xl rounded-full" />
         <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-accent-blue to-accent-purple p-0.5 relative z-10 shadow-2xl shadow-accent-blue/20">
           <div className="w-full h-full bg-secondary rounded-[23px] flex items-center justify-center">
-            <Bot size={48} className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" />
+            <Bot size={48} className="text-foreground drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" />
           </div>
         </div>
       </motion.div>
@@ -37,7 +37,7 @@ export default function EmptyState({ onSelectPrompt }) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1 }}
-        className="text-3xl md:text-4xl font-bold text-white mb-3"
+        className="text-3xl md:text-4xl font-bold text-foreground mb-3"
       >
         AI Career Assistant
       </motion.h1>
@@ -45,7 +45,7 @@ export default function EmptyState({ onSelectPrompt }) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="text-gray-400 text-lg mb-12 max-w-lg"
+        className="text-muted text-lg mb-12 max-w-lg"
       >
         Your intelligent career coach for resumes, interviews, learning, and job preparation.
       </motion.p>
@@ -58,7 +58,7 @@ export default function EmptyState({ onSelectPrompt }) {
       >
         <div className="flex items-center justify-center gap-2 mb-6">
           <Sparkles size={16} className="text-accent-blue" />
-          <span className="text-sm font-semibold text-gray-300 uppercase tracking-widest">Suggested Prompts</span>
+          <span className="text-sm font-semibold text-muted uppercase tracking-widest">Suggested Prompts</span>
         </div>
         
         <div className="flex flex-wrap justify-center gap-3">
@@ -66,7 +66,7 @@ export default function EmptyState({ onSelectPrompt }) {
             <button
               key={i}
               onClick={() => onSelectPrompt(prompt)}
-              className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-full text-sm text-center text-gray-300 hover:text-white transition-all hover:scale-[1.02]"
+              className="px-4 py-2 bg-overlay hover:bg-overlay-hover border border-border hover:border-white/20 rounded-full text-sm text-center text-muted hover:text-foreground transition-all hover:scale-[1.02]"
             >
               {prompt}
             </button>

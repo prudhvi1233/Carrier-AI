@@ -135,26 +135,26 @@ export default function InterviewSimulator({ session, config, onComplete }) {
   return (
     <div className="h-full flex flex-col lg:flex-row gap-6 min-h-0 relative">
       {isFinishing && (
-        <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center rounded-2xl border border-white/10">
+        <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center rounded-2xl border border-border">
           <Loader className="w-12 h-12 text-accent-purple animate-spin mb-4" />
-          <h2 className="text-2xl font-bold text-white mb-2">Analyzing Your Interview</h2>
-          <p className="text-gray-400">Please wait while the AI generates your comprehensive feedback report...</p>
+          <h2 className="text-2xl font-bold text-foreground mb-2">Analyzing Your Interview</h2>
+          <p className="text-muted">Please wait while the AI generates your comprehensive feedback report...</p>
         </div>
       )}
 
       {/* Left Main Stage */}
       <div className="flex-1 glass-card overflow-hidden flex flex-col relative min-h-0">
         {/* Header & Progress */}
-        <div className="p-4 border-b border-white/5 bg-black/40 z-10 space-y-3 shrink-0">
+        <div className="p-4 border-b border-border bg-black/40 z-10 space-y-3 shrink-0">
           <div className="flex justify-between items-center">
             <div>
-              <h3 className="font-bold text-white flex items-center gap-2">
+              <h3 className="font-bold text-foreground flex items-center gap-2">
                 Live Interview
                 <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold bg-accent-blue/20 text-accent-blue border border-accent-blue/30">
                   {config.role}
                 </span>
               </h3>
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs text-muted mt-1">
                 Question {session?.questions?.length || 1} of 8 • Est. {Math.max(1, (8 - (session?.questions?.length || 1)) * 3)} mins remaining
               </p>
             </div>
@@ -185,10 +185,10 @@ export default function InterviewSimulator({ session, config, onComplete }) {
           <div className="my-auto flex flex-col items-center w-full relative z-10">
             <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center shrink-0 mb-8 mx-auto">
               {/* Outer Glow */}
-              <div className={`absolute inset-0 rounded-full border-2 ${status === 'speaking' ? 'border-accent-purple/50 shadow-[0_0_50px_rgba(168,85,247,0.3)] animate-pulse' : status === 'listening' ? 'border-accent-blue/50 shadow-[0_0_50px_rgba(59,130,246,0.3)]' : 'border-white/10'} transition-all duration-500`} />
+              <div className={`absolute inset-0 rounded-full border-2 ${status === 'speaking' ? 'border-accent-purple/50 shadow-[0_0_50px_rgba(168,85,247,0.3)] animate-pulse' : status === 'listening' ? 'border-accent-blue/50 shadow-[0_0_50px_rgba(59,130,246,0.3)]' : 'border-border'} transition-all duration-500`} />
               
               {/* Static Avatar Image */}
-              <div className="w-36 h-36 md:w-48 md:h-48 rounded-full border-4 border-white/10 overflow-hidden bg-gray-900 shadow-2xl relative z-10 flex items-center justify-center">
+              <div className="w-36 h-36 md:w-48 md:h-48 rounded-full border-4 border-border overflow-hidden bg-gray-900 shadow-2xl relative z-10 flex items-center justify-center">
                 <img 
                   src={config.persona.toLowerCase().includes('female hr') ? '/avatars/female_hr.jpg' : '/avatars/male_tech.jpg'} 
                   alt="HR Interviewer"
@@ -199,11 +199,11 @@ export default function InterviewSimulator({ session, config, onComplete }) {
                     e.target.nextSibling.style.display = 'block';
                   }}
                 />
-                <User size={64} className="text-gray-400 hidden absolute" />
+                <User size={64} className="text-muted hidden absolute" />
               </div>
               
               {/* Status Badge */}
-              <div className="absolute -bottom-4 bg-gray-900 border border-white/10 px-4 py-1.5 rounded-full flex items-center gap-2 shadow-xl z-20 whitespace-nowrap">
+              <div className="absolute -bottom-4 bg-gray-900 border border-border px-4 py-1.5 rounded-full flex items-center gap-2 shadow-xl z-20 whitespace-nowrap">
                  {status === 'speaking' ? (
                    <span className="text-sm font-medium text-accent-purple flex items-center gap-2">
                      <Activity size={14} className="animate-pulse" /> Speaking
@@ -217,7 +217,7 @@ export default function InterviewSimulator({ session, config, onComplete }) {
                      <Loader size={14} className="animate-spin" /> Thinking
                    </span>
                  ) : (
-                   <span className="text-sm font-medium text-gray-400">Ready</span>
+                   <span className="text-sm font-medium text-muted">Ready</span>
                  )}
               </div>
             </div>
@@ -244,7 +244,7 @@ export default function InterviewSimulator({ session, config, onComplete }) {
                     exit={{ opacity: 0, y: -10 }}
                     className="flex flex-col items-center gap-4 w-full"
                   >
-                    <p className="text-base md:text-xl text-white font-medium drop-shadow-md text-center max-w-4xl break-words whitespace-normal leading-relaxed">
+                    <p className="text-base md:text-xl text-foreground font-medium drop-shadow-md text-center max-w-4xl break-words whitespace-normal leading-relaxed">
                       "{currentQuestionText}"
                     </p>
                     {/* Speaking Waveform */}
@@ -267,7 +267,7 @@ export default function InterviewSimulator({ session, config, onComplete }) {
                     exit={{ opacity: 0, y: -10 }}
                     className="w-full flex flex-col items-center"
                   >
-                    <p className="text-gray-300 italic text-base md:text-lg drop-shadow-md max-w-4xl break-words whitespace-normal text-center">
+                    <p className="text-muted italic text-base md:text-lg drop-shadow-md max-w-4xl break-words whitespace-normal text-center">
                       {interimTranscript || transcript || "Listening..."}
                     </p>
                     {/* Listening Waveform */}
@@ -288,7 +288,7 @@ export default function InterviewSimulator({ session, config, onComplete }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="text-gray-400 text-sm md:text-base text-center w-full"
+                    className="text-muted text-sm md:text-base text-center w-full"
                   >
                     Click the microphone when you are ready to answer.
                   </motion.p>
@@ -299,13 +299,13 @@ export default function InterviewSimulator({ session, config, onComplete }) {
         </div>
 
         {/* Controls Panel */}
-        <div className="p-4 md:p-6 bg-black/40 border-t border-white/5 relative z-10 shrink-0">
+        <div className="p-4 md:p-6 bg-black/40 border-t border-border relative z-10 shrink-0">
           <div className="flex flex-col items-center gap-4 w-full">
             
-            <div className="w-full max-w-3xl bg-black/50 border border-white/10 rounded-xl p-4 min-h-[80px] max-h-[150px] overflow-y-auto custom-scrollbar break-words whitespace-normal">
+            <div className="w-full max-w-3xl bg-black/50 border border-border rounded-xl p-4 min-h-[80px] max-h-[150px] overflow-y-auto custom-scrollbar break-words whitespace-normal">
               <p className={`text-sm ${transcript ? 'text-gray-200' : 'text-gray-600 italic'} break-words whitespace-normal`}>
                 {transcript || "Your transcription will appear here..."}
-                <span className="text-gray-400 ml-1">{interimTranscript}</span>
+                <span className="text-muted ml-1">{interimTranscript}</span>
               </p>
             </div>
 
@@ -316,7 +316,7 @@ export default function InterviewSimulator({ session, config, onComplete }) {
                 className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all shrink-0 ${
                   status === 'listening' 
                     ? 'bg-red-500/20 text-red-500 hover:bg-red-500/30 shadow-[0_0_20px_rgba(239,68,68,0.3)] animate-pulse' 
-                    : 'bg-white/10 text-white hover:bg-white/20'
+                    : 'bg-overlay-hover text-foreground hover:bg-white/20'
                 } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 {status === 'listening' ? <MicOff size={20} className="md:w-6 md:h-6" /> : <Mic size={20} className="md:w-6 md:h-6" />}
@@ -325,7 +325,7 @@ export default function InterviewSimulator({ session, config, onComplete }) {
               <button
                 onClick={handleSubmitAnswer}
                 disabled={!transcript.trim() || status === 'thinking'}
-                className="px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-accent-blue/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 whitespace-nowrap text-sm md:text-base shrink-0"
+                className="px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-semibold rounded-xl hover:shadow-lg hover:shadow-accent-blue/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 whitespace-nowrap text-sm md:text-base shrink-0"
               >
                 <CheckCircle size={18} />
                 Submit Answer
@@ -337,9 +337,9 @@ export default function InterviewSimulator({ session, config, onComplete }) {
 
       {/* Right Sidebar - Transcript Log */}
       <div className="w-full lg:w-96 glass-card flex flex-col hidden md:flex min-h-0 shrink-0">
-        <div className="p-4 border-b border-white/5 flex items-center gap-2 bg-black/20 shrink-0">
+        <div className="p-4 border-b border-border flex items-center gap-2 bg-overlay shrink-0">
           <MessageSquare size={18} className="text-accent-blue" />
-          <h3 className="font-bold text-white truncate">Live Transcript</h3>
+          <h3 className="font-bold text-foreground truncate">Live Transcript</h3>
         </div>
         
         <div className="flex-1 p-4 overflow-y-auto custom-scrollbar flex flex-col gap-6 min-h-0 break-words">
@@ -356,8 +356,8 @@ export default function InterviewSimulator({ session, config, onComplete }) {
               </div>
               <div className={`px-4 py-3 rounded-2xl max-w-[95%] text-sm leading-relaxed shadow-sm break-words whitespace-normal ${
                 log.speaker === 'User' 
-                  ? 'bg-accent-blue text-white rounded-br-sm' 
-                  : 'bg-white/10 text-gray-200 border border-white/10 rounded-bl-sm'
+                  ? 'bg-accent-blue text-foreground rounded-br-sm' 
+                  : 'bg-overlay-hover text-gray-200 border border-border rounded-bl-sm'
               }`}>
                 {log.text}
               </div>
@@ -365,7 +365,7 @@ export default function InterviewSimulator({ session, config, onComplete }) {
           ))}
           {status === 'thinking' && (
             <div className="flex items-start w-full">
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 rounded-tl-sm text-sm text-gray-400 flex items-center gap-2">
+              <div className="p-3 rounded-2xl bg-overlay border border-border rounded-tl-sm text-sm text-muted flex items-center gap-2">
                 <Loader className="animate-spin shrink-0" size={14} />
                 Typing...
               </div>

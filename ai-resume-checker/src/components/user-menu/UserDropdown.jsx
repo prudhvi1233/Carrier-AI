@@ -27,13 +27,13 @@ export default function UserDropdown({ isOpen, onClose, user, onLogout }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ type: 'spring', duration: 0.4, bounce: 0 }}
-            className="fixed md:absolute left-4 right-4 md:left-auto md:right-0 top-20 md:top-full md:mt-3 md:w-80 bg-secondary/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50 origin-top md:origin-top-right max-h-[calc(100vh-100px)] flex flex-col"
+            className="fixed md:absolute left-4 right-4 md:left-auto md:right-0 top-20 md:top-full md:mt-3 md:w-80 bg-dropdown border border-border rounded-2xl shadow-2xl overflow-hidden z-50 origin-top md:origin-top-right max-h-[calc(100vh-100px)] flex flex-col"
           >
             <div className="overflow-y-auto custom-scrollbar flex-1">
               <ProfileHeader user={user} />
               <QuickStats />
 
-              <div className="h-px w-full bg-white/5 my-1" />
+              <div className="h-px w-full bg-overlay my-1" />
 
               <div className="py-2 flex flex-col">
                 <DropdownItem icon={User} label="My Profile" to="/profile" onClick={onClose} />
@@ -43,7 +43,7 @@ export default function UserDropdown({ isOpen, onClose, user, onLogout }) {
                 <DropdownItem icon={FileBox} label="My Drafts" to="/resume-builder" onClick={onClose} />
               </div>
 
-              <div className="h-px w-full bg-white/5 my-1" />
+              <div className="h-px w-full bg-overlay my-1" />
 
               <div className="py-2 flex flex-col">
                 {isAdmin && (

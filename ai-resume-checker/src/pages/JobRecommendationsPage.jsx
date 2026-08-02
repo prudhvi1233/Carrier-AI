@@ -157,12 +157,12 @@ export default function JobRecommendationsPage() {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-          className="w-16 h-16 rounded-full border-4 border-white/10 border-t-accent-blue mb-8 shadow-[0_0_30px_rgba(56,189,248,0.2)]"
+          className="w-16 h-16 rounded-full border-4 border-border border-t-accent-blue mb-8 shadow-[0_0_30px_rgba(56,189,248,0.2)]"
         />
-        <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">
+        <h2 className="text-2xl font-bold text-foreground mb-2 tracking-tight">
           {isGenerating ? 'Generating recommendations...' : 'Finding the best jobs...'}
         </h2>
-        <div className="flex flex-col items-center gap-2 mt-4 text-gray-400 text-sm">
+        <div className="flex flex-col items-center gap-2 mt-4 text-muted text-sm">
           <p className="flex items-center gap-2"><Zap size={14} className="text-accent-blue" /> Matching your skills...</p>
           <p className="flex items-center gap-2"><Briefcase size={14} className="text-accent-purple" /> Checking ATS compatibility...</p>
         </div>
@@ -174,8 +174,8 @@ export default function JobRecommendationsPage() {
     return (
       <div className="p-8 w-full max-w-2xl mx-auto mt-10 glass-card text-center">
         <AlertCircle size={48} className="text-red-500 mx-auto mb-4" />
-        <h2 className="text-xl font-bold text-white mb-2">Oops! Something went wrong</h2>
-        <p className="text-gray-400 mb-6">{error}</p>
+        <h2 className="text-xl font-bold text-foreground mb-2">Oops! Something went wrong</h2>
+        <p className="text-muted mb-6">{error}</p>
         <button onClick={fetchRecommendations} className="btn-primary">Try Again</button>
       </div>
     );
@@ -187,16 +187,16 @@ export default function JobRecommendationsPage() {
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      <div className="p-6 md:p-8 shrink-0 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/5 bg-black/20 backdrop-blur-xl z-10 relative">
+      <div className="p-6 md:p-8 shrink-0 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-border bg-overlay backdrop-blur-xl z-10 relative">
         <div>
-          <h1 className="text-3xl font-black text-white tracking-tight mb-2">
+          <h1 className="text-3xl font-black text-foreground tracking-tight mb-2">
             AI <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Job Matches</span>
           </h1>
-          <p className="text-gray-400">Personalized opportunities based on your skills and AI analysis.</p>
+          <p className="text-muted">Personalized opportunities based on your skills and AI analysis.</p>
         </div>
         <button 
           onClick={handleRefresh}
-          className="px-4 py-2 bg-white/5 hover:bg-white/10 text-white rounded-xl transition-all border border-white/10 text-sm font-medium flex items-center gap-2"
+          className="px-4 py-2 bg-overlay hover:bg-overlay-hover text-foreground rounded-xl transition-all border border-border text-sm font-medium flex items-center gap-2"
         >
           <Zap size={16} className="text-accent-purple" />
           Refresh Recommendations
@@ -227,8 +227,8 @@ export default function JobRecommendationsPage() {
             {filteredData.length === 0 ? (
               <div className="glass-card p-12 text-center flex flex-col items-center justify-center h-64">
                 <Briefcase size={48} className="text-gray-500 mb-4 opacity-50" />
-                <h3 className="text-xl font-bold text-white mb-2">No matches found</h3>
-                <p className="text-gray-400 text-sm max-w-md mx-auto">
+                <h3 className="text-xl font-bold text-foreground mb-2">No matches found</h3>
+                <p className="text-muted text-sm max-w-md mx-auto">
                   Try adjusting your filters or generating new recommendations based on an updated resume.
                 </p>
               </div>

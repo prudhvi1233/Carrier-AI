@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 
 export default function SkillsComparison({ matched, missing }) {
   return (
-    <div className="bg-secondary/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl">
-      <h3 className="text-xl font-bold text-white mb-6">Skills Comparison</h3>
+    <div className="bg-secondary/40 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-xl">
+      <h3 className="text-xl font-bold text-foreground mb-6">Skills Comparison</h3>
       
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <div className="flex items-center gap-2 mb-4">
             <CheckCircle className="text-green-400" size={20} />
-            <h4 className="font-medium text-white">Matched Skills ({matched.length})</h4>
+            <h4 className="font-medium text-foreground">Matched Skills ({matched.length})</h4>
           </div>
           <div className="flex flex-wrap gap-2">
             {matched.map((skill, index) => (
@@ -31,7 +31,7 @@ export default function SkillsComparison({ matched, missing }) {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <XCircle className="text-red-400" size={20} />
-            <h4 className="font-medium text-white">Missing Skills ({missing.length})</h4>
+            <h4 className="font-medium text-foreground">Missing Skills ({missing.length})</h4>
           </div>
           <div className="flex flex-wrap gap-2">
             {missing.map((skill, index) => (

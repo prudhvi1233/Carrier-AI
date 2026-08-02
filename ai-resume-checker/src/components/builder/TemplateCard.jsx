@@ -9,11 +9,11 @@ export default function TemplateCard({ template, onSelect, onUseTemplate, onPrev
       'Professional': 'bg-blue-500/10 text-blue-400 border-blue-500/20',
       'ATS Friendly': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
       'Creative': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-      'Minimal': 'bg-gray-500/10 text-gray-400 border-gray-500/20',
+      'Minimal': 'bg-gray-500/10 text-muted border-gray-500/20',
       'Executive': 'bg-amber-500/10 text-amber-400 border-amber-500/20',
       'Modern': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
     };
-    return colors[tag] || 'bg-white/5 text-gray-300 border-white/10';
+    return colors[tag] || 'bg-overlay text-muted border-border';
   };
 
   return (
@@ -29,13 +29,13 @@ export default function TemplateCard({ template, onSelect, onUseTemplate, onPrev
       <div className="relative p-6 pb-0 flex justify-center items-start overflow-hidden">
         {/* Recommended Ribbon placeholder if needed in the future */}
         {template.recommended && (
-          <div className="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+          <div className="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-500 to-orange-500 text-foreground text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
             Recommended
           </div>
         )}
         
         <motion.div 
-          className="relative w-full aspect-[1/1.414] rounded-t-xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-white/5 bg-white origin-bottom group-hover:border-white/20 transition-colors"
+          className="relative w-full aspect-[1/1.414] rounded-t-xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-border bg-white origin-bottom group-hover:border-white/20 transition-colors"
         >
           <img 
             src={template.thumbnail} 
@@ -50,13 +50,13 @@ export default function TemplateCard({ template, onSelect, onUseTemplate, onPrev
       {/* Card Content */}
       <div className="flex flex-col flex-1 p-6 relative z-10 bg-[#111827]">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-lg font-semibold text-white tracking-tight">{template.name}</h3>
+          <h3 className="text-lg font-semibold text-foreground tracking-tight">{template.name}</h3>
           <button className="text-gray-500 hover:text-yellow-400 transition-colors p-1">
             <Star size={18} />
           </button>
         </div>
         
-        <p className="text-sm text-gray-400 mb-4 line-clamp-2 min-h-[40px]">
+        <p className="text-sm text-muted mb-4 line-clamp-2 min-h-[40px]">
           {template.description}
         </p>
 
@@ -75,7 +75,7 @@ export default function TemplateCard({ template, onSelect, onUseTemplate, onPrev
         <div className="mt-auto grid grid-cols-2 gap-3">
           <button 
             onClick={() => onPreview && onPreview(template)}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 text-white text-sm font-medium hover:bg-white/5 hover:border-white/20 transition-all active:scale-95"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-border text-foreground text-sm font-medium hover:bg-overlay hover:border-white/20 transition-all active:scale-95"
           >
             <Eye size={16} />
             Preview
@@ -83,7 +83,7 @@ export default function TemplateCard({ template, onSelect, onUseTemplate, onPrev
           
           <button 
             onClick={() => onUseTemplate ? onUseTemplate(template) : onSelect(template)}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white text-sm font-semibold shadow-lg hover:shadow-accent-blue/30 transition-all active:scale-95 group/btn"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-foreground text-sm font-semibold shadow-lg hover:shadow-accent-blue/30 transition-all active:scale-95 group/btn"
           >
             Use Template
             <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />

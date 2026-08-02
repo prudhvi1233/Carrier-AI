@@ -5,12 +5,12 @@ export default function WizardNavigation({ currentStep, totalSteps, onNext, onPr
   const isLastStep = currentStep === totalSteps - 1;
 
   return (
-    <div className="absolute bottom-0 w-full p-4 md:p-6 border-t border-white/10 bg-secondary/90 backdrop-blur-md flex justify-between items-center z-40">
+    <div className="absolute bottom-0 w-full p-4 md:p-6 border-t border-border bg-secondary/90 backdrop-blur-md flex justify-between items-center z-40">
       
       <button 
         onClick={onPrev}
         disabled={currentStep === 0}
-        className="px-6 py-3 rounded-xl text-white font-medium hover:bg-white/5 transition-colors disabled:opacity-30 disabled:hover:bg-transparent flex items-center gap-2"
+        className="px-6 py-3 rounded-xl text-foreground font-medium hover:bg-overlay transition-colors disabled:opacity-30 disabled:hover:bg-transparent flex items-center gap-2"
       >
         <ChevronLeft size={18} /> Back
       </button>
@@ -27,7 +27,7 @@ export default function WizardNavigation({ currentStep, totalSteps, onNext, onPr
           disabled={!isValid}
           className={`px-8 py-3 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg ${
             isLastStep 
-              ? 'bg-gradient-to-r from-accent-blue to-accent-purple text-white shadow-accent-blue/20 hover:shadow-accent-blue/40'
+              ? 'bg-gradient-to-r from-accent-blue to-accent-purple text-foreground shadow-accent-blue/20 hover:shadow-accent-blue/40'
               : 'bg-white text-black hover:bg-gray-200 shadow-white/10 hover:shadow-white/20'
           } disabled:opacity-50 disabled:cursor-not-allowed`}
         >

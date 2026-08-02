@@ -35,14 +35,14 @@ export default function InterviewChat({ question, questionNumber, totalQuestions
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold px-2 py-0.5 rounded bg-white/10 text-gray-300 uppercase tracking-wider">{question.category}</span>
+              <span className="text-xs font-bold px-2 py-0.5 rounded bg-overlay-hover text-muted uppercase tracking-wider">{question.category}</span>
               <span className="text-xs text-gray-500">Question {questionNumber} of {totalQuestions}</span>
             </div>
-            <h3 className="font-bold text-white mt-0.5">{config.role} Interview</h3>
+            <h3 className="font-bold text-foreground mt-0.5">{config.role} Interview</h3>
           </div>
         </div>
 
-        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${timeLeft < 30 ? 'bg-red-500/10 border-red-500/30 text-red-400' : 'bg-black/40 border-white/10 text-gray-300'}`}>
+        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${timeLeft < 30 ? 'bg-red-500/10 border-red-500/30 text-red-400' : 'bg-black/40 border-border text-muted'}`}>
           <Clock size={16} />
           <span className="font-mono font-bold">{formatTime(timeLeft)}</span>
         </div>
@@ -54,11 +54,11 @@ export default function InterviewChat({ question, questionNumber, totalQuestions
         {/* AI Question */}
         <div className="flex gap-4">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center shrink-0 shadow-lg shadow-accent-blue/20">
-            <Bot size={20} className="text-white" />
+            <Bot size={20} className="text-foreground" />
           </div>
           <div className="flex-1 space-y-3">
-            <div className="bg-white/5 border border-white/10 p-4 rounded-2xl rounded-tl-none inline-block">
-              <p className="text-white text-lg leading-relaxed">{question.text}</p>
+            <div className="bg-overlay border border-border p-4 rounded-2xl rounded-tl-none inline-block">
+              <p className="text-foreground text-lg leading-relaxed">{question.text}</p>
             </div>
             
             {viewState === 'INTERVIEW' && (

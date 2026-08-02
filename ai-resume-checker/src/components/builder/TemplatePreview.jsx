@@ -81,12 +81,12 @@ export default function TemplatePreview({ template, onClose, onUse }) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 50, scale: 0.95 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-6xl h-full max-h-[90vh] bg-secondary border border-white/10 rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden"
+          className="relative w-full max-w-6xl h-full max-h-[90vh] bg-secondary border border-border rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden"
         >
           {/* Close button */}
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/10 transition-colors"
+            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-foreground flex items-center justify-center backdrop-blur-md border border-border transition-colors"
           >
             <X size={20} />
           </button>
@@ -103,64 +103,64 @@ export default function TemplatePreview({ template, onClose, onUse }) {
           </div>
 
           {/* Right Panel: Template Info */}
-          <div className="w-full md:w-[400px] bg-secondary flex flex-col p-8 overflow-y-auto hide-scrollbar border-l border-white/5">
+          <div className="w-full md:w-[400px] bg-secondary flex flex-col p-8 overflow-y-auto hide-scrollbar border-l border-border">
             <div className="flex flex-wrap gap-2 mb-4">
               {template.tags.map((tag, idx) => (
-                <span key={idx} className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-gray-300 uppercase tracking-wider">
+                <span key={idx} className="px-2.5 py-1 rounded-full bg-overlay border border-border text-xs font-semibold text-muted uppercase tracking-wider">
                   {tag}
                 </span>
               ))}
             </div>
 
-            <h2 className="text-3xl font-bold text-white mb-4">{template.name}</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{template.name}</h2>
             
-            <p className="text-gray-400 leading-relaxed mb-8">
+            <p className="text-muted leading-relaxed mb-8">
               {template.description}
             </p>
 
             <div className="flex flex-col gap-4 mb-8">
-              <div className="glass-card p-4 flex items-center justify-between border-white/5">
+              <div className="glass-card p-4 flex items-center justify-between border-border">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-yellow-500/10 flex items-center justify-center">
                     <Star size={18} className="text-yellow-500 fill-yellow-500" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium text-gray-400">ATS Rating</span>
-                    <span className="text-lg font-bold text-white">{template.atsRating} <span className="text-sm text-gray-500">/ 5.0</span></span>
+                    <span className="text-sm font-medium text-muted">ATS Rating</span>
+                    <span className="text-lg font-bold text-foreground">{template.atsRating} <span className="text-sm text-gray-500">/ 5.0</span></span>
                   </div>
                 </div>
               </div>
               
-              <div className="glass-card p-4 flex items-center justify-between border-white/5">
+              <div className="glass-card p-4 flex items-center justify-between border-border">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
                     <Zap size={18} className="text-blue-400" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium text-gray-400">Difficulty</span>
-                    <span className="text-lg font-bold text-white">{template.difficulty} Setup</span>
+                    <span className="text-sm font-medium text-muted">Difficulty</span>
+                    <span className="text-lg font-bold text-foreground">{template.difficulty} Setup</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="mb-auto">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-2">Recommended For</h4>
-              <p className="text-gray-400 text-sm bg-white/5 p-3 rounded-lg border border-white/5">
+              <h4 className="text-sm font-bold text-foreground uppercase tracking-wider mb-2">Recommended For</h4>
+              <p className="text-muted text-sm bg-overlay p-3 rounded-lg border border-border">
                 {template.recommendedFor}
               </p>
             </div>
 
-            <div className="pt-8 mt-8 border-t border-white/10 flex gap-4">
+            <div className="pt-8 mt-8 border-t border-border flex gap-4">
               <button 
                 onClick={onClose}
-                className="flex-1 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold border border-white/10 transition-colors"
+                className="flex-1 py-4 rounded-xl bg-overlay hover:bg-overlay-hover text-foreground font-bold border border-border transition-colors"
               >
                 Back to Gallery
               </button>
               <button 
                 onClick={() => onUse(template)}
-                className="flex-1 flex items-center justify-center gap-2 py-4 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold shadow-lg shadow-accent-blue/20 hover:shadow-accent-blue/40 transition-all hover:-translate-y-0.5"
+                className="flex-1 flex items-center justify-center gap-2 py-4 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-bold shadow-lg shadow-accent-blue/20 hover:shadow-accent-blue/40 transition-all hover:-translate-y-0.5"
               >
                 <CheckCircle2 size={18} />
                 Use Template

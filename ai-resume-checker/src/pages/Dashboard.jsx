@@ -10,6 +10,7 @@ import WeeklyInsights from '../components/dashboard/WeeklyInsights';
 import CareerProgressWidget from '../components/dashboard/CareerProgressWidget';
 import StatCard from '../components/StatCard';
 import { Link } from 'react-router-dom';
+import ThemeToggle from '../components/ThemeToggle';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -52,10 +53,10 @@ export default function Dashboard() {
           animate={{ opacity: 1, x: 0 }}
           className="flex flex-col gap-1"
         >
-          <h1 className="text-3xl font-bold tracking-tight text-white">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
             Welcome Back, {user?.name || 'User'} <span className="animate-wave inline-block origin-bottom-right">👋</span>
           </h1>
-          <p className="text-gray-400 text-sm">
+          <p className="text-muted text-sm">
             Here's what's happening with your career today.
           </p>
         </motion.div>
@@ -65,34 +66,35 @@ export default function Dashboard() {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-3"
         >
-          <Link to="/resume-builder/create" className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm font-medium text-white hover:bg-white/10 transition-colors">
+          <Link to="/resume-builder/create" className="flex items-center gap-2 px-4 py-2 bg-overlay border border-border rounded-xl text-sm font-medium text-foreground hover:bg-overlay-hover transition-colors">
             <Plus size={16} /> New Resume
           </Link>
-          <Link to="/job-tracker" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-blue to-accent-purple rounded-xl text-sm font-medium text-white shadow-lg shadow-accent-blue/20 hover:shadow-accent-blue/40 transition-all">
+          <Link to="/job-tracker" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent-blue to-accent-purple rounded-xl text-sm font-medium text-foreground shadow-lg shadow-accent-blue/20 hover:shadow-accent-blue/40 transition-all">
             <Search size={16} /> Find Jobs
           </Link>
+          <ThemeToggle />
         </motion.div>
       </div>
 
       {/* KPI Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="glass-card p-4 rounded-2xl flex flex-col gap-1">
-          <span className="text-gray-400 text-xs font-medium uppercase tracking-wider">Avg Resume Score</span>
-          <span className="text-2xl font-bold text-white">{stats.average_resume_score || 0}%</span>
+          <span className="text-muted text-xs font-medium uppercase tracking-wider">Avg Resume Score</span>
+          <span className="text-2xl font-bold text-foreground">{stats.average_resume_score || 0}%</span>
         </div>
         <div className="glass-card p-4 rounded-2xl flex flex-col gap-1">
-          <span className="text-gray-400 text-xs font-medium uppercase tracking-wider">Avg ATS Score</span>
-          <span className="text-2xl font-bold text-white">{stats.average_ats_score || 0}%</span>
+          <span className="text-muted text-xs font-medium uppercase tracking-wider">Avg ATS Score</span>
+          <span className="text-2xl font-bold text-foreground">{stats.average_ats_score || 0}%</span>
         </div>
         <div className="glass-card p-4 rounded-2xl flex flex-col gap-1">
-          <span className="text-gray-400 text-xs font-medium uppercase tracking-wider">Applications Sent</span>
-          <span className="text-2xl font-bold text-white">{stats.total_applications || 0}</span>
+          <span className="text-muted text-xs font-medium uppercase tracking-wider">Applications Sent</span>
+          <span className="text-2xl font-bold text-foreground">{stats.total_applications || 0}</span>
         </div>
         <div className="glass-card p-4 rounded-2xl flex flex-col gap-1 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-4 -mt-2 -mr-2">
             <div className="w-12 h-12 bg-green-500/20 blur-xl rounded-full" />
           </div>
-          <span className="text-gray-400 text-xs font-medium uppercase tracking-wider relative z-10">Success Rate</span>
+          <span className="text-muted text-xs font-medium uppercase tracking-wider relative z-10">Success Rate</span>
           <span className="text-2xl font-bold text-green-400 relative z-10">{stats.application_success_rate || 0}%</span>
         </div>
       </div>

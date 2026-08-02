@@ -32,25 +32,25 @@ export default function SkillsStep({ data, onUpdate }) {
   return (
     <div className="flex flex-col gap-6">
       <div className="mb-2">
-        <h2 className="text-3xl font-bold text-white mb-2">Skills</h2>
-        <p className="text-gray-400">Add skills relevant to the job you are applying for. Press enter to add a skill.</p>
+        <h2 className="text-3xl font-bold text-foreground mb-2">Skills</h2>
+        <p className="text-muted">Add skills relevant to the job you are applying for. Press enter to add a skill.</p>
       </div>
 
       <div className="glass-card p-6 border-accent-purple/30 bg-accent-purple/5 flex flex-col md:flex-row gap-6 items-center justify-between">
         <div>
-          <h3 className="text-white font-bold mb-1">Need help finding the right keywords?</h3>
-          <p className="text-sm text-gray-400">Our AI can scan your experience and suggest the most ATS-friendly skills for your profile.</p>
+          <h3 className="text-foreground font-bold mb-1">Need help finding the right keywords?</h3>
+          <p className="text-sm text-muted">Our AI can scan your experience and suggest the most ATS-friendly skills for your profile.</p>
         </div>
         <button 
           onClick={handleAISuggest}
-          className="shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold shadow-lg shadow-accent-purple/20 hover:shadow-accent-purple/40 transition-all hover:-translate-y-0.5"
+          className="shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-bold shadow-lg shadow-accent-purple/20 hover:shadow-accent-purple/40 transition-all hover:-translate-y-0.5"
         >
           <Sparkles size={18} />
           Suggest Skills
         </button>
       </div>
 
-      <div className="flex flex-col gap-4 bg-black/20 p-6 rounded-2xl border border-white/10 min-h-[300px]">
+      <div className="flex flex-col gap-4 bg-overlay p-6 rounded-2xl border border-border min-h-[300px]">
         
         <div className="relative">
           <input 
@@ -59,11 +59,11 @@ export default function SkillsStep({ data, onUpdate }) {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type a skill and press Enter (e.g. JavaScript, Project Management)"
-            className="w-full bg-black/40 border border-white/10 rounded-xl pl-4 pr-12 py-4 text-white focus:outline-none focus:border-accent-blue"
+            className="w-full bg-black/40 border border-border rounded-xl pl-4 pr-12 py-4 text-foreground focus:outline-none focus:border-accent-blue"
           />
           <button 
             onClick={() => handleKeyDown({ key: 'Enter', preventDefault: () => {} })}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-white/10 rounded-lg text-white hover:bg-white/20 transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-overlay-hover rounded-lg text-foreground hover:bg-white/20 transition-colors"
           >
             <Plus size={16} />
           </button>

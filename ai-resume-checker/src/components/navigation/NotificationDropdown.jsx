@@ -59,7 +59,7 @@ export default function NotificationDropdown() {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all group"
+        className="relative p-2 text-muted hover:text-foreground hover:bg-overlay-hover rounded-full transition-all group"
       >
         <Bell size={20} className="group-hover:scale-110 transition-transform duration-300" />
         {unread > 0 && (
@@ -78,10 +78,10 @@ export default function NotificationDropdown() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ type: "spring", duration: 0.4, bounce: 0 }}
-            className="absolute top-full right-0 mt-3 w-80 sm:w-96 bg-secondary/95 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50"
+            className="absolute top-full right-0 mt-3 w-80 sm:w-96 bg-secondary/95 backdrop-blur-3xl border border-border rounded-2xl shadow-2xl overflow-hidden z-50"
           >
-            <div className="p-4 border-b border-white/10 flex items-center justify-between bg-white/5">
-              <h3 className="font-bold text-white">Notifications</h3>
+            <div className="p-4 border-b border-border flex items-center justify-between bg-overlay">
+              <h3 className="font-bold text-foreground">Notifications</h3>
               <button 
                 onClick={() => setUnread(0)}
                 className="text-xs font-medium text-accent-blue hover:text-blue-400 transition-colors"
@@ -92,12 +92,12 @@ export default function NotificationDropdown() {
             
             <div className="max-h-96 overflow-y-auto custom-scrollbar p-2 space-y-1">
               {notifications.map(notif => (
-                <div key={notif.id} className="p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer group flex items-start gap-3">
-                  <div className={`p-2 rounded-lg shrink-0 ${notif.bg} border border-white/5`}>
+                <div key={notif.id} className="p-3 rounded-xl hover:bg-overlay transition-colors cursor-pointer group flex items-start gap-3">
+                  <div className={`p-2 rounded-lg shrink-0 ${notif.bg} border border-border`}>
                     <notif.icon size={16} className={notif.color} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-bold text-gray-200 group-hover:text-white">{notif.title}</h4>
+                    <h4 className="text-sm font-bold text-gray-200 group-hover:text-foreground">{notif.title}</h4>
                     <p className="text-xs text-gray-500 mt-1 truncate">{notif.desc}</p>
                     <span className="text-[10px] text-gray-600 mt-2 block">{notif.time}</span>
                   </div>
@@ -105,8 +105,8 @@ export default function NotificationDropdown() {
               ))}
             </div>
 
-            <div className="p-3 border-t border-white/10 bg-white/[0.02]">
-              <button className="w-full py-2 flex items-center justify-center gap-1 text-sm font-medium text-gray-400 hover:text-white transition-colors">
+            <div className="p-3 border-t border-border bg-white/[0.02]">
+              <button className="w-full py-2 flex items-center justify-center gap-1 text-sm font-medium text-muted hover:text-foreground transition-colors">
                 View all notifications <ChevronRight size={14} />
               </button>
             </div>

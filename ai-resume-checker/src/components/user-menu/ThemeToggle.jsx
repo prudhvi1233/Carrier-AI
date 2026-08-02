@@ -10,7 +10,7 @@ export default function ThemeToggle() {
         e.preventDefault(); // Prevent closing dropdown if we don't want to
         setIsDark(!isDark);
       }}
-      className="flex items-center justify-between w-full px-4 py-2.5 transition-colors group text-gray-300 hover:bg-white/5 hover:text-white"
+      className="flex items-center justify-between w-full px-4 py-2.5 transition-colors group text-muted hover:bg-overlay hover:text-foreground"
     >
       <div className="flex items-center gap-3">
         {isDark ? <Moon size={18} className="group-hover:text-accent-blue transition-colors" /> : <Sun size={18} className="group-hover:text-yellow-400 transition-colors" />}

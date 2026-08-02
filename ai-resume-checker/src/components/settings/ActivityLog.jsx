@@ -29,14 +29,14 @@ export default function ActivityLog({ data }) {
   return (
     <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-2">
-        <h2 className="text-2xl font-bold text-white mb-2">Activity Log</h2>
-        <p className="text-gray-400 text-sm">Monitor recent activity and security events on your account.</p>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Activity Log</h2>
+        <p className="text-muted text-sm">Monitor recent activity and security events on your account.</p>
       </div>
 
       <div className="glass-card p-6 md:p-8">
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-[19px] top-4 bottom-4 w-px bg-white/10" />
+          <div className="absolute left-[19px] top-4 bottom-4 w-px bg-overlay-hover" />
 
           <div className="flex flex-col gap-8 relative z-10">
             {data.map((log, idx) => (
@@ -53,10 +53,10 @@ export default function ActivityLog({ data }) {
                 
                 <div className="flex flex-col flex-1 min-w-0 pt-1">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
-                    <span className="text-base font-semibold text-white">{log.action}</span>
+                    <span className="text-base font-semibold text-foreground">{log.action}</span>
                     <span className="text-xs font-medium text-gray-500 whitespace-nowrap">{formatDate(log.date)}</span>
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-400">
+                  <div className="flex items-center gap-3 text-sm text-muted">
                     <span className="flex items-center gap-1.5"><Smartphone size={14} /> {log.device}</span>
                     <span className="w-1 h-1 rounded-full bg-gray-600" />
                     <span>{log.location}</span>

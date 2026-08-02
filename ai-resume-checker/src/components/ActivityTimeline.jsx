@@ -24,7 +24,7 @@ const getIconForActivity = (type) => {
     case 'analysis': return { icon: BrainCircuit, color: 'text-accent-purple', bg: 'bg-accent-purple/10' };
     case 'job': return { icon: Briefcase, color: 'text-green-400', bg: 'bg-green-400/10' };
     case 'general': return { icon: User, color: 'text-orange-400', bg: 'bg-orange-400/10' };
-    default: return { icon: Activity, color: 'text-gray-400', bg: 'bg-gray-400/10' };
+    default: return { icon: Activity, color: 'text-muted', bg: 'bg-gray-400/10' };
   }
 };
 
@@ -58,16 +58,16 @@ export default function ActivityTimeline() {
   if (activities.length === 0) {
      return (
        <div className="glass-card p-6 h-full flex items-center justify-center">
-         <p className="text-gray-400 text-sm">No recent activity.</p>
+         <p className="text-muted text-sm">No recent activity.</p>
        </div>
      );
   }
 
   return (
     <div className="glass-card p-6 h-full">
-      <h3 className="text-lg font-semibold text-white mb-6">Recent Activity</h3>
+      <h3 className="text-lg font-semibold text-foreground mb-6">Recent Activity</h3>
       
-      <div className="relative border-l border-white/10 ml-4 space-y-8">
+      <div className="relative border-l border-border ml-4 space-y-8">
         {activities.map((activity, idx) => {
           const { icon: Icon, color, bg } = getIconForActivity(activity.activity_type);
           return (
@@ -78,11 +78,11 @@ export default function ActivityTimeline() {
               transition={{ delay: idx * 0.1, duration: 0.4 }}
               className="relative pl-6"
             >
-              <div className={`absolute -left-[17px] top-1 w-8 h-8 rounded-full ${bg} flex items-center justify-center border border-white/10 shadow-lg backdrop-blur-md`}>
+              <div className={`absolute -left-[17px] top-1 w-8 h-8 rounded-full ${bg} flex items-center justify-center border border-border shadow-lg backdrop-blur-md`}>
                 <Icon size={14} className={color} />
               </div>
               <div>
-                <p className="text-sm font-medium text-white">{activity.description}</p>
+                <p className="text-sm font-medium text-foreground">{activity.description}</p>
                 <p className="text-xs text-gray-500 mt-1">{getRelativeTime(activity.timestamp)}</p>
               </div>
             </motion.div>

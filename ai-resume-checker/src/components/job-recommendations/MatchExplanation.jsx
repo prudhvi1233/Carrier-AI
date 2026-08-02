@@ -8,7 +8,7 @@ export default function MatchExplanation({ text }) {
       <div className="p-1.5 bg-accent-blue/20 rounded-lg shrink-0 mt-0.5">
         <Sparkles size={14} className="text-accent-blue" />
       </div>
-      <p className="text-sm text-gray-300 leading-relaxed italic">
+      <p className="text-sm text-muted leading-relaxed italic">
         "{text}"
       </p>
     </div>

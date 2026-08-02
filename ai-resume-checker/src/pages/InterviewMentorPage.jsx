@@ -68,6 +68,19 @@ export default function InterviewMentorPage() {
     fetchHistory();
   };
 
+  const handleViewReport = async (id) => {
+    try {
+      setViewState('LOADING');
+      const fullSession = await interviewService.getSession(id);
+      setSession(fullSession);
+      setViewState('SUMMARY');
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to load report');
+      setViewState('SETUP');
+    }
+  };
+
   const renderContent = () => {
     if (viewState === 'LOADING') {
       return (
@@ -84,7 +97,11 @@ export default function InterviewMentorPage() {
             <InterviewSetup onStart={handleStart} />
           </div>
           <div className="flex flex-col h-full">
-            <InterviewHistory history={history} onDelete={handleDeleteHistory} />
+            <InterviewHistory 
+              history={history} 
+              onDelete={handleDeleteHistory} 
+              onViewReport={handleViewReport} 
+            />
           </div>
         </div>
       );

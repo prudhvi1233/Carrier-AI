@@ -17,7 +17,7 @@ export default function HistoryCharts({ scoreTrend, analysesPerMonth, skillsFreq
           <div className="p-2.5 bg-blue-500/10 rounded-xl border border-blue-500/20">
             <TrendingUp size={20} className="text-blue-400" />
           </div>
-          <h3 className="text-lg font-semibold text-white">Average Score Trend</h3>
+          <h3 className="text-lg font-semibold text-foreground">Average Score Trend</h3>
         </div>
         
         <div className="flex-1 w-full min-h-[250px]">
@@ -48,7 +48,7 @@ export default function HistoryCharts({ scoreTrend, analysesPerMonth, skillsFreq
           <div className="p-2.5 bg-purple-500/10 rounded-xl border border-purple-500/20">
             <BarChart2 size={20} className="text-purple-400" />
           </div>
-          <h3 className="text-lg font-semibold text-white">Top Detected Skills</h3>
+          <h3 className="text-lg font-semibold text-foreground">Top Detected Skills</h3>
         </div>
         
         <div className="flex-1 w-full min-h-[250px]">

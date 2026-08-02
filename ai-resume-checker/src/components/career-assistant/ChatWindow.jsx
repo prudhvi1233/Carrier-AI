@@ -76,7 +76,7 @@ export default function ChatWindow({ activeChat }) {
   return (
     <div className="flex flex-col h-full overflow-hidden relative">
       {/* Top Header Gradient Blur */}
-      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#0a0a0f] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-primary/80 to-transparent z-10 pointer-events-none" />
 
       {/* Message Area */}
       <div className="flex-1 overflow-y-auto custom-scrollbar">
@@ -110,7 +110,7 @@ export default function ChatWindow({ activeChat }) {
       </div>
 
       {/* Bottom Input Area */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/90 to-transparent pt-10 pb-6 px-4 md:px-8 z-20">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary via-primary/90 to-transparent pt-10 pb-6 px-4 md:px-8 z-20">
         <div className="max-w-4xl mx-auto">
           <ChatInput 
             input={input} 

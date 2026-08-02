@@ -31,13 +31,13 @@ export default function KanbanBoard({ data, updateData, onStatusChange }) {
           const config = STATUS_MAP[column.id];
 
           return (
-            <div key={column.id} className="flex-shrink-0 w-80 flex flex-col h-full bg-black/20 border border-white/5 rounded-2xl overflow-hidden">
-              <div className={`p-4 border-b border-white/5 bg-white/5 flex items-center justify-between`}>
+            <div key={column.id} className="flex-shrink-0 w-80 flex flex-col h-full bg-overlay border border-border rounded-2xl overflow-hidden">
+              <div className={`p-4 border-b border-border bg-overlay flex items-center justify-between`}>
                 <div className="flex items-center gap-2">
                   <div className={`w-2.5 h-2.5 rounded-full ${config.bg} border ${config.border}`}></div>
                   <h3 className="font-bold text-gray-200">{column.title}</h3>
                 </div>
-                <span className="text-xs font-medium text-gray-500 bg-white/5 px-2 py-0.5 rounded-full">
+                <span className="text-xs font-medium text-gray-500 bg-overlay px-2 py-0.5 rounded-full">
                   {columnApps.length}
                 </span>
               </div>
@@ -56,23 +56,23 @@ export default function KanbanBoard({ data, updateData, onStatusChange }) {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`glass-card p-4 border border-white/10 hover:border-white/20 transition-colors ${snapshot.isDragging ? 'shadow-2xl shadow-accent-blue/20 rotate-2' : 'shadow-lg'}`}
+                            className={`glass-card p-4 border border-border hover:border-white/20 transition-colors ${snapshot.isDragging ? 'shadow-2xl shadow-accent-blue/20 rotate-2' : 'shadow-lg'}`}
                             style={{ ...provided.draggableProps.style }}
                           >
                             <div className="flex items-start justify-between mb-3">
                               <div className="flex items-center gap-2">
                                 <img src={`https://ui-avatars.com/api/?name=${encodeURIComponent(app.company)}&background=random`} alt={app.company} className="w-8 h-8 rounded-lg bg-white" />
                                 <div>
-                                  <h4 className="font-bold text-white text-sm">{app.company}</h4>
-                                  <p className="text-xs text-gray-400">{app.role}</p>
+                                  <h4 className="font-bold text-foreground text-sm">{app.company}</h4>
+                                  <p className="text-xs text-muted">{app.role}</p>
                                 </div>
                               </div>
-                              <button className="text-gray-500 hover:text-white transition-colors">
+                              <button className="text-gray-500 hover:text-foreground transition-colors">
                                 <MoreHorizontal size={16} />
                               </button>
                             </div>
                             
-                            <div className="flex flex-col gap-2 mt-3 pt-3 border-t border-white/5">
+                            <div className="flex flex-col gap-2 mt-3 pt-3 border-t border-border">
                               {app.interviewDate && (
                                 <div className="flex items-center gap-1.5 text-xs text-accent-blue font-medium bg-accent-blue/10 px-2 py-1 rounded w-fit border border-accent-blue/20">
                                   <Calendar size={12} />

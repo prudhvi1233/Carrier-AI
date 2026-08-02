@@ -61,8 +61,8 @@ export default function AdminSupportPage() {
           <Shield className="text-accent-purple" size={24} />
         </div>
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Admin Support Portal</h1>
-          <p className="text-gray-400">Manage and reply to user support tickets.</p>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">Admin Support Portal</h1>
+          <p className="text-muted">Manage and reply to user support tickets.</p>
         </div>
       </div>
 
@@ -75,12 +75,12 @@ export default function AdminSupportPage() {
           
           {/* Ticket List */}
           <div className="lg:col-span-1 flex flex-col gap-4">
-            <h2 className="font-semibold text-white mb-2">Recent Tickets</h2>
+            <h2 className="font-semibold text-foreground mb-2">Recent Tickets</h2>
             {tickets.length === 0 ? (
               <div className="p-8 text-center glass-card border-dashed">
                 <CheckCircle2 className="mx-auto text-emerald-400 mb-2" size={32} />
-                <p className="text-white font-medium">All caught up!</p>
-                <p className="text-gray-400 text-sm">No support tickets found.</p>
+                <p className="text-foreground font-medium">All caught up!</p>
+                <p className="text-muted text-sm">No support tickets found.</p>
               </div>
             ) : (
               tickets.map((ticket) => (
@@ -90,7 +90,7 @@ export default function AdminSupportPage() {
                   className={`w-full text-left p-4 rounded-xl border transition-all duration-300 ${
                     selectedTicket?.id === ticket.id
                       ? 'bg-accent-purple/10 border-accent-purple/50 shadow-[0_0_20px_rgba(139,92,246,0.15)]'
-                      : 'bg-black/40 border-white/10 hover:bg-white/5 hover:border-white/20'
+                      : 'bg-black/40 border-border hover:bg-overlay hover:border-white/20'
                   }`}
                 >
                   <div className="flex items-start justify-between mb-2">
@@ -104,8 +104,8 @@ export default function AdminSupportPage() {
                       {new Date(ticket.created_at).toLocaleDateString()}
                     </span>
                   </div>
-                  <h3 className="font-medium text-white truncate mb-1">{ticket.subject}</h3>
-                  <p className="text-sm text-gray-400 truncate">{ticket.user_email}</p>
+                  <h3 className="font-medium text-foreground truncate mb-1">{ticket.subject}</h3>
+                  <p className="text-sm text-muted truncate">{ticket.user_email}</p>
                 </button>
               ))
             )}
@@ -123,10 +123,10 @@ export default function AdminSupportPage() {
                   className="glass-card flex flex-col h-full max-h-[800px] overflow-hidden"
                 >
                   {/* Header */}
-                  <div className="p-6 border-b border-white/10 flex items-start justify-between bg-black/20">
+                  <div className="p-6 border-b border-border flex items-start justify-between bg-overlay">
                     <div>
-                      <h2 className="text-xl font-bold text-white mb-1">{selectedTicket.subject}</h2>
-                      <div className="flex items-center gap-4 text-sm text-gray-400">
+                      <h2 className="text-xl font-bold text-foreground mb-1">{selectedTicket.subject}</h2>
+                      <div className="flex items-center gap-4 text-sm text-muted">
                         <span className="flex items-center gap-1">
                           <Mail size={14} />
                           {selectedTicket.user_email}
@@ -137,7 +137,7 @@ export default function AdminSupportPage() {
                     </div>
                     <button 
                       onClick={() => setSelectedTicket(null)}
-                      className="text-gray-400 hover:text-white bg-white/5 p-2 rounded-xl"
+                      className="text-muted hover:text-foreground bg-overlay p-2 rounded-xl"
                     >
                       <X size={20} />
                     </button>
@@ -147,12 +147,12 @@ export default function AdminSupportPage() {
                   <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
                     {/* User Message */}
                     <div className="flex flex-col gap-2 max-w-[85%]">
-                      <div className="flex items-center gap-2 text-sm text-gray-400 ml-1">
-                        <span className="font-medium text-gray-300">{selectedTicket.user_name}</span>
+                      <div className="flex items-center gap-2 text-sm text-muted ml-1">
+                        <span className="font-medium text-muted">{selectedTicket.user_name}</span>
                         <span>•</span>
                         <span>{new Date(selectedTicket.created_at).toLocaleString()}</span>
                       </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-sm p-4 text-gray-300 whitespace-pre-wrap">
+                      <div className="bg-overlay border border-border rounded-2xl rounded-tl-sm p-4 text-muted whitespace-pre-wrap">
                         {selectedTicket.message}
                       </div>
                     </div>
@@ -160,10 +160,10 @@ export default function AdminSupportPage() {
                     {/* Admin Reply (if closed) */}
                     {selectedTicket.admin_reply && (
                       <div className="flex flex-col gap-2 max-w-[85%] self-end">
-                        <div className="flex items-center gap-2 text-sm text-gray-400 mr-1 justify-end">
+                        <div className="flex items-center gap-2 text-sm text-muted mr-1 justify-end">
                           <span>Admin (You)</span>
                         </div>
-                        <div className="bg-accent-purple/20 border border-accent-purple/30 rounded-2xl rounded-tr-sm p-4 text-white whitespace-pre-wrap shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+                        <div className="bg-accent-purple/20 border border-accent-purple/30 rounded-2xl rounded-tr-sm p-4 text-foreground whitespace-pre-wrap shadow-[0_0_15px_rgba(139,92,246,0.1)]">
                           {selectedTicket.admin_reply}
                         </div>
                       </div>
@@ -172,20 +172,20 @@ export default function AdminSupportPage() {
 
                   {/* Reply Box (only if Open) */}
                   {selectedTicket.status === 'Open' && (
-                    <div className="p-6 border-t border-white/10 bg-black/20">
+                    <div className="p-6 border-t border-border bg-overlay">
                       <form onSubmit={handleReply} className="flex flex-col gap-4">
                         <textarea
                           placeholder="Type your reply here... (This will send an email and an in-app notification)"
                           rows={4}
                           value={replyText}
                           onChange={(e) => setReplyText(e.target.value)}
-                          className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-purple transition-colors resize-none input-glow"
+                          className="w-full bg-black/40 border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-purple transition-colors resize-none input-glow"
                         />
                         <div className="flex justify-end">
                           <button
                             type="submit"
                             disabled={submitting || !replyText.trim()}
-                            className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-white bg-accent-purple hover:bg-accent-purple/90 transition-colors disabled:opacity-50 shadow-lg shadow-accent-purple/25"
+                            className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-foreground bg-accent-purple hover:bg-accent-purple/90 transition-colors disabled:opacity-50 shadow-lg shadow-accent-purple/25"
                           >
                             {submitting ? (
                               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -210,8 +210,8 @@ export default function AdminSupportPage() {
                   className="h-full min-h-[400px] flex flex-col items-center justify-center text-center p-8 glass-card border-dashed"
                 >
                   <MessageCircle className="text-gray-600 mb-4" size={48} />
-                  <h3 className="text-xl font-bold text-white mb-2">Select a Ticket</h3>
-                  <p className="text-gray-400 max-w-md">
+                  <h3 className="text-xl font-bold text-foreground mb-2">Select a Ticket</h3>
+                  <p className="text-muted max-w-md">
                     Choose a support ticket from the list to view its details and send a reply to the user.
                   </p>
                 </motion.div>

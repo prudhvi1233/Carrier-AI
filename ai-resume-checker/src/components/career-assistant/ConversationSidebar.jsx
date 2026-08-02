@@ -25,7 +25,7 @@ export default function ConversationSidebar({ activeChat, setActiveChat, closeMo
           className="w-full flex items-center justify-between px-4 py-3 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 rounded-xl transition-all shadow-[0_0_15px_rgba(239,68,68,0.1)] hover:shadow-[0_0_20px_rgba(239,68,68,0.2)] font-medium"
         >
           <div className="flex items-center gap-2">
-            <div className="bg-red-500 text-white rounded-full p-1">
+            <div className="bg-red-500 text-foreground rounded-full p-1">
               <Trash2 size={16} />
             </div>
             <span>Clear History</span>
@@ -45,7 +45,7 @@ export default function ConversationSidebar({ activeChat, setActiveChat, closeMo
             <div className="flex flex-col gap-1">
                 <div className="relative">
                   <button
-                    className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all bg-white/10 text-white`}
+                    className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all bg-overlay-hover text-foreground`}
                   >
                     <MessageSquare size={16} className="text-accent-blue" />
                     <span className="text-sm font-medium truncate flex-1">AI Career Coach Session</span>

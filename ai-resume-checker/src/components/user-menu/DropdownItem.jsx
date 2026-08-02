@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function DropdownItem({ icon: Icon, label, onClick, to, color = 'text-gray-300', hoverColor = 'text-white' }) {
+export default function DropdownItem({ icon: Icon, label, onClick, to, color = 'text-muted', hoverColor = 'text-foreground' }) {
   const content = (
     <>
       <Icon size={18} className={`transition-colors group-hover:${hoverColor}`} />
@@ -9,7 +9,7 @@ export default function DropdownItem({ icon: Icon, label, onClick, to, color = '
     </>
   );
 
-  const className = `flex items-center gap-3 w-full px-4 py-2.5 transition-colors group ${color} hover:bg-white/5 hover:${hoverColor}`;
+  const className = `flex items-center gap-3 w-full px-4 py-2.5 transition-colors group ${color} hover:bg-overlay hover:${hoverColor}`;
 
   if (to) {
     return (

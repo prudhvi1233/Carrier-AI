@@ -30,9 +30,9 @@ export default function CalendarView({ data }) {
       days.push(
         <div 
           key={day.toString()} 
-          className={`min-h-[120px] p-2 border-r border-b border-white/5 ${!isSameMonth(day, monthStart) ? 'bg-white/[0.01] text-gray-600' : 'bg-transparent text-gray-300'}`}
+          className={`min-h-[120px] p-2 border-r border-b border-border ${!isSameMonth(day, monthStart) ? 'bg-white/[0.01] text-gray-600' : 'bg-transparent text-muted'}`}
         >
-          <span className={`text-sm font-medium ${isSameDay(day, currentDate) ? 'bg-accent-blue text-white w-6 h-6 rounded-full flex items-center justify-center' : ''}`}>
+          <span className={`text-sm font-medium ${isSameDay(day, currentDate) ? 'bg-accent-blue text-foreground w-6 h-6 rounded-full flex items-center justify-center' : ''}`}>
             {formattedDate}
           </span>
           <div className="mt-2 flex flex-col gap-1">
@@ -67,17 +67,17 @@ export default function CalendarView({ data }) {
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="p-4 border-b border-white/5 flex items-center justify-between">
-        <h2 className="text-xl font-bold text-white">{format(currentDate, "MMMM yyyy")}</h2>
+      <div className="p-4 border-b border-border flex items-center justify-between">
+        <h2 className="text-xl font-bold text-foreground">{format(currentDate, "MMMM yyyy")}</h2>
       </div>
-      <div className="grid grid-cols-7 border-b border-white/5 bg-white/5">
+      <div className="grid grid-cols-7 border-b border-border bg-overlay">
         {weekDays.map(dayName => (
-          <div key={dayName} className="py-2 text-center text-xs font-bold text-gray-400 uppercase tracking-wider border-r border-white/5 last:border-r-0">
+          <div key={dayName} className="py-2 text-center text-xs font-bold text-muted uppercase tracking-wider border-r border-border last:border-r-0">
             {dayName}
           </div>
         ))}
       </div>
-      <div className="border-l border-white/5">
+      <div className="border-l border-border">
         {rows}
       </div>
     </div>

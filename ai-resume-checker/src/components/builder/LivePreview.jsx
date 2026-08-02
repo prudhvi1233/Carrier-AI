@@ -33,17 +33,17 @@ export default function LivePreview({ template, formData }) {
       {/* Zoom Toolbar */}
       <div className="absolute top-4 right-4 z-10 flex gap-2">
         <div className="glass-card flex p-1">
-          <button onClick={handleZoomOut} className="p-2 text-gray-400 hover:text-white rounded hover:bg-white/10 transition-colors">
+          <button onClick={handleZoomOut} className="p-2 text-muted hover:text-foreground rounded hover:bg-overlay-hover transition-colors">
             <ZoomOut size={16} />
           </button>
-          <div className="w-px bg-white/10 mx-1 flex items-center justify-center text-xs text-gray-400 w-8">
+          <div className="w-px bg-overlay-hover mx-1 flex items-center justify-center text-xs text-muted w-8">
             {Math.round(scale * 100)}%
           </div>
-          <button onClick={handleZoomIn} className="p-2 text-gray-400 hover:text-white rounded hover:bg-white/10 transition-colors">
+          <button onClick={handleZoomIn} className="p-2 text-muted hover:text-foreground rounded hover:bg-overlay-hover transition-colors">
             <ZoomIn size={16} />
           </button>
         </div>
-        <button onClick={handleResetZoom} className="glass-card p-3 text-gray-400 hover:text-white rounded transition-colors" title="Reset Zoom">
+        <button onClick={handleResetZoom} className="glass-card p-3 text-muted hover:text-foreground rounded transition-colors" title="Reset Zoom">
           <Maximize2 size={16} />
         </button>
       </div>

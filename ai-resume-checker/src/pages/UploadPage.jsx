@@ -14,10 +14,10 @@ export default function UploadPage() {
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col gap-3"
       >
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
           Resume Upload
         </h1>
-        <p className="text-gray-400 text-lg max-w-3xl">
+        <p className="text-muted text-lg max-w-3xl">
           Upload your resume and let AI analyze its ATS compatibility, skills, formatting, and improvement opportunities.
         </p>
       </motion.div>

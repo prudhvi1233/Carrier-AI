@@ -11,8 +11,8 @@ export default function ExperienceComparison({ experience }) {
   ];
 
   return (
-    <div className="bg-secondary/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl">
-      <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+    <div className="bg-secondary/40 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-xl">
+      <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
         <TrendingUp className="text-accent-blue" size={24} />
         Experience Match
       </h3>
@@ -21,12 +21,12 @@ export default function ExperienceComparison({ experience }) {
         {metrics.map((metric, i) => (
           <div key={metric.label}>
             <div className="flex justify-between text-sm mb-2">
-              <span className="text-gray-300 font-medium">{metric.label}</span>
-              <span className="text-gray-400">
+              <span className="text-muted font-medium">{metric.label}</span>
+              <span className="text-muted">
                 {metric.data.actual} / {metric.data.required} {metric.suffix}
               </span>
             </div>
-            <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+            <div className="h-2 w-full bg-overlay rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${Math.min(metric.data.progress, 100)}%` }}

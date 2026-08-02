@@ -3,11 +3,11 @@ import { Check } from 'lucide-react';
 
 export default function ProgressStepper({ steps, currentStep, onStepClick }) {
   return (
-    <div className="w-full px-4 py-4 bg-black/20 border-b border-white/5 overflow-x-auto hide-scrollbar">
+    <div className="w-full px-4 py-4 bg-overlay border-b border-border overflow-x-auto hide-scrollbar">
       <div className="flex items-center min-w-max max-w-5xl mx-auto justify-between relative">
         
         {/* Background Line */}
-        <div className="absolute left-0 top-4 w-full h-1 bg-white/5 rounded-full z-0" />
+        <div className="absolute left-0 top-4 w-full h-1 bg-overlay rounded-full z-0" />
 
         {/* Progress Line */}
         <div 
@@ -27,15 +27,15 @@ export default function ProgressStepper({ steps, currentStep, onStepClick }) {
             >
               <div 
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
-                  isCompleted ? 'bg-accent-blue text-white' : 
+                  isCompleted ? 'bg-accent-blue text-foreground' : 
                   isActive ? 'bg-secondary border-2 border-accent-blue text-accent-blue' : 
-                  'bg-secondary border-2 border-white/20 text-gray-400'
+                  'bg-secondary border-2 border-white/20 text-muted'
                 }`}
               >
                 {isCompleted ? <Check size={16} /> : (idx + 1)}
               </div>
               <span className={`text-[10px] sm:text-xs font-medium whitespace-nowrap transition-colors ${
-                isActive ? 'text-accent-blue font-bold' : 'text-gray-400'
+                isActive ? 'text-accent-blue font-bold' : 'text-muted'
               }`}>
                 {step.label}
               </span>

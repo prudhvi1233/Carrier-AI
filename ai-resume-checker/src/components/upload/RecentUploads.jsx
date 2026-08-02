@@ -57,19 +57,19 @@ export default function RecentUploads() {
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="p-6 border-b border-white/10 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-white">Recent Uploads</h3>
+      <div className="p-6 border-b border-border flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-foreground">Recent Uploads</h3>
       </div>
       
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-white/5 border-b border-white/10">
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Resume Name</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Upload Date</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Status</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Score</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider text-right">Action</th>
+            <tr className="bg-overlay border-b border-border">
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">Resume Name</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">Upload Date</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">Status</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">Score</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider text-right">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
@@ -80,17 +80,17 @@ export default function RecentUploads() {
                 transition={{ delay: 0.1 * idx }}
                 key={item.id} 
                 onClick={() => navigate(`/analysis/${item.id}`)}
-                className="hover:bg-white/5 transition-colors group cursor-pointer"
+                className="hover:bg-overlay transition-colors group cursor-pointer"
               >
                 <td className="py-4 px-6 whitespace-nowrap">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
+                    <div className="w-8 h-8 rounded-lg bg-overlay flex items-center justify-center border border-border">
                       <FileText size={16} className="text-accent-blue" />
                     </div>
-                    <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors">{item.name}</span>
+                    <span className="text-sm font-medium text-gray-200 group-hover:text-foreground transition-colors">{item.name}</span>
                   </div>
                 </td>
-                <td className="py-4 px-6 whitespace-nowrap text-sm text-gray-400">
+                <td className="py-4 px-6 whitespace-nowrap text-sm text-muted">
                   {item.date}
                 </td>
                 <td className="py-4 px-6 whitespace-nowrap">
@@ -99,7 +99,7 @@ export default function RecentUploads() {
                   </span>
                 </td>
                 <td className="py-4 px-6 whitespace-nowrap">
-                  <span className="text-sm font-bold text-white">{item.score !== '-' ? `${item.score}/100` : 'Pending'}</span>
+                  <span className="text-sm font-bold text-foreground">{item.score !== '-' ? `${item.score}/100` : 'Pending'}</span>
                 </td>
                 <td className="py-4 px-6 whitespace-nowrap text-right">
                   <button className="text-sm font-medium text-accent-blue hover:text-accent-purple transition-colors flex items-center justify-end gap-1 w-full">

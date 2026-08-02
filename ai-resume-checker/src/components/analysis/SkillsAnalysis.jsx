@@ -9,7 +9,7 @@ export default function SkillsAnalysis({ detected = [], missing = [] }) {
         <div className="p-2.5 bg-accent-blue/10 rounded-xl border border-accent-blue/20">
           <Code2 size={20} className="text-accent-blue" />
         </div>
-        <h3 className="text-lg font-semibold text-white">Skills Analysis</h3>
+        <h3 className="text-lg font-semibold text-foreground">Skills Analysis</h3>
       </div>
 
       <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">

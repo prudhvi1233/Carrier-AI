@@ -40,8 +40,8 @@ export default function Login() {
         <h1 className="text-3xl font-bold bg-gradient-to-r from-accent-blue to-accent-purple bg-clip-text text-transparent">
           AI Resume Checker
         </h1>
-        <h2 className="text-xl font-semibold text-white mt-4">Welcome back</h2>
-        <p className="text-sm text-gray-400 mt-2">Log in to continue optimizing your resume</p>
+        <h2 className="text-xl font-semibold text-foreground mt-4">Welcome back</h2>
+        <p className="text-sm text-muted mt-2">Log in to continue optimizing your resume</p>
       </div>
 
       <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
@@ -68,12 +68,12 @@ export default function Login() {
         <div className="flex items-center justify-between text-sm">
           <label className="flex items-center gap-2 cursor-pointer group">
             <div className="relative flex items-center justify-center w-4 h-4">
-              <input type="checkbox" className="peer appearance-none w-4 h-4 border border-white/20 rounded bg-white/5 checked:bg-accent-blue checked:border-accent-blue transition-colors cursor-pointer" />
-              <svg className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <input type="checkbox" className="peer appearance-none w-4 h-4 border border-white/20 rounded bg-overlay checked:bg-accent-blue checked:border-accent-blue transition-colors cursor-pointer" />
+              <svg className="absolute w-3 h-3 text-foreground opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
-            <span className="text-gray-300 group-hover:text-white transition-colors">Remember me</span>
+            <span className="text-muted group-hover:text-foreground transition-colors">Remember me</span>
           </label>
           <Link to="/forgot-password" className="text-accent-blue hover:text-accent-cyan transition-colors">
             Forgot Password?
@@ -83,7 +83,7 @@ export default function Login() {
         <button 
           type="submit"
           disabled={loading}
-          className="w-full py-3 mt-2 flex items-center justify-center rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold hover:shadow-lg hover:shadow-accent-blue/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
+          className="w-full py-3 mt-2 flex items-center justify-center rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-semibold hover:shadow-lg hover:shadow-accent-blue/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
         >
           {loading ? (
             <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -95,7 +95,7 @@ export default function Login() {
 
 
 
-      <p className="text-center text-sm text-gray-400 mt-4">
+      <p className="text-center text-sm text-muted mt-4">
         Don't have an account?{' '}
         <Link to="/signup" className="text-accent-blue hover:text-accent-cyan font-medium transition-colors">
           Sign up

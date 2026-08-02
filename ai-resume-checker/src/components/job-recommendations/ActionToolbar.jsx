@@ -29,14 +29,14 @@ export default function ActionToolbar({ job, onViewDetails, isComparing, onCompa
     <div className="flex items-center gap-2 w-full mt-2">
       <button 
         onClick={onViewDetails}
-        className="flex-1 py-2 px-3 bg-white/5 hover:bg-white/10 text-white text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1 border border-white/5"
+        className="flex-1 py-2 px-3 bg-overlay hover:bg-overlay-hover text-foreground text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1 border border-border"
       >
         <Eye size={14} /> Details
       </button>
       
       <button 
         onClick={onCompareToggle}
-        className={`p-2 rounded-lg transition-colors border ${isComparing ? 'bg-accent-blue/20 text-accent-blue border-accent-blue/30' : 'bg-white/5 text-gray-400 hover:text-white border-white/5 hover:bg-white/10'}`}
+        className={`p-2 rounded-lg transition-colors border ${isComparing ? 'bg-accent-blue/20 text-accent-blue border-accent-blue/30' : 'bg-overlay text-muted hover:text-foreground border-border hover:bg-overlay-hover'}`}
         title={isComparing ? 'Remove from comparison' : 'Compare Job'}
       >
         <GitCompare size={14} />
@@ -45,7 +45,7 @@ export default function ActionToolbar({ job, onViewDetails, isComparing, onCompa
       <button 
         onClick={handleAddToApplications} 
         disabled={isSaved || isAdding}
-        className={`p-2 rounded-lg transition-colors border ${isSaved ? 'bg-accent-blue/20 text-accent-blue border-accent-blue/30' : 'bg-white/5 text-gray-400 hover:text-white border-white/5 hover:bg-white/10'}`} 
+        className={`p-2 rounded-lg transition-colors border ${isSaved ? 'bg-accent-blue/20 text-accent-blue border-accent-blue/30' : 'bg-overlay text-muted hover:text-foreground border-border hover:bg-overlay-hover'}`} 
         title={isSaved ? "Saved" : "Save Job"}
       >
         <Bookmark size={14} className={isSaved ? "fill-current" : ""} />
@@ -57,7 +57,7 @@ export default function ActionToolbar({ job, onViewDetails, isComparing, onCompa
         className={`p-2 shadow-lg rounded-lg transition-colors flex items-center gap-2 px-3 text-xs font-bold ${
           isSaved 
             ? 'bg-green-500/20 text-green-400 border-green-500/30' 
-            : 'bg-accent-blue hover:bg-blue-500 text-white shadow-accent-blue/20'
+            : 'bg-accent-blue hover:bg-blue-500 text-foreground shadow-accent-blue/20'
         }`}
         title="Add to Applications"
       >

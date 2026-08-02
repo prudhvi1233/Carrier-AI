@@ -150,10 +150,10 @@ export default function HistoryPage() {
     >
       {/* Page Header */}
       <div className="flex flex-col gap-2 mb-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
           Resume History
         </h1>
-        <p className="text-gray-400 text-lg">
+        <p className="text-muted text-lg">
           View, search, and manage all your previously analyzed resumes in one place.
         </p>
       </div>
@@ -185,7 +185,7 @@ export default function HistoryPage() {
 
                 {/* Pagination Footer */}
                 {totalPages > 1 && (
-                  <div className="mt-auto p-4 md:p-6 border-t border-white/10">
+                  <div className="mt-auto p-4 md:p-6 border-t border-border">
                     <Pagination 
                       currentPage={currentPage}
                       totalPages={totalPages}

@@ -48,7 +48,7 @@ export default function HistoryStats({ stats }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1 }}
-            className={`glass-card p-6 border ${card.border} hover:bg-white/5 transition-colors relative overflow-hidden group`}
+            className={`glass-card p-6 border ${card.border} hover:bg-overlay transition-colors relative overflow-hidden group`}
           >
             <div className={`absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity ${card.color}`}>
               <Icon size={64} />
@@ -58,8 +58,8 @@ export default function HistoryStats({ stats }) {
               <Icon size={20} />
             </div>
             
-            <h4 className="text-gray-400 text-sm font-medium mb-1">{card.title}</h4>
-            <div className="text-3xl font-bold text-white tracking-tight">{card.value}</div>
+            <h4 className="text-muted text-sm font-medium mb-1">{card.title}</h4>
+            <div className="text-3xl font-bold text-foreground tracking-tight">{card.value}</div>
           </motion.div>
         );
       })}

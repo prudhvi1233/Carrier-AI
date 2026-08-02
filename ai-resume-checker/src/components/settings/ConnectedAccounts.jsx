@@ -23,18 +23,18 @@ export default function ConnectedAccounts({ data, onSave }) {
   const getProviderBrandColor = (provider) => {
     switch (provider.toLowerCase()) {
       case 'google': return 'text-red-400 bg-red-500/10 border-red-500/20';
-      case 'github': return 'text-gray-200 bg-white/10 border-white/20';
+      case 'github': return 'text-gray-200 bg-overlay-hover border-white/20';
       case 'linkedin': return 'text-blue-400 bg-blue-500/10 border-blue-500/20';
       case 'microsoft': return 'text-blue-300 bg-blue-400/10 border-blue-400/20';
-      default: return 'text-white bg-white/10 border-white/20';
+      default: return 'text-foreground bg-overlay-hover border-white/20';
     }
   };
 
   return (
     <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-2">
-        <h2 className="text-2xl font-bold text-white mb-2">Connected Accounts</h2>
-        <p className="text-gray-400 text-sm">Link external accounts to enable seamless single sign-on (SSO) and import data.</p>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Connected Accounts</h2>
+        <p className="text-muted text-sm">Link external accounts to enable seamless single sign-on (SSO) and import data.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -46,7 +46,7 @@ export default function ConnectedAccounts({ data, onSave }) {
                   {acc.provider.charAt(0)}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">{acc.provider}</h3>
+                  <h3 className="text-lg font-bold text-foreground">{acc.provider}</h3>
                   {acc.connected ? (
                     <span className="flex items-center gap-1 text-xs font-medium text-green-400 mt-1">
                       <CheckCircle2 size={12} /> Connected
@@ -59,7 +59,7 @@ export default function ConnectedAccounts({ data, onSave }) {
             </div>
 
             {acc.connected && acc.email && (
-              <p className="text-sm text-gray-400 mb-4">{acc.email}</p>
+              <p className="text-sm text-muted mb-4">{acc.email}</p>
             )}
 
             <button 
@@ -67,7 +67,7 @@ export default function ConnectedAccounts({ data, onSave }) {
               className={`flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-sm font-medium transition-colors border ${
                 acc.connected 
                   ? 'bg-red-500/10 text-red-400 hover:bg-red-500/20 border-red-500/20' 
-                  : 'bg-white/5 text-white hover:bg-white/10 border-white/10'
+                  : 'bg-overlay text-foreground hover:bg-overlay-hover border-border'
               }`}
             >
               {acc.connected ? (

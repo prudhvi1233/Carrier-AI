@@ -14,14 +14,14 @@ export default function ErrorState({ error }) {
           <AlertCircle size={32} className="text-red-400" />
         </div>
         
-        <h2 className="text-xl font-bold text-white mb-2">Unable to Load History</h2>
-        <p className="text-gray-400 mb-8 text-sm">
+        <h2 className="text-xl font-bold text-foreground mb-2">Unable to Load History</h2>
+        <p className="text-muted mb-8 text-sm">
           {error || 'We encountered an error while fetching your resume history. Please check your connection and try again.'}
         </p>
 
         <button 
           onClick={() => window.location.reload()}
-          className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10 transition-colors group w-full sm:w-auto"
+          className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-overlay hover:bg-overlay-hover text-foreground font-medium border border-border transition-colors group w-full sm:w-auto"
         >
           <RefreshCw size={18} className="group-hover:rotate-180 transition-transform duration-500" />
           Retry Connection

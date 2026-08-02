@@ -68,8 +68,8 @@ export default function ResetPassword() {
   return (
     <AuthLayout>
       <div className="text-center mb-6">
-        <h2 className="text-3xl font-bold text-white mt-4">New Password</h2>
-        <p className="text-sm text-gray-400 mt-2">Enter your new password below.</p>
+        <h2 className="text-3xl font-bold text-foreground mt-4">New Password</h2>
+        <p className="text-sm text-muted mt-2">Enter your new password below.</p>
       </div>
 
       <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
@@ -100,7 +100,7 @@ export default function ResetPassword() {
         <button 
           type="submit"
           disabled={loading}
-          className="w-full py-3 mt-2 flex items-center justify-center rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
+          className="w-full py-3 mt-2 flex items-center justify-center rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-semibold hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
         >
           {loading ? (
             <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -111,7 +111,7 @@ export default function ResetPassword() {
       </form>
 
       <div className="mt-8 text-center">
-        <Link to="/login" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+        <Link to="/login" className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors">
           <ArrowLeft size={16} />
           Back to Login
         </Link>

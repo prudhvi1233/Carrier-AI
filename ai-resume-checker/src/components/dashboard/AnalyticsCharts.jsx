@@ -6,8 +6,8 @@ export default function AnalyticsCharts({ data }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-      <div className="glass-card p-6 w-full">
-        <h3 className="text-lg font-bold text-white mb-4">Resume & ATS Score Trend</h3>
+      <div className="glass-card p-6 w-full bg-gradient-to-br from-purple-500/5 to-transparent">
+        <h3 className="text-lg font-bold text-foreground mb-4">Resume & ATS Score Trend</h3>
         <div className="h-64 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
@@ -25,8 +25,8 @@ export default function AnalyticsCharts({ data }) {
         </div>
       </div>
 
-      <div className="glass-card p-6 w-full">
-        <h3 className="text-lg font-bold text-white mb-4">Application Activity</h3>
+      <div className="glass-card p-6 w-full bg-gradient-to-br from-emerald-500/5 to-transparent">
+        <h3 className="text-lg font-bold text-foreground mb-4">Application Activity</h3>
         <div className="h-64 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>

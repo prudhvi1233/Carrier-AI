@@ -45,13 +45,13 @@ export default function QuickStats() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.1 }}
-            className="bg-white/5 border border-white/5 rounded-xl p-3 flex flex-col hover:bg-white/10 transition-colors"
+            className="bg-overlay border border-border rounded-xl p-3 flex flex-col hover:bg-overlay-hover transition-colors"
           >
             <div className="flex items-center justify-between mb-2">
               <Icon size={14} className={stat.color} />
               <span className={`text-sm font-bold ${stat.color}`}>{stat.value}</span>
             </div>
-            <span className="text-[10px] text-gray-400 font-medium tracking-wide uppercase">{stat.label}</span>
+            <span className="text-[10px] text-muted font-medium tracking-wide uppercase">{stat.label}</span>
           </motion.div>
         );
       })}

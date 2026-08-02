@@ -10,8 +10,8 @@ export default function HiringProbability({ probabilities }) {
   ];
 
   return (
-    <div className="bg-secondary/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl">
-      <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+    <div className="bg-secondary/40 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-xl">
+      <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
         <Award className="text-accent-blue" size={24} />
         Prediction Engine
       </h3>
@@ -19,7 +19,7 @@ export default function HiringProbability({ probabilities }) {
       <div className="flex justify-around items-end gap-4 h-48 pt-8">
         {gauges.map((gauge, index) => (
           <div key={gauge.label} className="flex flex-col items-center gap-4 w-1/3">
-            <div className="relative w-full h-full max-h-32 flex justify-center items-end bg-white/5 rounded-t-full border-t border-x border-white/10 overflow-hidden pb-2">
+            <div className="relative w-full h-full max-h-32 flex justify-center items-end bg-overlay rounded-t-full border-t border-x border-border overflow-hidden pb-2">
               <motion.div
                 initial={{ height: 0 }}
                 animate={{ height: `${gauge.value}%` }}
@@ -28,7 +28,7 @@ export default function HiringProbability({ probabilities }) {
               />
               <span className={`text-3xl font-bold ${gauge.color} relative z-10`}>{gauge.value}%</span>
             </div>
-            <span className="text-xs text-gray-400 text-center uppercase tracking-wider font-semibold h-8">{gauge.label}</span>
+            <span className="text-xs text-muted text-center uppercase tracking-wider font-semibold h-8">{gauge.label}</span>
           </div>
         ))}
       </div>

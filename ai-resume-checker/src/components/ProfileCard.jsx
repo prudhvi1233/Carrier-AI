@@ -33,7 +33,7 @@ export default function ProfileCard({ profile }) {
               {profile?.profile_photo || user?.avatar ? (
                 <img src={profile?.profile_photo || user?.avatar} alt="Profile" className="w-full h-full object-cover" />
               ) : (
-                <span className="text-4xl font-bold text-white">
+                <span className="text-4xl font-bold text-foreground">
                   {user?.name ? user.name.charAt(0) : 'J'}
                 </span>
               )}
@@ -44,7 +44,7 @@ export default function ProfileCard({ profile }) {
         {/* Profile Info */}
         <div className="flex-1 pt-4 flex flex-col md:flex-row md:items-start justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
               {user?.name || 'Jane Doe'}
               <Award size={20} className="text-accent-blue" />
             </h2>
@@ -52,7 +52,7 @@ export default function ProfileCard({ profile }) {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 mt-4">
               {details.map((detail, idx) => (
-                <div key={idx} className="flex items-center gap-3 text-sm text-gray-300">
+                <div key={idx} className="flex items-center gap-3 text-sm text-muted">
                   <detail.icon size={16} className="text-gray-500" />
                   <span>{detail.value}</span>
                 </div>
@@ -63,10 +63,10 @@ export default function ProfileCard({ profile }) {
           {/* Social Links */}
           <div className="flex flex-col gap-4 min-w-[120px]">
             <div className="flex items-center gap-3">
-              <a href={profile?.linkedin_url || '#'} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-lg text-gray-400 hover:text-white hover:bg-[#0077b5] transition-colors border border-white/10 hover:border-transparent">
+              <a href={profile?.linkedin_url || '#'} target="_blank" rel="noopener noreferrer" className="p-2 bg-overlay rounded-lg text-muted hover:text-foreground hover:bg-[#0077b5] transition-colors border border-border hover:border-transparent">
                 <Link size={20} />
               </a>
-              <a href={profile?.github_url || '#'} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-lg text-gray-400 hover:text-white hover:bg-[#333] transition-colors border border-white/10 hover:border-transparent">
+              <a href={profile?.github_url || '#'} target="_blank" rel="noopener noreferrer" className="p-2 bg-overlay rounded-lg text-muted hover:text-foreground hover:bg-[#333] transition-colors border border-border hover:border-transparent">
                 <GitBranch size={20} />
               </a>
             </div>

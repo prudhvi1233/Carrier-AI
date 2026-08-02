@@ -28,7 +28,7 @@ export default function LoadingState() {
         animate={{ scale: 1, opacity: 1 }}
         className="relative w-32 h-32 mb-8"
       >
-        <div className="absolute inset-0 border-4 border-white/10 rounded-full"></div>
+        <div className="absolute inset-0 border-4 border-border rounded-full"></div>
         <div className="absolute inset-0 border-4 border-accent-blue rounded-full border-t-transparent animate-spin"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <Loader2 size={40} className="text-accent-blue animate-pulse" />
@@ -58,7 +58,7 @@ export default function LoadingState() {
                 )}
               </div>
               <p className={`text-lg transition-colors duration-300 ${
-                isPast ? 'text-gray-400' : isActive ? 'text-white font-medium glow-text-blue' : 'text-gray-600'
+                isPast ? 'text-muted' : isActive ? 'text-foreground font-medium glow-text-blue' : 'text-gray-600'
               }`}>
                 {step}
               </p>

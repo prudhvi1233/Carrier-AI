@@ -3,11 +3,18 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: "#000000",
-        secondary: "#111827",
+        primary: "var(--bg-primary)",
+        secondary: "var(--bg-secondary)",
+        dropdown: "var(--bg-dropdown)",
+        foreground: "var(--text-primary)",
+        muted: "var(--text-muted)",
+        border: "var(--border-color)",
+        overlay: "var(--bg-overlay)",
+        'overlay-hover': "var(--bg-overlay-hover)",
         accent: {
           blue: "#3B82F6",
           purple: "#8B5CF6",

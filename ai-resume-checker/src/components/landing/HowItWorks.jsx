@@ -26,7 +26,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-black text-white relative border-y border-white/5">
+    <section id="how-it-works" className="py-24 bg-black text-foreground relative border-y border-border">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         <div className="text-center mb-16">
@@ -56,11 +56,11 @@ export default function HowItWorks() {
               )}
               
               <div className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/10 flex items-center justify-center text-2xl font-bold text-white mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-border flex items-center justify-center text-2xl font-bold text-foreground mb-6 group-hover:scale-110 transition-transform">
                   {step.number}
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-                <p className="text-gray-400">{step.description}</p>
+                <p className="text-muted">{step.description}</p>
               </div>
             </motion.div>
           ))}

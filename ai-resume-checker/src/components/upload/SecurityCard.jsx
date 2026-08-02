@@ -23,14 +23,14 @@ export default function SecurityCard() {
         <div className="p-2 bg-green-500/10 text-green-400 rounded-lg border border-green-500/20">
           <Shield size={20} />
         </div>
-        <h3 className="text-lg font-semibold text-white">Your Privacy First</h3>
+        <h3 className="text-lg font-semibold text-foreground">Your Privacy First</h3>
       </div>
       
       <div className="grid grid-cols-2 gap-3">
         {features.map((feature, idx) => {
           const Icon = feature.icon;
           return (
-            <div key={idx} className="flex items-center gap-2 text-gray-300 group">
+            <div key={idx} className="flex items-center gap-2 text-muted group">
               <Icon size={14} className="text-green-500/70 group-hover:text-green-400 transition-colors shrink-0" />
               <span className="text-xs font-medium">{feature.text}</span>
             </div>

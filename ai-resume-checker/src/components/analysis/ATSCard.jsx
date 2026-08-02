@@ -24,24 +24,24 @@ export default function ATSCard({ score }) {
     <div className="glass-card p-8 flex flex-col h-full relative overflow-hidden">
       <div className="flex justify-between items-start mb-6 relative z-10">
         <div>
-          <h3 className="text-lg font-semibold text-white">ATS Compatibility</h3>
-          <p className="text-sm text-gray-400 mt-1">Applicant Tracking System Match</p>
+          <h3 className="text-lg font-semibold text-foreground">ATS Compatibility</h3>
+          <p className="text-sm text-muted mt-1">Applicant Tracking System Match</p>
         </div>
-        <div className="p-3 bg-white/5 rounded-xl border border-white/10">
+        <div className="p-3 bg-overlay rounded-xl border border-border">
           <ScanSearch size={24} className="text-accent-blue" />
         </div>
       </div>
 
       <div className="flex-1 flex flex-col justify-center relative z-10">
         <div className="flex items-end justify-between mb-2">
-          <span className="text-4xl font-bold text-white tracking-tighter">{score}%</span>
-          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 ${colorClass}`}>
+          <span className="text-4xl font-bold text-foreground tracking-tighter">{score}%</span>
+          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full bg-overlay border border-border ${colorClass}`}>
             <Icon size={14} />
             <span className="text-xs font-semibold uppercase tracking-wider">{status}</span>
           </div>
         </div>
 
-        <div className="w-full h-3 bg-white/5 rounded-full overflow-hidden border border-white/10 mt-2">
+        <div className="w-full h-3 bg-overlay rounded-full overflow-hidden border border-border mt-2">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${score}%` }}

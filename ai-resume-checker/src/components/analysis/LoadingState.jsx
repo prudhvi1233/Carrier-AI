@@ -41,7 +41,7 @@ export default function LoadingState() {
       </div>
 
       <div className="w-full max-w-md flex flex-col items-center gap-4">
-        <div className="flex items-center gap-2 text-white font-medium text-lg h-8">
+        <div className="flex items-center gap-2 text-foreground font-medium text-lg h-8">
           <Sparkles size={18} className="text-accent-purple" />
           <AnimatePresence mode="wait">
             <motion.span
@@ -56,19 +56,19 @@ export default function LoadingState() {
           </AnimatePresence>
         </div>
 
-        <div className="w-64 h-1.5 bg-white/5 rounded-full overflow-hidden relative">
+        <div className="w-64 h-1.5 bg-overlay rounded-full overflow-hidden relative">
           <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full w-1/3 animate-[slide_1.5s_ease-in-out_infinite_alternate]" />
         </div>
       </div>
 
       {/* Skeleton layout hint in background */}
       <div className="absolute inset-0 -z-10 opacity-20 pointer-events-none flex flex-col gap-6 p-10">
-        <div className="w-1/3 h-10 bg-white/10 rounded-lg animate-pulse" />
+        <div className="w-1/3 h-10 bg-overlay-hover rounded-lg animate-pulse" />
         <div className="grid grid-cols-3 gap-6">
-          <div className="col-span-1 h-64 bg-white/10 rounded-2xl animate-pulse delay-100" />
-          <div className="col-span-2 h-64 bg-white/10 rounded-2xl animate-pulse delay-200" />
+          <div className="col-span-1 h-64 bg-overlay-hover rounded-2xl animate-pulse delay-100" />
+          <div className="col-span-2 h-64 bg-overlay-hover rounded-2xl animate-pulse delay-200" />
         </div>
-        <div className="w-full h-40 bg-white/10 rounded-2xl animate-pulse delay-300" />
+        <div className="w-full h-40 bg-overlay-hover rounded-2xl animate-pulse delay-300" />
       </div>
     </div>
   );

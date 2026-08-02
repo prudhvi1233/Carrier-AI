@@ -10,13 +10,13 @@ export default function NavItem({ to, icon: Icon, label }) {
     <Link
       to={to}
       className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all relative group ${
-        isActive ? 'text-white bg-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border border-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5'
+        isActive ? 'text-foreground bg-overlay-hover shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] border border-border' : 'text-muted hover:text-foreground hover:bg-overlay'
       }`}
     >
       {isActive && (
         <motion.div
           layoutId="navbar-active"
-          className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-blue/20 to-accent-purple/20 border border-white/10"
+          className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-blue/20 to-accent-purple/20 border border-border"
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         />
       )}

@@ -16,8 +16,8 @@ export default function LoadingState({ text }) {
         </motion.div>
         
         <div className="text-center space-y-2">
-          <h3 className="text-xl font-bold text-white">{text}</h3>
-          <p className="text-gray-400 text-sm">Please wait a moment.</p>
+          <h3 className="text-xl font-bold text-foreground">{text}</h3>
+          <p className="text-muted text-sm">Please wait a moment.</p>
         </div>
       </div>
     </div>

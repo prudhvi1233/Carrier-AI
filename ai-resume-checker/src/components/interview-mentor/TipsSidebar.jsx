@@ -39,7 +39,7 @@ export default function TipsSidebar() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="text-white text-sm font-medium leading-relaxed absolute"
+              className="text-foreground text-sm font-medium leading-relaxed absolute"
             >
               "{TIPS[currentTip]}"
             </motion.p>
@@ -49,12 +49,12 @@ export default function TipsSidebar() {
 
       {/* Quick Modes */}
       <div className="glass-card p-6">
-        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Quick Start Modes</h3>
+        <h3 className="text-sm font-bold text-muted uppercase tracking-wider mb-4">Quick Start Modes</h3>
         <div className="flex flex-wrap gap-2">
           {quickModes.map(mode => (
             <button 
               key={mode}
-              className="px-3 py-1.5 bg-black/40 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-lg text-xs font-medium text-gray-300 transition-colors"
+              className="px-3 py-1.5 bg-black/40 hover:bg-overlay-hover border border-border hover:border-white/20 rounded-lg text-xs font-medium text-muted transition-colors"
             >
               {mode}
             </button>

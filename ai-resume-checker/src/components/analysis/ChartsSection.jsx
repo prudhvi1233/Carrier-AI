@@ -24,17 +24,17 @@ export default function ChartsSection({ sectionScores }) {
   return (
     <div className="glass-card p-6 h-full flex flex-col">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2.5 bg-white/5 rounded-xl border border-white/10">
-          <PieChartIcon size={20} className="text-white" />
+        <div className="p-2.5 bg-overlay rounded-xl border border-border">
+          <PieChartIcon size={20} className="text-foreground" />
         </div>
-        <h3 className="text-lg font-semibold text-white">Analysis Charts</h3>
+        <h3 className="text-lg font-semibold text-foreground">Analysis Charts</h3>
       </div>
       
       <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
         
         {/* Radar Chart for Section Scores */}
         <div className="flex flex-col items-center">
-          <h4 className="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">Section Performance</h4>
+          <h4 className="text-sm font-medium text-muted mb-4 uppercase tracking-wider">Section Performance</h4>
           <div className="w-full h-[250px]">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={sectionData}>
@@ -53,7 +53,7 @@ export default function ChartsSection({ sectionScores }) {
 
         {/* Pie Chart for Skill Distribution */}
         <div className="flex flex-col items-center">
-          <h4 className="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">Skill Distribution</h4>
+          <h4 className="text-sm font-medium text-muted mb-4 uppercase tracking-wider">Skill Distribution</h4>
           <div className="w-full h-[250px] relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -81,7 +81,7 @@ export default function ChartsSection({ sectionScores }) {
             {/* Custom Legend */}
             <div className="flex flex-wrap justify-center gap-3 mt-4">
               {pieData.map((entry, idx) => (
-                <div key={idx} className="flex items-center gap-1.5 text-xs text-gray-400">
+                <div key={idx} className="flex items-center gap-1.5 text-xs text-muted">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: COLORS[idx % COLORS.length] }} />
                   {entry.name}
                 </div>

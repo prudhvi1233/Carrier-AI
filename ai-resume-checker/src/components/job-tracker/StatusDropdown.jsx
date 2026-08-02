@@ -17,7 +17,7 @@ export default function StatusDropdown({ currentStatus, onChange }) {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 w-40 bg-secondary border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden py-1">
+        <div className="absolute top-full left-0 mt-1 w-40 bg-secondary border border-border rounded-xl shadow-2xl z-50 overflow-hidden py-1">
           {Object.values(STATUS_MAP).map((status) => (
             <button
               key={status.id}
@@ -25,7 +25,7 @@ export default function StatusDropdown({ currentStatus, onChange }) {
                 onChange(status.id);
                 setIsOpen(false);
               }}
-              className="w-full text-left px-3 py-2 text-xs hover:bg-white/5 transition-colors flex items-center gap-2"
+              className="w-full text-left px-3 py-2 text-xs hover:bg-overlay transition-colors flex items-center gap-2"
             >
               <span className={`w-2 h-2 rounded-full ${status.bg} ${status.border} border`}></span>
               <span className={status.color}>{status.label}</span>

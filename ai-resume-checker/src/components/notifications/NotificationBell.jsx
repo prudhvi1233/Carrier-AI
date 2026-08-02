@@ -110,8 +110,8 @@ export default function NotificationBell() {
         onClick={() => setIsOpen(!isOpen)}
         className={`relative p-2 rounded-xl transition-colors group border
           ${isOpen 
-            ? 'bg-white/10 border-white/20 text-white' 
-            : 'bg-transparent border-transparent text-gray-400 hover:text-white hover:bg-white/5'
+            ? 'bg-overlay-hover border-white/20 text-foreground' 
+            : 'bg-transparent border-transparent text-muted hover:text-foreground hover:bg-overlay'
           }
         `}
       >
@@ -120,7 +120,7 @@ export default function NotificationBell() {
           <motion.span 
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-secondary shadow-[0_0_10px_rgba(239,68,68,0.8)] text-[9px] font-bold text-white flex items-center justify-center animate-pulse"
+            className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-secondary shadow-[0_0_10px_rgba(239,68,68,0.8)] text-[9px] font-bold text-foreground flex items-center justify-center animate-pulse"
           >
             {unreadCount > 9 ? '9+' : unreadCount}
           </motion.span>

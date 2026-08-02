@@ -18,17 +18,17 @@ export default function FilePreview({ file, onRemove, onReplace }) {
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6"
+      className="w-full bg-overlay border border-border rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6"
     >
-      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center shrink-0 border border-white/10">
+      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center shrink-0 border border-border">
         <FileText size={32} className="text-accent-blue" />
       </div>
 
       <div className="flex-1 text-center md:text-left overflow-hidden">
-        <h3 className="text-lg font-semibold text-white truncate w-full" title={file.name}>
+        <h3 className="text-lg font-semibold text-foreground truncate w-full" title={file.name}>
           {file.name}
         </h3>
-        <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-1 text-sm text-gray-400">
+        <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-1 text-sm text-muted">
           <span>{formatSize(file.size)}</span>
           <span className="w-1 h-1 rounded-full bg-gray-500"></span>
           <span>PDF Document</span>
@@ -40,7 +40,7 @@ export default function FilePreview({ file, onRemove, onReplace }) {
       <div className="flex items-center gap-3 w-full md:w-auto">
         <button 
           onClick={onReplace}
-          className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white transition-colors text-sm font-medium border border-white/10"
+          className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-overlay hover:bg-overlay-hover text-foreground transition-colors text-sm font-medium border border-border"
         >
           <RefreshCw size={16} />
           Replace

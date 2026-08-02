@@ -21,17 +21,17 @@ export default function GrammarFormattingCards({ grammarScore, formattingScore }
         </div>
         
         <div className="flex items-center gap-3 mb-4 relative z-10">
-          <div className="p-2 bg-white/5 rounded-lg border border-white/10">
+          <div className="p-2 bg-overlay rounded-lg border border-border">
             <Edit3 size={18} className="text-accent-purple" />
           </div>
-          <h3 className="font-semibold text-white">Grammar</h3>
+          <h3 className="font-semibold text-foreground">Grammar</h3>
         </div>
         
         <div className="flex items-end justify-between relative z-10">
           <span className={`text-4xl font-bold tracking-tighter ${getScoreColor(grammarScore)}`}>
             {grammarScore}
           </span>
-          <span className="text-sm text-gray-400 font-medium mb-1">/ 100</span>
+          <span className="text-sm text-muted font-medium mb-1">/ 100</span>
         </div>
       </motion.div>
 
@@ -45,17 +45,17 @@ export default function GrammarFormattingCards({ grammarScore, formattingScore }
         </div>
         
         <div className="flex items-center gap-3 mb-4 relative z-10">
-          <div className="p-2 bg-white/5 rounded-lg border border-white/10">
+          <div className="p-2 bg-overlay rounded-lg border border-border">
             <LayoutTemplate size={18} className="text-accent-blue" />
           </div>
-          <h3 className="font-semibold text-white">Formatting</h3>
+          <h3 className="font-semibold text-foreground">Formatting</h3>
         </div>
         
         <div className="flex items-end justify-between relative z-10">
           <span className={`text-4xl font-bold tracking-tighter ${getScoreColor(formattingScore)}`}>
             {formattingScore}
           </span>
-          <span className="text-sm text-gray-400 font-medium mb-1">/ 100</span>
+          <span className="text-sm text-muted font-medium mb-1">/ 100</span>
         </div>
       </motion.div>
     </div>

@@ -3,8 +3,35 @@
 @config "../tailwind.config.js";
 
 @layer base {
+  :root {
+    --bg-primary: #F1F5F9;
+    --bg-secondary: rgba(255, 255, 255, 0.75);
+    --bg-dropdown: #ffffff;
+    --text-primary: #0F172A;
+    --text-muted: #64748B;
+    --border-color: rgba(15, 23, 42, 0.1);
+    --bg-overlay: rgba(255, 255, 255, 0.9);
+    --bg-overlay-hover: rgba(255, 255, 255, 1);
+  }
+
+  .dark {
+    --bg-primary: #020617;
+    --bg-secondary: rgba(15, 23, 42, 0.5);
+    --bg-dropdown: #0f172a;
+    --text-primary: #F8FAFC;
+    --text-muted: #94A3B8;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --bg-overlay: rgba(255, 255, 255, 0.05);
+    --bg-overlay-hover: rgba(255, 255, 255, 0.1);
+  }
+
   body {
-    @apply bg-primary text-white antialiased font-sans m-0 overflow-x-hidden;
+    @apply bg-primary text-foreground antialiased font-sans m-0 overflow-x-hidden transition-colors duration-500 ease-in-out;
+  }
+
+  /* Ensure primary buttons and gradient elements maintain white text */
+  button.bg-gradient-to-r, .bg-gradient-to-br, .bg-accent-blue, .bg-accent-purple {
+    color: #ffffff !important;
   }
 
   /* Hide native browser password reveal icon to prevent overlap with custom toggle */
@@ -17,7 +44,7 @@
 
 @layer utilities {
   .glass-card {
-    @apply bg-secondary/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl;
+    @apply bg-secondary backdrop-blur-xl border border-border shadow-2xl rounded-2xl;
   }
   .input-glow:focus-within {
     @apply ring-2 ring-accent-blue/50 border-accent-blue/50;
@@ -29,4 +56,25 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #pdf-export-container, #pdf-export-container * {
+    visibility: visible;
+  }
+  #pdf-export-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    background: white !important;
+  }
+  @page { margin: 0; size: auto; }
 }

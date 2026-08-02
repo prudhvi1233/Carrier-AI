@@ -37,8 +37,8 @@ export default function NotificationSettings({ data, onSave }) {
   return (
     <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-4">
-        <h2 className="text-2xl font-bold text-white mb-2">Notification Preferences</h2>
-        <p className="text-gray-400 text-sm">Choose how and when we communicate with you.</p>
+        <h2 className="text-2xl font-bold text-foreground mb-2">Notification Preferences</h2>
+        <p className="text-muted text-sm">Choose how and when we communicate with you.</p>
       </div>
 
       {sections.map((section, idx) => (
@@ -48,17 +48,17 @@ export default function NotificationSettings({ data, onSave }) {
               {section.icon}
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">{section.title}</h3>
-              <p className="text-gray-400 text-sm mt-1">{section.description}</p>
+              <h3 className="text-xl font-bold text-foreground">{section.title}</h3>
+              <p className="text-muted text-sm mt-1">{section.description}</p>
             </div>
           </div>
 
           <div className="flex flex-col gap-6">
             {section.items.map((item) => (
-              <div key={item.key} className="flex items-center justify-between gap-4 py-4 border-b border-white/5 last:border-0 last:pb-0">
+              <div key={item.key} className="flex items-center justify-between gap-4 py-4 border-b border-border last:border-0 last:pb-0">
                 <div className="flex flex-col">
-                  <span className="text-white font-medium mb-1">{item.label}</span>
-                  <span className="text-sm text-gray-400">{item.desc}</span>
+                  <span className="text-foreground font-medium mb-1">{item.label}</span>
+                  <span className="text-sm text-muted">{item.desc}</span>
                 </div>
                 <label className="relative cursor-pointer shrink-0">
                   <input 
@@ -67,7 +67,7 @@ export default function NotificationSettings({ data, onSave }) {
                     checked={settings[item.key]}
                     onChange={() => toggle(item.key)}
                   />
-                  <div className="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-purple"></div>
+                  <div className="w-11 h-6 bg-overlay-hover peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-purple"></div>
                 </label>
               </div>
             ))}

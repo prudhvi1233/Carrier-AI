@@ -209,16 +209,16 @@ export default function AIEditorWorkspace() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center shadow-lg shadow-accent-blue/20">
-              <Sparkles className="text-white" size={24} />
+              <Sparkles className="text-foreground" size={24} />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white tracking-tight">Copilot Resume Editor</h1>
-              <p className="text-gray-400">Layout-preserving AI document editor</p>
+              <h1 className="text-3xl font-bold text-foreground tracking-tight">Copilot Resume Editor</h1>
+              <p className="text-muted">Layout-preserving AI document editor</p>
             </div>
           </div>
           {step === 'workspace' && (
             <div className="flex gap-3">
-              <button onClick={handleExport} className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-accent-blue to-accent-purple rounded-xl hover:shadow-lg transition-all hover:scale-105 text-white font-bold">
+              <button onClick={handleExport} className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-accent-blue to-accent-purple rounded-xl hover:shadow-lg transition-all hover:scale-105 text-foreground font-bold">
                 <Download size={18} /> Export Document
               </button>
             </div>
@@ -226,13 +226,13 @@ export default function AIEditorWorkspace() {
         </div>
 
         {step === 'upload' && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-12 flex flex-col items-center justify-center border-2 border-dashed border-white/20 rounded-3xl p-12 bg-white/5 backdrop-blur-sm">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-12 flex flex-col items-center justify-center border-2 border-dashed border-white/20 rounded-3xl p-12 bg-overlay backdrop-blur-sm">
             <div className="w-20 h-20 rounded-full bg-accent-blue/20 flex items-center justify-center mb-6">
               <Upload size={32} className="text-accent-blue" />
             </div>
-            <h2 className="text-2xl font-bold text-white mb-2">Upload your Resume</h2>
-            <p className="text-gray-400 mb-8 text-center max-w-md">Upload your existing PDF or DOCX resume. Our AI will analyze it and prepare your editing workspace while preserving your original layout perfectly.</p>
-            <label className="cursor-pointer px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold rounded-xl shadow-lg hover:shadow-accent-blue/40 transition-all hover:scale-105">
+            <h2 className="text-2xl font-bold text-foreground mb-2">Upload your Resume</h2>
+            <p className="text-muted mb-8 text-center max-w-md">Upload your existing PDF or DOCX resume. Our AI will analyze it and prepare your editing workspace while preserving your original layout perfectly.</p>
+            <label className="cursor-pointer px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-bold rounded-xl shadow-lg hover:shadow-accent-blue/40 transition-all hover:scale-105">
               Select Document
               <input type="file" className="hidden" accept=".pdf,.docx" onChange={handleUpload} />
             </label>
@@ -246,8 +246,8 @@ export default function AIEditorWorkspace() {
               <div className="absolute inset-0 border-4 border-accent-blue border-t-transparent rounded-full animate-spin"></div>
               <Bot size={32} className="text-accent-blue" />
             </div>
-            <h2 className="text-2xl font-bold text-white mb-2">Analyzing Document Structure</h2>
-            <p className="text-gray-400">Extracting bounding boxes, mapping fonts, and preserving layout...</p>
+            <h2 className="text-2xl font-bold text-foreground mb-2">Analyzing Document Structure</h2>
+            <p className="text-muted">Extracting bounding boxes, mapping fonts, and preserving layout...</p>
           </motion.div>
         )}
 
@@ -256,12 +256,12 @@ export default function AIEditorWorkspace() {
             
             {/* Left Panel: Visual Document Viewer */}
             <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-4">
-              <div className="glass-card rounded-2xl p-4 border border-white/10 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-white font-medium">
+              <div className="glass-card rounded-2xl p-4 border border-border flex items-center justify-between">
+                <div className="flex items-center gap-2 text-foreground font-medium">
                   <FileIcon className="text-accent-blue" size={20} />
                   {file?.name}
                 </div>
-                <div className="text-xs px-3 py-1 rounded-full bg-white/10 text-gray-300">
+                <div className="text-xs px-3 py-1 rounded-full bg-overlay-hover text-muted">
                   {appliedEdits.length} edits applied
                 </div>
               </div>
@@ -347,32 +347,32 @@ export default function AIEditorWorkspace() {
             <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-6">
               
               {/* Copilot Chat Box */}
-              <div className="glass-card rounded-2xl p-6 border border-white/10 flex flex-col relative overflow-hidden">
+              <div className="glass-card rounded-2xl p-6 border border-border flex flex-col relative overflow-hidden">
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent-purple/20 blur-3xl rounded-full"></div>
-                <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2 relative z-10">
+                <h3 className="text-xl font-bold text-foreground mb-2 flex items-center gap-2 relative z-10">
                   <Bot className="text-accent-purple" /> Copilot Chat
                 </h3>
-                <p className="text-sm text-gray-400 mb-4 relative z-10">Ask me to rewrite sections, improve keywords, or fix grammar. I will suggest edits without changing your layout.</p>
+                <p className="text-sm text-muted mb-4 relative z-10">Ask me to rewrite sections, improve keywords, or fix grammar. I will suggest edits without changing your layout.</p>
                 
                 <textarea
                   value={prompt}
                   onChange={e => setPrompt(e.target.value)}
                   placeholder="e.g., 'Make my Java project bullet points sound more impactful for Google', 'Fix all grammar issues'"
-                  className="w-full h-32 bg-black/40 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-accent-purple resize-none mb-4 relative z-10"
+                  className="w-full h-32 bg-black/40 border border-border rounded-xl p-4 text-foreground focus:outline-none focus:border-accent-purple resize-none mb-4 relative z-10"
                 />
                 
                 <div className="flex gap-3 relative z-10">
                   <button 
                     onClick={handleAutoImprove}
                     disabled={isCopilotThinking}
-                    className="flex-1 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl text-white font-bold transition-all disabled:opacity-50 text-sm"
+                    className="flex-1 py-3 bg-overlay-hover hover:bg-white/20 border border-border rounded-xl text-foreground font-bold transition-all disabled:opacity-50 text-sm"
                   >
                     Auto Improve All
                   </button>
                   <button 
                     onClick={handleAskCopilot}
                     disabled={isCopilotThinking || !prompt.trim()}
-                    className="flex-1 py-3 bg-gradient-to-r from-accent-purple to-accent-blue text-white rounded-xl font-bold transition-all disabled:opacity-50 shadow-lg hover:shadow-accent-purple/40 text-sm"
+                    className="flex-1 py-3 bg-gradient-to-r from-accent-purple to-accent-blue text-foreground rounded-xl font-bold transition-all disabled:opacity-50 shadow-lg hover:shadow-accent-purple/40 text-sm"
                   >
                     {isCopilotThinking ? 'Thinking...' : 'Ask Copilot'}
                   </button>
@@ -381,7 +381,7 @@ export default function AIEditorWorkspace() {
 
               {/* Suggestions List */}
               <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-4">
-                <h3 className="text-white font-bold sticky top-0 bg-primary py-2 z-10">Review Suggestions ({suggestions.filter(s => s.status === 'pending').length})</h3>
+                <h3 className="text-foreground font-bold sticky top-0 bg-primary py-2 z-10">Review Suggestions ({suggestions.filter(s => s.status === 'pending').length})</h3>
                 
                 <AnimatePresence>
                   {suggestions.map((suggestion, index) => {
@@ -393,7 +393,7 @@ export default function AIEditorWorkspace() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         key={index} 
-                        className="bg-white/5 border border-accent-purple/30 rounded-xl p-4 flex flex-col gap-3 backdrop-blur-md"
+                        className="bg-overlay border border-accent-purple/30 rounded-xl p-4 flex flex-col gap-3 backdrop-blur-md"
                       >
                         <div className="flex items-start justify-between gap-4">
                             <span className="text-xs font-bold text-accent-purple uppercase tracking-wider">{suggestion.reason}</span>
@@ -408,10 +408,10 @@ export default function AIEditorWorkspace() {
                         </div>
                         
                         <div className="flex gap-2 mt-2">
-                          <button onClick={() => rejectSuggestion(index)} className="flex-1 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 font-medium transition-colors text-xs">
+                          <button onClick={() => rejectSuggestion(index)} className="flex-1 py-2 rounded-lg bg-overlay hover:bg-overlay-hover text-muted font-medium transition-colors text-xs">
                             Reject
                           </button>
-                          <button onClick={() => acceptSuggestion(index)} className="flex-1 py-2 rounded-lg bg-accent-purple hover:bg-accent-purple/80 text-white font-bold transition-colors text-xs">
+                          <button onClick={() => acceptSuggestion(index)} className="flex-1 py-2 rounded-lg bg-accent-purple hover:bg-accent-purple/80 text-foreground font-bold transition-colors text-xs">
                             Accept
                           </button>
                         </div>
@@ -420,13 +420,13 @@ export default function AIEditorWorkspace() {
                   })}
                   
                   {suggestions.length > 0 && suggestions.every(s => s.status !== 'pending') && (
-                      <div className="text-center p-8 text-gray-400 text-sm">
+                      <div className="text-center p-8 text-muted text-sm">
                           All caught up! No pending suggestions.
                       </div>
                   )}
                   
                   {suggestions.length === 0 && !isCopilotThinking && (
-                      <div className="text-center p-8 text-gray-500 text-sm border-2 border-dashed border-white/10 rounded-xl">
+                      <div className="text-center p-8 text-gray-500 text-sm border-2 border-dashed border-border rounded-xl">
                           Your Copilot suggestions will appear here.
                       </div>
                   )}

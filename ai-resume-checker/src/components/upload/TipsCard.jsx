@@ -25,14 +25,14 @@ export default function TipsCard() {
         <div className="p-2 bg-accent-blue/10 text-accent-blue rounded-lg border border-accent-blue/20">
           <Lightbulb size={20} />
         </div>
-        <h3 className="text-lg font-semibold text-white">Quick Tips</h3>
+        <h3 className="text-lg font-semibold text-foreground">Quick Tips</h3>
       </div>
       
       <ul className="flex flex-col gap-3">
         {tips.map((tip, idx) => {
           const Icon = tip.icon;
           return (
-            <li key={idx} className="flex items-start gap-3 text-gray-300 group">
+            <li key={idx} className="flex items-start gap-3 text-muted group">
               <Icon size={16} className="text-accent-blue/70 mt-0.5 group-hover:text-accent-blue transition-colors shrink-0" />
               <span className="text-sm leading-relaxed">{tip.text}</span>
             </li>

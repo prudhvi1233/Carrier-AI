@@ -11,7 +11,7 @@ export default function HistorySearchFilters({ search, setSearch, sort, setSort,
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white/5 p-4 rounded-2xl border border-white/10">
+    <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-overlay p-4 rounded-2xl border border-border">
       
       {/* Search Bar */}
       <div className="relative w-full md:w-96">
@@ -23,7 +23,7 @@ export default function HistorySearchFilters({ search, setSearch, sort, setSort,
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search by resume name or skills..."
-          className="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
+          className="w-full pl-10 pr-4 py-2.5 bg-overlay border border-border rounded-xl text-foreground text-sm focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
         />
       </div>
 
@@ -35,7 +35,7 @@ export default function HistorySearchFilters({ search, setSearch, sort, setSort,
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="pl-9 pr-8 py-2.5 bg-black/20 border border-white/10 rounded-xl text-white text-sm appearance-none focus:outline-none focus:border-accent-blue cursor-pointer"
+            className="pl-9 pr-8 py-2.5 bg-overlay border border-border rounded-xl text-foreground text-sm appearance-none focus:outline-none focus:border-accent-blue cursor-pointer"
           >
             <option value="all">All Statuses</option>
             <option value="completed">Completed</option>
@@ -49,7 +49,7 @@ export default function HistorySearchFilters({ search, setSearch, sort, setSort,
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="pl-9 pr-8 py-2.5 bg-black/20 border border-white/10 rounded-xl text-white text-sm appearance-none focus:outline-none focus:border-accent-blue cursor-pointer"
+            className="pl-9 pr-8 py-2.5 bg-overlay border border-border rounded-xl text-foreground text-sm appearance-none focus:outline-none focus:border-accent-blue cursor-pointer"
           >
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>

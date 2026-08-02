@@ -13,18 +13,18 @@ export default function HistoryMobileCard({ resume, onAction }) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="glass-card p-5 flex flex-col gap-4 sm:hidden border border-white/5 hover:border-white/10 transition-colors"
+      className="glass-card p-5 flex flex-col gap-4 sm:hidden border border-border hover:border-border transition-colors"
     >
       <div className="flex justify-between items-start gap-4">
         <div className="flex items-start gap-3 flex-1 overflow-hidden">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center shrink-0 border border-white/10">
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center shrink-0 border border-border">
             <FileText size={20} className="text-accent-blue" />
           </div>
           <div className="flex flex-col min-w-0">
-            <h4 className="font-semibold text-white truncate w-full" title={resume.name}>
+            <h4 className="font-semibold text-foreground truncate w-full" title={resume.name}>
               {resume.name}
             </h4>
-            <div className="flex items-center gap-1.5 text-xs text-gray-400 mt-1">
+            <div className="flex items-center gap-1.5 text-xs text-muted mt-1">
               <Calendar size={12} />
               {uploadDate}
             </div>
@@ -39,14 +39,14 @@ export default function HistoryMobileCard({ resume, onAction }) {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-3 py-3 border-y border-white/5">
+      <div className="grid grid-cols-2 gap-3 py-3 border-y border-border">
         <div className="flex flex-col gap-1">
           <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Resume Score</span>
-          <span className="text-lg font-bold text-white">{resume.resume_score}<span className="text-sm text-gray-400 font-medium">/100</span></span>
+          <span className="text-lg font-bold text-foreground">{resume.resume_score}<span className="text-sm text-muted font-medium">/100</span></span>
         </div>
         <div className="flex flex-col gap-1">
           <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">ATS Score</span>
-          <span className="text-lg font-bold text-white">{resume.ats_score}%</span>
+          <span className="text-lg font-bold text-foreground">{resume.ats_score}%</span>
         </div>
       </div>
 

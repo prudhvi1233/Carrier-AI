@@ -4,7 +4,7 @@ import MagicBento from '../ui/MagicBento';
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 bg-primary text-white relative">
+    <section id="features" className="py-24 bg-black text-foreground relative">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -22,7 +22,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gray-400 text-lg"
+            className="text-muted text-lg"
           >
             Everything you need to bypass the bots and get your resume into the hands of a real human being.
           </motion.p>

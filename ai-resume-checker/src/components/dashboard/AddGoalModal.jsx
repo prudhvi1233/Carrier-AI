@@ -39,15 +39,15 @@ export default function AddGoalModal({ isOpen, onClose, onSubmit }) {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-md bg-secondary border border-white/10 rounded-2xl p-6 shadow-2xl"
+          className="relative w-full max-w-md bg-secondary border border-border rounded-2xl p-6 shadow-2xl"
         >
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
               <Target className="text-accent-blue" size={24} /> Add New Goal
             </h2>
             <button 
               onClick={onClose}
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-muted hover:text-foreground transition-colors"
             >
               <X size={24} />
             </button>
@@ -55,36 +55,36 @@ export default function AddGoalModal({ isOpen, onClose, onSubmit }) {
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-300">Goal Title</label>
+              <label className="text-sm font-medium text-muted">Goal Title</label>
               <input
                 type="text"
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g., Apply to Software Engineering Roles"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                className="w-full bg-overlay border border-border rounded-xl px-4 py-2.5 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-300">Target Value</label>
+              <label className="text-sm font-medium text-muted">Target Value</label>
               <input
                 type="number"
                 required
                 min="1"
                 value={targetValue}
                 onChange={(e) => setTargetValue(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                className="w-full bg-overlay border border-border rounded-xl px-4 py-2.5 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
               />
               <span className="text-xs text-gray-500">How many times do you want to do this?</span>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-300">Category</label>
+              <label className="text-sm font-medium text-muted">Category</label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full bg-secondary border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-accent-blue transition-colors appearance-none"
+                className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 text-foreground focus:outline-none focus:border-accent-blue transition-colors appearance-none"
               >
                 <option value="applications">Job Applications</option>
                 <option value="learning">Learning & Courses</option>
@@ -98,13 +98,13 @@ export default function AddGoalModal({ isOpen, onClose, onSubmit }) {
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 px-4 py-2.5 rounded-xl border border-white/10 text-white font-medium hover:bg-white/5 transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-xl border border-border text-foreground font-medium hover:bg-overlay transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold hover:opacity-90 transition-opacity"
+                className="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-semibold hover:opacity-90 transition-opacity"
               >
                 Save Goal
               </button>

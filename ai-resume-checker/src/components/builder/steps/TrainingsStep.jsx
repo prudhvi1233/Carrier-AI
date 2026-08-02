@@ -25,8 +25,8 @@ export default function TrainingsStep({ data, onUpdate }) {
   return (
     <div className="flex flex-col gap-6">
       <div className="mb-2">
-        <h2 className="text-3xl font-bold text-white mb-2">Trainings & Certifications</h2>
-        <p className="text-gray-400">List any relevant certifications, courses, or training programs.</p>
+        <h2 className="text-3xl font-bold text-foreground mb-2">Trainings & Certifications</h2>
+        <p className="text-muted">List any relevant certifications, courses, or training programs.</p>
       </div>
 
       <div className="flex flex-col gap-8">
@@ -38,7 +38,7 @@ export default function TrainingsStep({ data, onUpdate }) {
               animate={{ opacity: 1, height: 'auto', scale: 1 }}
               exit={{ opacity: 0, height: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="glass-card p-6 border-white/10 relative group"
+              className="glass-card p-6 border-border relative group"
             >
               <div className="absolute left-2 top-6 opacity-0 group-hover:opacity-100 cursor-grab text-gray-500 transition-opacity">
                 <GripVertical size={20} />
@@ -46,7 +46,7 @@ export default function TrainingsStep({ data, onUpdate }) {
               
               <button 
                 onClick={() => removeTraining(t.id)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-red-400 transition-colors bg-white/5 p-2 rounded-lg"
+                className="absolute top-4 right-4 text-gray-500 hover:text-red-400 transition-colors bg-overlay p-2 rounded-lg"
               >
                 <Trash2 size={16} />
               </button>
@@ -54,47 +54,47 @@ export default function TrainingsStep({ data, onUpdate }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pl-4 md:pl-6 pr-8">
                 
                 <div className="flex flex-col gap-2 md:col-span-2">
-                  <label className="text-xs font-medium text-gray-400">Training / Certification Name</label>
+                  <label className="text-xs font-medium text-muted">Training / Certification Name</label>
                   <input 
                     type="text" value={t.name} onChange={(e) => handleChange(t.id, 'name', e.target.value)}
                     placeholder="e.g. AWS Certified Solutions Architect"
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-accent-blue"
+                    className="w-full bg-overlay border border-border rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent-blue"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-medium text-gray-400">Organization / Issuer</label>
+                  <label className="text-xs font-medium text-muted">Organization / Issuer</label>
                   <input 
                     type="text" value={t.organization} onChange={(e) => handleChange(t.id, 'organization', e.target.value)}
                     placeholder="e.g. Amazon Web Services"
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-accent-blue"
+                    className="w-full bg-overlay border border-border rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent-blue"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-medium text-gray-400">Completion Date</label>
+                  <label className="text-xs font-medium text-muted">Completion Date</label>
                   <input 
                     type="month" value={t.date} onChange={(e) => handleChange(t.id, 'date', e.target.value)}
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-accent-blue [color-scheme:dark]"
+                    className="w-full bg-overlay border border-border rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent-blue [color-scheme:dark]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2 md:col-span-2">
-                  <label className="text-xs font-medium text-gray-400">Certificate ID / URL (Optional)</label>
+                  <label className="text-xs font-medium text-muted">Certificate ID / URL (Optional)</label>
                   <input 
                     type="text" value={t.certificateId} onChange={(e) => handleChange(t.id, 'certificateId', e.target.value)}
                     placeholder="e.g. 1234-5678-ABCD or https://..."
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-accent-blue"
+                    className="w-full bg-overlay border border-border rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent-blue"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2 md:col-span-2 mt-2">
-                  <label className="text-xs font-medium text-gray-400">Description</label>
+                  <label className="text-xs font-medium text-muted">Description</label>
                   <textarea 
                     value={t.description} onChange={(e) => handleChange(t.id, 'description', e.target.value)}
                     placeholder="• Completed 40 hours of coursework focusing on..."
                     rows={3}
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-3 text-white focus:outline-none focus:border-accent-blue resize-none"
+                    className="w-full bg-overlay border border-border rounded-lg px-3 py-3 text-foreground focus:outline-none focus:border-accent-blue resize-none"
                   />
                 </div>
 
@@ -105,8 +105,8 @@ export default function TrainingsStep({ data, onUpdate }) {
       </div>
 
       {(!data || data.length === 0) && (
-        <div className="p-8 border-2 border-dashed border-white/10 rounded-2xl flex flex-col items-center text-center">
-          <p className="text-gray-400 mb-4">No trainings or certifications added yet.</p>
+        <div className="p-8 border-2 border-dashed border-border rounded-2xl flex flex-col items-center text-center">
+          <p className="text-muted mb-4">No trainings or certifications added yet.</p>
         </div>
       )}
 

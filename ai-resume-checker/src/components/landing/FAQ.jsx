@@ -25,7 +25,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-black text-white relative">
+    <section id="faq" className="py-24 bg-black text-foreground relative">
       <div className="max-w-3xl mx-auto px-6 relative z-10">
         
         <div className="text-center mb-16">
@@ -55,7 +55,7 @@ export default function FAQ() {
               >
                 <span className="font-semibold text-lg">{faq.question}</span>
                 <ChevronDown 
-                  className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 text-muted transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''}`}
                 />
               </button>
               <AnimatePresence>
@@ -66,7 +66,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-6 text-gray-400 leading-relaxed">
+                    <div className="px-6 pb-6 text-muted leading-relaxed">
                       {faq.answer}
                     </div>
                   </motion.div>

@@ -106,9 +106,9 @@ export default function ResumeBuilderPage() {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center border border-accent-blue/30">
               <FileText className="text-accent-blue" size={20} />
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Resume Builder</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">Resume Builder</h1>
           </div>
-          <p className="text-gray-400 text-lg max-w-2xl">
+          <p className="text-muted text-lg max-w-2xl">
             Create professional, ATS-friendly resumes in minutes. Powered by your profile data and AI.
           </p>
         </div>
@@ -116,7 +116,7 @@ export default function ResumeBuilderPage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/resume-builder/ai-editor')}
-            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-bold rounded-xl shadow-lg hover:bg-white/10 transition-all hover:scale-105 active:scale-95"
+            className="flex items-center gap-2 px-6 py-3 bg-overlay border border-border text-foreground font-bold rounded-xl shadow-lg hover:bg-overlay-hover transition-all hover:scale-105 active:scale-95"
           >
             <Bot size={18} className="text-accent-purple" />
             Edit with AI
@@ -124,7 +124,7 @@ export default function ResumeBuilderPage() {
           
           <button
             onClick={handleCreateNew}
-            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold rounded-xl shadow-lg shadow-accent-blue/25 hover:shadow-accent-blue/40 transition-all hover:scale-105 active:scale-95"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-bold rounded-xl shadow-lg shadow-accent-blue/25 hover:shadow-accent-blue/40 transition-all hover:scale-105 active:scale-95"
           >
             <Sparkles size={18} />
             Create New Resume
@@ -136,8 +136,8 @@ export default function ResumeBuilderPage() {
 
       <div className="flex flex-col gap-6">
         <div>
-          <h2 className="text-3xl font-bold text-white">Template Gallery</h2>
-          <p className="text-gray-400 mt-2 text-lg">Choose from our professionally designed templates to create your perfect resume.</p>
+          <h2 className="text-3xl font-bold text-foreground">Template Gallery</h2>
+          <p className="text-muted mt-2 text-lg">Choose from our professionally designed templates to create your perfect resume.</p>
         </div>
 
         <TemplateGallery 

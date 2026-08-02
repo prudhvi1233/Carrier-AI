@@ -12,8 +12,8 @@ export default function RecentAnalysisTable({ analyses }) {
       transition={{ delay: 0.6, duration: 0.4 }}
       className="glass-card overflow-hidden"
     >
-      <div className="p-6 border-b border-white/10 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-white">Recent Analysis</h3>
+      <div className="p-6 border-b border-border flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-foreground">Recent Analysis</h3>
         <button className="text-sm font-medium text-accent-blue hover:text-accent-purple transition-colors">
           View All
         </button>
@@ -22,13 +22,13 @@ export default function RecentAnalysisTable({ analyses }) {
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-white/5 border-b border-white/10">
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Resume ID</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">AI Score</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">ATS Score</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Upload Date</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Status</th>
-              <th className="py-4 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider text-right">Actions</th>
+            <tr className="bg-overlay border-b border-border">
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">Resume ID</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">AI Score</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">ATS Score</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">Upload Date</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider">Status</th>
+              <th className="py-4 px-6 text-xs font-semibold text-muted uppercase tracking-wider text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
@@ -39,11 +39,11 @@ export default function RecentAnalysisTable({ analyses }) {
               const status = item.status || 'Pending';
 
               return (
-                <tr key={item.id} className="hover:bg-white/5 transition-colors group">
+                <tr key={item.id} className="hover:bg-overlay transition-colors group">
                   <td className="py-4 px-6 whitespace-nowrap">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
-                        <FileText size={16} className="text-gray-300 group-hover:text-accent-blue transition-colors" />
+                      <div className="w-8 h-8 rounded-lg bg-overlay flex items-center justify-center border border-border">
+                        <FileText size={16} className="text-muted group-hover:text-accent-blue transition-colors" />
                       </div>
                       <span className="text-sm font-medium text-gray-200" title={item.filename}>
                         {item.filename?.length > 20 ? item.filename.substring(0, 20) + '...' : item.filename || `Resume #${item.id.substring(0,6)}`}
@@ -52,8 +52,8 @@ export default function RecentAnalysisTable({ analyses }) {
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-white">{score !== null ? `${Math.round(score)}%` : 'N/A'}</span>
-                      <div className="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                      <span className="text-sm font-bold text-foreground">{score !== null ? `${Math.round(score)}%` : 'N/A'}</span>
+                      <div className="w-16 h-1.5 bg-overlay-hover rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-accent-blue rounded-full"
                           style={{ width: `${score !== null ? Math.round(score) : 0}%` }}
@@ -63,8 +63,8 @@ export default function RecentAnalysisTable({ analyses }) {
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-white">{ats !== null ? `${Math.round(ats)}%` : 'N/A'}</span>
-                      <div className="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                      <span className="text-sm font-bold text-foreground">{ats !== null ? `${Math.round(ats)}%` : 'N/A'}</span>
+                      <div className="w-16 h-1.5 bg-overlay-hover rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-accent-purple rounded-full"
                           style={{ width: `${ats !== null ? Math.round(ats) : 0}%` }}
@@ -72,7 +72,7 @@ export default function RecentAnalysisTable({ analyses }) {
                       </div>
                     </div>
                   </td>
-                  <td className="py-4 px-6 whitespace-nowrap text-sm text-gray-400">
+                  <td className="py-4 px-6 whitespace-nowrap text-sm text-muted">
                     {date}
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap">
@@ -87,7 +87,7 @@ export default function RecentAnalysisTable({ analyses }) {
                     </span>
                   </td>
                   <td className="py-4 px-6 whitespace-nowrap text-right">
-                    <button className="text-gray-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors">
+                    <button className="text-muted hover:text-foreground p-1 rounded-lg hover:bg-overlay-hover transition-colors">
                       <MoreHorizontal size={18} />
                     </button>
                   </td>

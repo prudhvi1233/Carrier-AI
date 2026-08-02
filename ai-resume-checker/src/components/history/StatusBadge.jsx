@@ -28,7 +28,7 @@ export default function StatusBadge({ status }) {
       default:
         return {
           bg: 'bg-gray-500/10',
-          text: 'text-gray-400',
+          text: 'text-muted',
           border: 'border-gray-500/20',
           icon: null,
         };

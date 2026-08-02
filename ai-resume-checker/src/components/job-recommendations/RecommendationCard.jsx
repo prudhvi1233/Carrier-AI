@@ -16,7 +16,7 @@ export default function RecommendationCard({ job, onViewDetails, isComparing, on
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`glass-card p-6 border-l-4 transition-all hover:scale-[1.01] ${isComparing ? 'border-l-accent-blue bg-white/10' : 'border-l-transparent hover:border-l-accent-purple'}`}
+      className={`glass-card p-6 border-l-4 transition-all hover:scale-[1.01] ${isComparing ? 'border-l-accent-blue bg-overlay-hover' : 'border-l-transparent hover:border-l-accent-purple'}`}
     >
       <div className="flex flex-col md:flex-row gap-6">
         
@@ -25,26 +25,26 @@ export default function RecommendationCard({ job, onViewDetails, isComparing, on
           <div className="flex items-start gap-4 mb-4">
             <img src={job.companyLogo} alt={job.company} className="w-14 h-14 rounded-xl shadow-lg bg-white" />
             <div>
-              <h2 className="text-xl font-bold text-white leading-tight">{job.role}</h2>
+              <h2 className="text-xl font-bold text-foreground leading-tight">{job.role}</h2>
               <div className="flex items-center gap-2 mt-1">
-                <Building2 size={14} className="text-gray-400" />
-                <span className="text-sm text-gray-300 font-medium">{job.company}</span>
-                <span className="text-xs text-gray-500 bg-white/5 px-2 py-0.5 rounded-full">{job.postedDate}</span>
+                <Building2 size={14} className="text-muted" />
+                <span className="text-sm text-muted font-medium">{job.company}</span>
+                <span className="text-xs text-gray-500 bg-overlay px-2 py-0.5 rounded-full">{job.postedDate}</span>
               </div>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4">
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div className="flex items-center gap-2 text-sm text-muted">
               <MapPin size={16} className="text-accent-blue" /> {job.location} ({job.workMode})
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div className="flex items-center gap-2 text-sm text-muted">
               <DollarSign size={16} className="text-green-400" /> {job.salary}
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div className="flex items-center gap-2 text-sm text-muted">
               <Briefcase size={16} className="text-accent-purple" /> {job.experience}
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div className="flex items-center gap-2 text-sm text-muted">
               <Clock size={16} className="text-yellow-400" /> {job.type}
             </div>
           </div>
@@ -53,14 +53,14 @@ export default function RecommendationCard({ job, onViewDetails, isComparing, on
         </div>
 
         {/* Right: Scores & Actions */}
-        <div className="flex flex-col items-start md:items-end justify-between md:w-64 shrink-0 border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 gap-4">
+        <div className="flex flex-col items-start md:items-end justify-between md:w-64 shrink-0 border-t md:border-t-0 md:border-l border-border pt-4 md:pt-0 md:pl-6 gap-4">
           
           <div className="flex items-center gap-4">
             <div className="flex flex-col items-end">
-              <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">AI Match</span>
+              <span className="text-xs font-bold text-muted uppercase tracking-wider mb-1">AI Match</span>
               <div className="flex items-center gap-1">
                 <Zap size={14} className="text-yellow-400" />
-                <span className="text-xs text-gray-300">ATS: {job.atsCompatibility}%</span>
+                <span className="text-xs text-muted">ATS: {job.atsCompatibility}%</span>
               </div>
             </div>
             
@@ -80,7 +80,7 @@ export default function RecommendationCard({ job, onViewDetails, isComparing, on
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center flex-col">
-                <span className="text-lg font-bold text-white leading-none">{job.matchScore}</span>
+                <span className="text-lg font-bold text-foreground leading-none">{job.matchScore}</span>
               </div>
             </div>
           </div>

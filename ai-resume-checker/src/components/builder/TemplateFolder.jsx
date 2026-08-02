@@ -26,12 +26,12 @@ export default function TemplateFolder({ template, isSelected, onSelect }) {
   const PaperPreviewLines = () => (
     <div className="w-full h-full p-2 flex flex-col gap-1.5 opacity-30">
       <div className="w-1/2 h-1.5 bg-black/40 rounded-full mx-auto mb-1" />
-      <div className="w-3/4 h-1 bg-black/20 rounded-full mx-auto mb-2" />
+      <div className="w-3/4 h-1 bg-overlay rounded-full mx-auto mb-2" />
       
       <div className="flex gap-2 mb-2">
         <div className="w-1/3 h-8 bg-black/10 rounded-sm" />
         <div className="flex-1 flex flex-col gap-1">
-          <div className="w-full h-1 bg-black/20 rounded-full" />
+          <div className="w-full h-1 bg-overlay rounded-full" />
           <div className="w-5/6 h-1 bg-black/10 rounded-full" />
           <div className="w-4/6 h-1 bg-black/10 rounded-full" />
         </div>
@@ -40,7 +40,7 @@ export default function TemplateFolder({ template, isSelected, onSelect }) {
       <div className="w-full h-px bg-black/10 my-1" />
       
       <div className="flex flex-col gap-1">
-        <div className="w-1/3 h-1.5 bg-black/20 rounded-full mb-1" />
+        <div className="w-1/3 h-1.5 bg-overlay rounded-full mb-1" />
         <div className="w-full h-1 bg-black/10 rounded-full" />
         <div className="w-full h-1 bg-black/10 rounded-full" />
         <div className="w-4/5 h-1 bg-black/10 rounded-full" />
@@ -69,7 +69,7 @@ export default function TemplateFolder({ template, isSelected, onSelect }) {
               exit={{ scale: 0, opacity: 0 }}
               className="absolute -top-3 -right-3 z-50 bg-accent-blue rounded-full p-1 border-2 border-secondary shadow-lg"
             >
-              <CheckCircle2 size={20} className="text-white" />
+              <CheckCircle2 size={20} className="text-foreground" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -116,7 +116,7 @@ export default function TemplateFolder({ template, isSelected, onSelect }) {
           {/* Subtle texture/gradient on front */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl" />
           
-          <h3 className="text-white/80 font-bold text-xl tracking-wider uppercase opacity-30 select-none transform -rotate-12">
+          <h3 className="text-foreground/80 font-bold text-xl tracking-wider uppercase opacity-30 select-none transform -rotate-12">
             {template.name}
           </h3>
         </motion.div>
@@ -124,27 +124,27 @@ export default function TemplateFolder({ template, isSelected, onSelect }) {
       </motion.div>
 
       {/* Template Info Card */}
-      <div className="glass-card p-4 flex flex-col gap-2 relative z-30 border border-white/5 bg-[#111]/80 backdrop-blur-xl hover:border-white/10 transition-colors">
+      <div className="glass-card p-4 flex flex-col gap-2 relative z-30 border border-border bg-[#111]/80 backdrop-blur-xl hover:border-border transition-colors">
         <div className="flex justify-between items-start gap-2">
-          <h4 className="font-bold text-white text-base">{template.name}</h4>
+          <h4 className="font-bold text-foreground text-base">{template.name}</h4>
           <div className="flex items-center gap-1 bg-yellow-500/10 px-2 py-0.5 rounded text-xs font-bold text-yellow-500 shrink-0">
             <Star size={12} className="fill-yellow-500" />
             {template.atsRating}
           </div>
         </div>
         
-        <p className="text-xs text-gray-400 line-clamp-2">{template.description}</p>
+        <p className="text-xs text-muted line-clamp-2">{template.description}</p>
         
         <div className="flex flex-wrap gap-1.5 mt-2">
           {template.tags.slice(0, 2).map((tag, idx) => (
-            <span key={idx} className="text-[10px] uppercase font-bold tracking-wider px-2 py-1 bg-white/5 text-gray-300 rounded">
+            <span key={idx} className="text-[10px] uppercase font-bold tracking-wider px-2 py-1 bg-overlay text-muted rounded">
               {tag}
             </span>
           ))}
         </div>
         
-        <div className="mt-2 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
-          <span className="text-gray-500 font-medium">Difficulty: <span className="text-white">{template.difficulty}</span></span>
+        <div className="mt-2 pt-3 border-t border-border flex justify-between items-center text-xs">
+          <span className="text-gray-500 font-medium">Difficulty: <span className="text-foreground">{template.difficulty}</span></span>
         </div>
       </div>
 

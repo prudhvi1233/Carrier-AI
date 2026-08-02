@@ -14,29 +14,29 @@ export default function ProfileHeader({ user }) {
   const completion = calculateCompletion(user);
 
   return (
-    <div className="p-4 border-b border-white/10">
+    <div className="p-4 border-b border-border">
       <div className="flex items-center gap-4 mb-4">
         <div className="w-14 h-14 rounded-full bg-gradient-to-r from-accent-purple to-accent-blue p-[2px] shrink-0">
           <div className="w-full h-full bg-secondary rounded-full flex items-center justify-center overflow-hidden">
             {user?.avatar ? (
               <img src={user.avatar} alt="Avatar" className="w-full h-full object-cover" />
             ) : (
-              <User size={24} className="text-gray-300" />
+              <User size={24} className="text-muted" />
             )}
           </div>
         </div>
         
         <div className="flex flex-col overflow-hidden">
-          <h4 className="text-white font-bold text-lg truncate">{user?.name || 'Jane Doe'}</h4>
-          <p className="text-gray-400 text-sm truncate">{user?.email || 'jane.doe@example.com'}</p>
+          <h4 className="text-foreground font-bold text-lg truncate">{user?.name || 'Jane Doe'}</h4>
+          <p className="text-muted text-sm truncate">{user?.email || 'jane.doe@example.com'}</p>
         </div>
       </div>
 
-      <div className="bg-white/5 rounded-lg p-3">
+      <div className="bg-overlay rounded-lg p-3">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-xs text-white font-medium">{completion}% Profile Complete</span>
+          <span className="text-xs text-foreground font-medium">{completion}% Profile Complete</span>
         </div>
-        <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+        <div className="h-1.5 w-full bg-overlay-hover rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${completion}%` }}

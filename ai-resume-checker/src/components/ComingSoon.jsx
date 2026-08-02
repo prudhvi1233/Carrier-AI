@@ -17,7 +17,7 @@ export default function ComingSoon({ title, description }) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1, duration: 0.5 }}
-        className="text-3xl md:text-4xl font-bold text-white mb-4"
+        className="text-3xl md:text-4xl font-bold text-foreground mb-4"
       >
         {title || 'Coming Soon'}
       </motion.h1>
@@ -25,7 +25,7 @@ export default function ComingSoon({ title, description }) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="text-gray-400 text-lg max-w-lg"
+        className="text-muted text-lg max-w-lg"
       >
         {description || 'We are currently building this feature. It will be powered by real backend APIs soon.'}
       </motion.p>

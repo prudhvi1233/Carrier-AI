@@ -9,7 +9,7 @@ export default function StrengthsCard({ strengths = [] }) {
         <div className="p-2.5 bg-green-500/10 rounded-xl border border-green-500/20">
           <TrendingUp size={20} className="text-green-400" />
         </div>
-        <h3 className="text-lg font-semibold text-white">Top Strengths</h3>
+        <h3 className="text-lg font-semibold text-foreground">Top Strengths</h3>
       </div>
       
       <ul className="flex flex-col gap-4">
@@ -22,7 +22,7 @@ export default function StrengthsCard({ strengths = [] }) {
             className="flex items-start gap-3 group"
           >
             <CheckCircle2 size={18} className="text-green-400 mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
-            <span className="text-sm text-gray-300 leading-tight">{item}</span>
+            <span className="text-sm text-muted leading-tight">{item}</span>
           </motion.li>
         ))}
       </ul>

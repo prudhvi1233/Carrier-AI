@@ -26,18 +26,18 @@ export default function SettingsSidebar({ activeTab, setActiveTab }) {
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all relative whitespace-nowrap md:whitespace-normal group ${
-              isActive ? 'text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'
+              isActive ? 'text-foreground' : 'text-muted hover:text-foreground hover:bg-overlay'
             }`}
           >
             {isActive && (
               <motion.div
                 layoutId="activeTabIndicator"
-                className="absolute inset-0 bg-white/10 rounded-xl border border-white/10"
+                className="absolute inset-0 bg-overlay-hover rounded-xl border border-border"
                 initial={false}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               />
             )}
-            <Icon size={18} className={`relative z-10 ${isActive ? 'text-accent-blue' : 'group-hover:text-gray-300'}`} />
+            <Icon size={18} className={`relative z-10 ${isActive ? 'text-accent-blue' : 'group-hover:text-muted'}`} />
             <span className="relative z-10 font-medium text-sm">{tab.label}</span>
           </button>
         );

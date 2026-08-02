@@ -13,11 +13,11 @@ export default function StatCard({ title, value, icon: Icon, delay = 0 }) {
       <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/0 to-accent-purple/0 group-hover:from-accent-blue/10 group-hover:to-accent-purple/10 transition-colors duration-500" />
       
       <div className="relative z-10">
-        <h3 className="text-gray-400 text-sm font-medium mb-2">{title}</h3>
-        <p className="text-3xl font-bold text-white tracking-tight">{value}</p>
+        <h3 className="text-muted text-sm font-medium mb-2">{title}</h3>
+        <p className="text-3xl font-bold text-foreground tracking-tight">{value}</p>
       </div>
       
-      <div className="relative z-10 w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+      <div className="relative z-10 w-12 h-12 rounded-2xl bg-overlay border border-border flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
         <Icon size={24} className="text-accent-blue group-hover:text-accent-purple transition-colors" />
       </div>
     </motion.div>

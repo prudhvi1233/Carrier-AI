@@ -50,13 +50,13 @@ export default function OverallScoreCard({ score }) {
         style={{ backgroundColor: strokeColor }}
       />
       
-      <h3 className="text-lg font-semibold text-white mb-6 relative z-10">Overall Resume Score</h3>
+      <h3 className="text-lg font-semibold text-foreground mb-6 relative z-10">Overall Resume Score</h3>
       
       <div className="relative w-40 h-40 flex items-center justify-center z-10">
         {/* SVG Circle for Progress */}
         <svg className="w-full h-full -rotate-90 transform absolute inset-0">
           <circle
-            className="text-white/10"
+            className="text-foreground/10"
             strokeWidth="8"
             stroke="currentColor"
             fill="transparent"
@@ -81,15 +81,15 @@ export default function OverallScoreCard({ score }) {
         </svg>
 
         <div className="flex flex-col items-center justify-center">
-          <span className="text-5xl font-bold text-white tracking-tighter">
+          <span className="text-5xl font-bold text-foreground tracking-tighter">
             {animatedScore}
           </span>
-          <span className="text-sm text-gray-400 font-medium">/ 100</span>
+          <span className="text-sm text-muted font-medium">/ 100</span>
         </div>
       </div>
 
       <div className="mt-6 flex flex-col items-center gap-1 z-10">
-        <span className="text-sm text-gray-400">Performance</span>
+        <span className="text-sm text-muted">Performance</span>
         <span className={`text-xl font-bold ${colorClass} uppercase tracking-wider`}>
           {label}
         </span>

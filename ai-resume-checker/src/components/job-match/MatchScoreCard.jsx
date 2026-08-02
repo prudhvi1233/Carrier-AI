@@ -25,7 +25,7 @@ export default function MatchScoreCard({ score, label, title, company }) {
         <div className="relative w-32 h-32 flex items-center justify-center">
           <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
             <circle
-              className="text-white/10 stroke-current"
+              className="text-foreground/10 stroke-current"
               strokeWidth="8"
               cx="50" cy="50" r="40"
               fill="transparent"
@@ -42,14 +42,14 @@ export default function MatchScoreCard({ score, label, title, company }) {
             ></motion.circle>
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-4xl font-bold text-white">{score}%</span>
+            <span className="text-4xl font-bold text-foreground">{score}%</span>
           </div>
         </div>
         
         <div>
-          <h2 className="text-3xl font-bold text-white mb-2">{label}</h2>
-          <p className="text-gray-300 text-lg">{title}</p>
-          <p className="text-gray-400">{company}</p>
+          <h2 className="text-3xl font-bold text-foreground mb-2">{label}</h2>
+          <p className="text-muted text-lg">{title}</p>
+          <p className="text-muted">{company}</p>
         </div>
       </div>
     </div>

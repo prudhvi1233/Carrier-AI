@@ -9,7 +9,7 @@ export default function Hero() {
   const navigate = useNavigate();
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-primary text-white">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-black text-foreground">
       
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 bg-black" />
@@ -29,10 +29,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-white/10 mb-8 mx-auto"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-border mb-8 mx-auto"
         >
           <Sparkles className="w-4 h-4 text-blue-400" />
-          <span className="text-sm font-medium text-gray-300">Powered by advanced AI models</span>
+          <span className="text-sm font-medium text-muted">Powered by advanced AI models</span>
         </motion.div>
 
         {/* Headline */}
@@ -53,7 +53,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-muted mb-12 max-w-3xl mx-auto leading-relaxed"
         >
           From deep ATS resume analysis and intelligent keyword optimization to AI-driven mock interviews and personal career coaching, CareerAI gives you the edge to land your dream job.
         </motion.p>
@@ -92,7 +92,7 @@ export default function Hero() {
 
           <a 
             href="#how-it-works"
-            className="px-8 py-4 w-full sm:w-auto rounded-2xl font-semibold text-white border border-white/10 hover:bg-white/5 transition-colors flex items-center justify-center"
+            className="px-8 py-4 w-full sm:w-auto rounded-2xl font-semibold text-foreground border border-border hover:bg-overlay transition-colors flex items-center justify-center"
           >
             Learn More
           </a>

@@ -73,7 +73,7 @@ export default function UploadProgress({ onComplete, isBackendDone }) {
 
       <div className="w-full max-w-md flex flex-col items-center gap-4">
         {/* Message */}
-        <div className="flex items-center gap-2 text-white font-medium text-lg h-8">
+        <div className="flex items-center gap-2 text-foreground font-medium text-lg h-8">
           <Sparkles size={18} className="text-accent-purple" />
           <motion.span
             key={messageIndex}
@@ -86,7 +86,7 @@ export default function UploadProgress({ onComplete, isBackendDone }) {
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full h-2.5 bg-white/5 rounded-full overflow-hidden border border-white/10 relative">
+        <div className="w-full h-2.5 bg-overlay rounded-full overflow-hidden border border-border relative">
           <motion.div 
             className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full"
             style={{ width: `${progress}%` }}
@@ -94,7 +94,7 @@ export default function UploadProgress({ onComplete, isBackendDone }) {
           {/* Shine effect on progress bar */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-full -translate-x-full animate-[shimmer_2s_infinite]" />
         </div>
-        <div className="text-sm text-gray-400 font-medium font-mono">
+        <div className="text-sm text-muted font-medium font-mono">
           {Math.round(progress)}%
         </div>
       </div>

@@ -22,11 +22,11 @@ export default function WeeklyInsights() {
   }, []);
 
   return (
-    <div className="glass-card p-6 h-full flex flex-col relative overflow-hidden group">
+    <div className="glass-card p-6 h-full flex flex-col relative overflow-hidden group bg-gradient-to-br from-accent-purple/10 to-transparent">
       {/* Background glow */}
       <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-accent-purple/20 blur-3xl rounded-full transition-transform group-hover:scale-150 duration-700" />
       
-      <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2 relative z-10">
+      <h3 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2 relative z-10">
         <Sparkles className="text-accent-purple" size={20} /> AI Weekly Insights
       </h3>
 
@@ -38,9 +38,9 @@ export default function WeeklyInsights() {
           </div>
         ) : (
           insights.map((insight, idx) => (
-            <div key={idx} className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+            <div key={idx} className="flex items-start gap-3 bg-overlay p-3 rounded-xl border border-border hover:bg-overlay-hover transition-colors">
               <div className="w-1.5 h-1.5 rounded-full bg-accent-purple mt-2 shrink-0" />
-              <p className="text-sm text-gray-300 leading-relaxed">{insight}</p>
+              <p className="text-sm text-muted leading-relaxed">{insight}</p>
             </div>
           ))
         )}

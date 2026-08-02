@@ -87,12 +87,12 @@ export default function Profile() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 + idx * 0.1 }}
                 onClick={() => action.path && navigate(action.path)}
-                className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all group w-full text-left"
+                className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-overlay border border-border hover:bg-overlay-hover hover:border-white/20 transition-all group w-full text-left"
               >
                 <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${action.color} flex items-center justify-center shadow-lg shrink-0`}>
-                  <Icon size={16} className="text-white" />
+                  <Icon size={16} className="text-foreground" />
                 </div>
-                <span className="font-medium text-sm text-gray-200 group-hover:text-white transition-colors">{action.name}</span>
+                <span className="font-medium text-sm text-gray-200 group-hover:text-foreground transition-colors">{action.name}</span>
               </motion.button>
             );
           })}
@@ -116,12 +116,12 @@ export default function Profile() {
               transition={{ delay: 0.4, duration: 0.4 }}
               className="glass-card p-6"
             >
-              <h3 className="text-lg font-semibold text-white mb-6">Account Information</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-6">Account Information</h3>
               <div className="flex flex-col gap-5">
                 {accountInfo.map((info, idx) => (
-                  <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-white/5 pb-4 last:border-0 last:pb-0">
-                    <span className="text-gray-400 text-sm">{info.label}</span>
-                    <span className="text-white font-medium text-sm text-right">{info.value}</span>
+                  <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-border pb-4 last:border-0 last:pb-0">
+                    <span className="text-muted text-sm">{info.label}</span>
+                    <span className="text-foreground font-medium text-sm text-right">{info.value}</span>
                   </div>
                 ))}
               </div>
@@ -137,7 +137,7 @@ export default function Profile() {
                 transition={{ delay: 0.5, duration: 0.4 }}
                 className="glass-card p-6"
               >
-                <h3 className="text-lg font-semibold text-white mb-4">Skills</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">Skills</h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill, idx) => (
                     <SkillBadge key={idx} name={skill} delay={0.5 + idx * 0.05} />

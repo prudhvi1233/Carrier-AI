@@ -99,7 +99,7 @@ export default function UploadCard({ onUploadComplete }) {
     >
       <div 
         className={`absolute inset-0 border-2 border-dashed rounded-2xl transition-all duration-300 pointer-events-none
-          ${isDragging ? 'border-accent-blue bg-accent-blue/5' : 'border-white/10 group-hover:border-accent-purple/50'}`}
+          ${isDragging ? 'border-accent-blue bg-accent-blue/5' : 'border-border group-hover:border-accent-purple/50'}`}
       />
       
       <div 
@@ -109,16 +109,16 @@ export default function UploadCard({ onUploadComplete }) {
         onDrop={onDrop}
       >
         <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-          <Upload size={28} className="text-white" />
+          <Upload size={28} className="text-foreground" />
         </div>
         
-        <h3 className="text-xl font-semibold text-white">Upload Your Resume</h3>
-        <p className="text-gray-400 text-sm max-w-sm">
+        <h3 className="text-xl font-semibold text-foreground">Upload Your Resume</h3>
+        <p className="text-muted text-sm max-w-sm">
           Drag and drop your resume file here or click to browse.
         </p>
 
         <div className="flex items-center gap-4 mt-2">
-          <span className="flex items-center gap-1 text-xs text-gray-500 font-medium bg-white/5 px-2 py-1 rounded"><File size={12}/> PDF / DOCX</span>
+          <span className="flex items-center gap-1 text-xs text-gray-500 font-medium bg-overlay px-2 py-1 rounded"><File size={12}/> PDF / DOCX</span>
         </div>
 
         <input 
@@ -132,7 +132,7 @@ export default function UploadCard({ onUploadComplete }) {
         <button 
           disabled={uploadStep > 0}
           onClick={() => fileInputRef.current?.click()}
-          className="mt-6 px-8 py-3 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold shadow-lg shadow-accent-blue/20 hover:shadow-accent-purple/40 transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="mt-6 px-8 py-3 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-semibold shadow-lg shadow-accent-blue/20 hover:shadow-accent-purple/40 transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {uploadStep > 0 ? uploadSteps[uploadStep] : 'Browse Files'}
         </button>

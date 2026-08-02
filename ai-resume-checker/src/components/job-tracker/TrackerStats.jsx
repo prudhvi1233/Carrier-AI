@@ -23,12 +23,12 @@ export default function TrackerStats({ applications }) {
       {stats.map((stat, i) => (
         <div key={i} className="glass-card p-4 relative overflow-hidden group">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-medium text-gray-400">{stat.label}</span>
+            <span className="text-xs font-medium text-muted">{stat.label}</span>
             <div className={`p-2 rounded-lg ${stat.bg} ${stat.color}`}>
               <stat.icon size={16} />
             </div>
           </div>
-          <p className="text-2xl font-bold text-white">{stat.value}</p>
+          <p className="text-2xl font-bold text-foreground">{stat.value}</p>
         </div>
       ))}
     </div>

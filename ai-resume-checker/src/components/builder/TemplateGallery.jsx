@@ -36,14 +36,14 @@ export default function TemplateGallery({ templates, selectedTemplate, onSelect,
           <div className="absolute inset-0 bg-accent-blue/20 rounded-[16px] blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
           <div className="relative flex items-center">
             <div className="absolute left-4 flex items-center pointer-events-none">
-              <Search size={20} className="text-gray-400 group-focus-within:text-accent-blue transition-colors" />
+              <Search size={20} className="text-muted group-focus-within:text-accent-blue transition-colors" />
             </div>
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search templates..."
-              className="w-full pl-12 pr-4 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-[16px] text-white placeholder:text-gray-500 focus:outline-none focus:border-accent-blue/50 focus:bg-white/10 transition-all shadow-lg"
+              className="w-full pl-12 pr-4 py-4 bg-overlay backdrop-blur-md border border-border rounded-[16px] text-foreground placeholder:text-gray-500 focus:outline-none focus:border-accent-blue/50 focus:bg-overlay-hover transition-all shadow-lg"
             />
           </div>
         </div>
@@ -61,8 +61,8 @@ export default function TemplateGallery({ templates, selectedTemplate, onSelect,
                 onClick={() => setFilter(cat)}
                 className={`relative px-5 py-2.5 rounded-full text-sm font-medium transition-all overflow-hidden ${
                   isActive 
-                    ? 'text-white border-transparent shadow-[0_0_15px_rgba(59,130,246,0.3)]' 
-                    : 'text-gray-400 bg-white/5 border border-white/10 hover:text-white hover:bg-white/10'
+                    ? 'text-foreground border-transparent shadow-[0_0_15px_rgba(59,130,246,0.3)]' 
+                    : 'text-muted bg-overlay border border-border hover:text-foreground hover:bg-overlay-hover'
                 }`}
               >
                 {isActive && (
@@ -109,14 +109,14 @@ export default function TemplateGallery({ templates, selectedTemplate, onSelect,
       {filteredTemplates.length === 0 && (
         <motion.div 
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          className="flex flex-col items-center justify-center py-24 text-center bg-white/5 rounded-3xl border border-white/10"
+          className="flex flex-col items-center justify-center py-24 text-center bg-overlay rounded-3xl border border-border"
         >
           <Search size={48} className="text-gray-600 mb-4" />
-          <h3 className="text-xl font-bold text-white mb-2">No templates found</h3>
-          <p className="text-gray-400 max-w-sm">We couldn't find any templates matching your criteria. Try adjusting your search or filters.</p>
+          <h3 className="text-xl font-bold text-foreground mb-2">No templates found</h3>
+          <p className="text-muted max-w-sm">We couldn't find any templates matching your criteria. Try adjusting your search or filters.</p>
           <button 
             onClick={() => { setSearch(''); setFilter('All'); }}
-            className="mt-6 px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium transition-colors"
+            className="mt-6 px-6 py-2.5 rounded-full bg-overlay-hover hover:bg-white/20 text-foreground font-medium transition-colors"
           >
             Clear Filters
           </button>
@@ -124,7 +124,7 @@ export default function TemplateGallery({ templates, selectedTemplate, onSelect,
       )}
 
       {/* Bottom Feature Section */}
-      <div className="mt-12 pt-12 border-t border-white/10">
+      <div className="mt-12 pt-12 border-t border-border">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {FEATURES.map((feature, idx) => (
             <motion.div 
@@ -133,13 +133,13 @@ export default function TemplateGallery({ templates, selectedTemplate, onSelect,
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="flex flex-col items-center text-center gap-3 p-4 rounded-2xl hover:bg-white/5 transition-colors"
+              className="flex flex-col items-center text-center gap-3 p-4 rounded-2xl hover:bg-overlay transition-colors"
             >
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent-blue/10 to-accent-purple/10 border border-accent-blue/20 flex items-center justify-center text-accent-blue mb-2">
                 <feature.icon size={24} />
               </div>
-              <h4 className="text-white font-semibold text-sm">{feature.title}</h4>
-              <p className="text-gray-400 text-xs leading-relaxed">{feature.description}</p>
+              <h4 className="text-foreground font-semibold text-sm">{feature.title}</h4>
+              <p className="text-muted text-xs leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
         </div>

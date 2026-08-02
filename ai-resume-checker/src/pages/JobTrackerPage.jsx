@@ -45,21 +45,21 @@ export default function JobTrackerPage() {
   if (isLoading) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center h-full">
-        <div className="w-8 h-8 rounded-full border-4 border-white/10 border-t-accent-blue animate-spin mb-4" />
-        <p className="text-gray-400">Loading your applications...</p>
+        <div className="w-8 h-8 rounded-full border-4 border-border border-t-accent-blue animate-spin mb-4" />
+        <p className="text-muted">Loading your applications...</p>
       </div>
     );
   }
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      <div className="p-6 md:p-8 shrink-0 border-b border-white/5 bg-black/20 backdrop-blur-xl z-10">
+      <div className="p-6 md:p-8 shrink-0 border-b border-border bg-overlay backdrop-blur-xl z-10">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-black text-white tracking-tight mb-2">
+            <h1 className="text-3xl font-black text-foreground tracking-tight mb-2">
               Application <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Tracker</span>
             </h1>
-            <p className="text-gray-400">Manage your job search pipeline and track your progress.</p>
+            <p className="text-muted">Manage your job search pipeline and track your progress.</p>
           </div>
           
           <ExportToolbar data={applications} />
@@ -72,13 +72,13 @@ export default function JobTrackerPage() {
 
       <div className="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-8">
         <div className="max-w-[1600px] mx-auto space-y-8">
-          <div className="glass-card p-6">
-            <h3 className="text-xl font-bold text-white mb-6">Pipeline Overview</h3>
+          <div className="glass-card p-6 bg-gradient-to-br from-accent-blue/5 to-transparent">
+            <h3 className="text-xl font-bold text-foreground mb-6">Pipeline Overview</h3>
             <AnalyticsCharts data={applications} />
           </div>
 
           <div>
-            <h3 className="text-xl font-bold text-white mb-6">Active Pipeline</h3>
+            <h3 className="text-xl font-bold text-foreground mb-6">Active Pipeline</h3>
             <KanbanBoard data={applications} updateData={setApplications} onStatusChange={updateApplication} />
           </div>
         </div>

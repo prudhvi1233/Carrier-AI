@@ -144,13 +144,13 @@ export default function EditProfilePage() {
       <div className="flex items-center gap-4 mb-8">
         <button 
           onClick={() => navigate('/profile')}
-          className="p-2 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/5"
+          className="p-2 bg-overlay hover:bg-overlay-hover rounded-xl transition-colors border border-border"
         >
-          <ArrowLeft size={20} className="text-gray-300" />
+          <ArrowLeft size={20} className="text-muted" />
         </button>
         <div>
-          <h1 className="text-2xl font-bold text-white">Edit Profile</h1>
-          <p className="text-gray-400 text-sm">Update your personal details and professional links</p>
+          <h1 className="text-2xl font-bold text-foreground">Edit Profile</h1>
+          <p className="text-muted text-sm">Update your personal details and professional links</p>
         </div>
       </div>
 
@@ -167,7 +167,7 @@ export default function EditProfilePage() {
                 {formData.profile_photo ? (
                   <img src={formData.profile_photo} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-5xl font-bold text-white bg-gradient-to-br from-accent-blue to-accent-purple">
+                  <div className="w-full h-full flex items-center justify-center text-5xl font-bold text-foreground bg-gradient-to-br from-accent-blue to-accent-purple">
                     {formData.full_name ? formData.full_name.charAt(0) : 'J'}
                   </div>
                 )}
@@ -177,11 +177,11 @@ export default function EditProfilePage() {
                   onClick={() => fileInputRef.current?.click()}
                 >
                   {uploading ? (
-                    <Loader2 size={24} className="text-white animate-spin" />
+                    <Loader2 size={24} className="text-foreground animate-spin" />
                   ) : (
                     <>
-                      <Camera size={24} className="text-white mb-2" />
-                      <span className="text-xs text-white font-medium">Change Photo</span>
+                      <Camera size={24} className="text-foreground mb-2" />
+                      <span className="text-xs text-foreground font-medium">Change Photo</span>
                     </>
                   )}
                 </div>
@@ -194,7 +194,7 @@ export default function EditProfilePage() {
                 className="hidden" 
               />
             </div>
-            <h3 className="text-lg font-bold text-white">{formData.full_name || 'Your Name'}</h3>
+            <h3 className="text-lg font-bold text-foreground">{formData.full_name || 'Your Name'}</h3>
             <p className="text-accent-purple text-sm mb-4">Software Professional</p>
             
             <p className="text-xs text-gray-500 max-w-[200px]">
@@ -213,63 +213,63 @@ export default function EditProfilePage() {
           >
             
             <div className="glass-card p-6">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                 <UserIcon size={18} className="text-accent-blue" />
                 Personal Information
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">Full Name</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">Full Name</label>
                   <input
                     type="text"
                     name="full_name"
                     value={formData.full_name}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
                     placeholder="Jane Doe"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">Phone Number</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">Phone Number</label>
                   <input
                     type="text"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
                     placeholder="+1 (555) 000-0000"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">City</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">City</label>
                   <input
                     type="text"
                     name="current_city"
                     value={formData.current_city}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
                     placeholder="San Francisco"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">Country</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">Country</label>
                   <input
                     type="text"
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
                     placeholder="United States"
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">Professional Bio</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">Professional Bio</label>
                   <textarea
                     name="bio"
                     value={formData.bio}
                     onChange={handleChange}
                     rows="3"
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue transition-colors resize-none"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue transition-colors resize-none"
                     placeholder="Tell us a little bit about your career..."
                   ></textarea>
                 </div>
@@ -277,52 +277,52 @@ export default function EditProfilePage() {
             </div>
 
             <div className="glass-card p-6">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                 <GraduationCap size={18} className="text-accent-purple" />
                 Education Details
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="md:col-span-2">
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">College / University</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">College / University</label>
                   <input
                     type="text"
                     name="college"
                     value={formData.college}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-purple transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-purple transition-colors"
                     placeholder="Stanford University"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">Degree</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">Degree</label>
                   <input
                     type="text"
                     name="degree"
                     value={formData.degree}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-purple transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-purple transition-colors"
                     placeholder="B.S. Computer Science"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">Graduation Year</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">Graduation Year</label>
                   <input
                     type="number"
                     name="graduation_year"
                     value={formData.graduation_year}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-purple transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-purple transition-colors"
                     placeholder="2024"
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-xs text-gray-400 mb-1 ml-1">Skills (Comma separated)</label>
+                  <label className="block text-xs text-muted mb-1 ml-1">Skills (Comma separated)</label>
                   <input
                     type="text"
                     name="skills"
                     value={formData.skills}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-purple transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-purple transition-colors"
                     placeholder="React, Node.js, Python..."
                   />
                 </div>
@@ -330,7 +330,7 @@ export default function EditProfilePage() {
             </div>
 
             <div className="glass-card p-6">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                 <LinkIcon size={18} className="text-accent-blue" />
                 Professional Links
               </h2>
@@ -344,7 +344,7 @@ export default function EditProfilePage() {
                     name="linkedin_url"
                     value={formData.linkedin_url}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl pl-12 pr-4 py-3 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
                     placeholder="https://linkedin.com/in/username"
                   />
                 </div>
@@ -357,7 +357,7 @@ export default function EditProfilePage() {
                     name="github_url"
                     value={formData.github_url}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl pl-12 pr-4 py-3 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
                     placeholder="https://github.com/username"
                   />
                 </div>
@@ -370,7 +370,7 @@ export default function EditProfilePage() {
                     name="portfolio_url"
                     value={formData.portfolio_url}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white focus:outline-none focus:border-accent-blue transition-colors"
+                    className="w-full bg-overlay border border-border rounded-xl pl-12 pr-4 py-3 text-foreground focus:outline-none focus:border-accent-blue transition-colors"
                     placeholder="https://yourportfolio.com"
                   />
                 </div>
@@ -381,14 +381,14 @@ export default function EditProfilePage() {
               <button
                 type="button"
                 onClick={() => navigate('/profile')}
-                className="px-6 py-3 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+                className="px-6 py-3 rounded-xl font-medium text-muted hover:text-foreground hover:bg-overlay transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={saving}
-                className="px-6 py-3 rounded-xl font-medium text-white bg-gradient-to-r from-accent-blue to-accent-purple hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-accent-blue/20"
+                className="px-6 py-3 rounded-xl font-medium text-foreground bg-gradient-to-r from-accent-blue to-accent-purple hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shadow-accent-blue/20"
               >
                 {saving ? (
                   <>

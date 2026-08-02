@@ -10,6 +10,7 @@ import SkillsStep from './steps/SkillsStep';
 import ProjectsStep from './steps/ProjectsStep';
 import TrainingsStep from './steps/TrainingsStep';
 import { builderService } from '../../services/builderService';
+import { aiEditorService } from '../../services/aiEditorService';
 import { toast } from 'react-hot-toast';
 import html2pdf from 'html2pdf.js';
 
@@ -109,23 +110,74 @@ export default function ResumeWizard({ initialData, onExit }) {
     }
   };
 
-  const handleDownloadPdf = async () => {
+  const [showAnalysisModal, setShowAnalysisModal] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState(null);
+
+  const handleDownloadPdf = () => {
+    toast.success("Preparing PDF...");
+    setTimeout(() => {
+      window.print();
+    }, 500);
+  };
+
+  const handleAnalyze = async () => {
     try {
-      toast.loading("Generating PDF...", { id: "pdf" });
-      const element = document.getElementById('pdf-export-container');
+      toast.loading("Saving and analyzing...", { id: "analyze" });
       
-      const opt = {
-        margin:       [0, 0],
-        filename:     'resume.pdf',
-        image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 3, useCORS: true, letterRendering: true },
-        jsPDF:        { unit: 'px', format: [element.offsetWidth, element.offsetHeight], orientation: 'portrait' }
+      const payload = {
+        id: metadata.id,
+        name: metadata.name,
+        template: metadata.template,
+        theme: metadata.theme,
+        content: {
+          personal_info: {
+            name: `${formData.personal.firstName} ${formData.personal.lastName}`.trim(),
+            email: formData.personal.email,
+            phone: formData.personal.phone
+          },
+          summary: formData.summary,
+          projects: formData.projects,
+          hasExperience: formData.hasExperience,
+          experience: formData.experience,
+          education: formData.education,
+          skills: formData.skills,
+          certifications: formData.certifications
+        }
       };
       
-      await html2pdf().set(opt).from(element).save();
-      toast.success("PDF Downloaded!", { id: "pdf" });
+      const saveRes = await builderService.saveDraft(payload);
+      let resumeId = metadata.id;
+      if (saveRes && saveRes.id) {
+        resumeId = saveRes.id;
+        setMetadata(prev => ({...prev, id: resumeId}));
+      }
+
+      // Convert formData to raw text for AI analysis since the builder draft ID is not in the uploaded resumes table
+      const resumeText = [
+        `${formData.personal.firstName} ${formData.personal.lastName}`,
+        formData.personal.email,
+        formData.personal.phone,
+        formData.summary,
+        ...formData.experience.map(e => `${e.role || ''} at ${e.company || ''} ${e.duration || ''} - ${e.description || ''}`),
+        formData.education?.degree?.name ? `${formData.education.degree.name} at ${formData.education.degree.institution}` : '',
+        formData.skills.map(s => s.name).join(', '),
+        ...formData.projects.map(p => `${p.title || ''} ${p.technologies || ''} ${p.description || ''}`),
+        ...formData.certifications.map(c => `${c.name || ''} by ${c.organization || ''}`)
+      ].filter(Boolean).join('\n\n');
+
+      const analysisData = await aiEditorService.analyzeResume(resumeText);
+      
+      setAnalysisResult({
+        score: analysisData.ats_score || analysisData.overall_score || 0,
+        strengths: analysisData.strengths || ["Basic structure detected"],
+        improvements: analysisData.improvements || analysisData.weaknesses || ["Add more quantifiable metrics"]
+      });
+      
+      toast.success("Analysis complete!", { id: "analyze" });
+      setShowAnalysisModal(true);
     } catch (err) {
-      toast.error("Failed to export PDF", { id: "pdf" });
+      console.error(err);
+      toast.error(err.response?.data?.detail || "Analysis failed.", { id: "analyze" });
     }
   };
 
@@ -170,7 +222,7 @@ export default function ResumeWizard({ initialData, onExit }) {
       <BuilderToolbar 
         onSave={handleSave} 
         onDownload={handleDownloadPdf} 
-        onAnalyze={() => toast("Analyzing resume...")} 
+        onAnalyze={handleAnalyze} 
       />
       
       <ProgressStepper steps={steps} currentStep={currentStep} onStepClick={setCurrentStep} />
@@ -178,7 +230,7 @@ export default function ResumeWizard({ initialData, onExit }) {
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         
         {/* Left Side: Form Area */}
-        <div className="w-full lg:w-[45%] flex flex-col bg-secondary overflow-y-auto border-r border-white/10 relative">
+        <div className="w-full lg:w-[45%] flex flex-col bg-secondary overflow-y-auto border-r border-border relative">
           
           <div className="p-6 md:p-8 flex-1">
             <AnimatePresence mode="wait">
@@ -196,32 +248,32 @@ export default function ResumeWizard({ initialData, onExit }) {
                 {currentStep === 0 && (
                   <div className="flex flex-col gap-4">
                     <div className="mb-2">
-                      <h2 className="text-2xl font-bold text-white mb-2">{steps[currentStep].label}</h2>
-                      <p className="text-gray-400 text-sm">Fill in the details below. Our AI can help you write better content.</p>
+                      <h2 className="text-2xl font-bold text-foreground mb-2">{steps[currentStep].label}</h2>
+                      <p className="text-muted text-sm">Fill in the details below. Our AI can help you write better content.</p>
                     </div>
                     <input 
                       type="text" placeholder="First Name" 
                       value={formData.personal.firstName}
                       onChange={(e) => setFormData({...formData, personal: {...formData.personal, firstName: e.target.value}})}
-                      className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue"
+                      className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue"
                     />
                     <input 
                       type="text" placeholder="Last Name"
                       value={formData.personal.lastName}
                       onChange={(e) => setFormData({...formData, personal: {...formData.personal, lastName: e.target.value}})}
-                      className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue"
+                      className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue"
                     />
                      <input 
                       type="email" placeholder="Email"
                       value={formData.personal.email}
                       onChange={(e) => setFormData({...formData, personal: {...formData.personal, email: e.target.value}})}
-                      className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue"
+                      className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue"
                     />
                      <input 
                       type="text" placeholder="Phone"
                       value={formData.personal.phone}
                       onChange={(e) => setFormData({...formData, personal: {...formData.personal, phone: e.target.value}})}
-                      className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue"
+                      className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue"
                     />
                   </div>
                 )}
@@ -230,8 +282,8 @@ export default function ResumeWizard({ initialData, onExit }) {
                 {currentStep === 1 && (
                   <div className="flex flex-col gap-4">
                     <div className="mb-2">
-                      <h2 className="text-2xl font-bold text-white mb-2">{steps[currentStep].label}</h2>
-                      <p className="text-gray-400 text-sm">Write a compelling professional summary.</p>
+                      <h2 className="text-2xl font-bold text-foreground mb-2">{steps[currentStep].label}</h2>
+                      <p className="text-muted text-sm">Write a compelling professional summary.</p>
                     </div>
                     <button 
                       onClick={improveSummary}
@@ -245,7 +297,7 @@ export default function ResumeWizard({ initialData, onExit }) {
                       placeholder="Write your professional summary..." rows={12}
                       value={formData.summary}
                       onChange={(e) => setFormData({...formData, summary: e.target.value})}
-                      className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-blue resize-none"
+                      className="w-full bg-overlay border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-accent-blue resize-none"
                     />
                   </div>
                 )}
@@ -290,26 +342,26 @@ export default function ResumeWizard({ initialData, onExit }) {
                 {currentStep === 7 && (
                   <div className="flex flex-col gap-6 h-full">
                     <div className="mb-2">
-                      <h2 className="text-2xl font-bold text-white mb-2">{steps[currentStep].label}</h2>
-                      <p className="text-gray-400 text-sm">Review your generated resume and download it when you're ready.</p>
+                      <h2 className="text-2xl font-bold text-foreground mb-2">{steps[currentStep].label}</h2>
+                      <p className="text-muted text-sm">Review your generated resume and download it when you're ready.</p>
                     </div>
                     
                     <div className="flex flex-col sm:flex-row gap-4 mb-6">
                       <button 
                         onClick={handleDownloadPdf}
-                        className="flex-1 flex justify-center items-center gap-2 py-4 bg-gradient-to-r from-accent-blue to-accent-purple text-white rounded-xl font-bold hover:scale-105 active:scale-95 transition-all shadow-lg"
+                        className="flex-1 flex justify-center items-center gap-2 py-4 bg-gradient-to-r from-accent-blue to-accent-purple text-foreground rounded-xl font-bold hover:scale-105 active:scale-95 transition-all shadow-lg"
                       >
                         Download PDF
                       </button>
                       <button 
                         onClick={handleDownloadDocx}
-                        className="flex-1 flex justify-center items-center gap-2 py-4 bg-white/5 border border-white/10 text-white rounded-xl font-bold hover:bg-white/10 active:scale-95 transition-all"
+                        className="flex-1 flex justify-center items-center gap-2 py-4 bg-overlay border border-border text-foreground rounded-xl font-bold hover:bg-overlay-hover active:scale-95 transition-all"
                       >
                         Download DOCX
                       </button>
                     </div>
 
-                    <div className="w-full h-[500px] lg:hidden rounded-xl overflow-hidden border border-white/10 relative">
+                    <div className="w-full h-[500px] lg:hidden rounded-xl overflow-hidden border border-border relative">
                        <LivePreview template={metadata.template} formData={formData} />
                     </div>
                   </div>
@@ -320,11 +372,11 @@ export default function ResumeWizard({ initialData, onExit }) {
           </div>
 
           {/* Form Navigation Footer */}
-          <div className="p-4 md:p-6 border-t border-white/10 bg-secondary flex justify-between items-center sticky bottom-0 mt-auto z-10">
+          <div className="p-4 md:p-6 border-t border-border bg-secondary flex justify-between items-center sticky bottom-0 mt-auto z-10">
             <button 
               onClick={prevStep}
               disabled={currentStep === 0}
-              className="px-6 py-2.5 rounded-lg text-white font-medium hover:bg-white/5 transition-colors disabled:opacity-30 flex items-center gap-2"
+              className="px-6 py-2.5 rounded-lg text-foreground font-medium hover:bg-overlay transition-colors disabled:opacity-30 flex items-center gap-2"
             >
               <ChevronLeft size={18} /> Back
             </button>
@@ -343,6 +395,71 @@ export default function ResumeWizard({ initialData, onExit }) {
         </div>
 
       </div>
+
+      {/* Analysis Modal */}
+      {showAnalysisModal && analysisResult && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-secondary border border-border shadow-2xl rounded-2xl p-6 md:p-8 w-full max-w-lg relative"
+          >
+            <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+              <Bot className="text-accent-blue" /> Resume Analysis
+            </h3>
+            
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center justify-between p-4 bg-overlay rounded-xl border border-border">
+                <span className="text-muted font-medium">ATS Match Score</span>
+                <span className={`text-2xl font-black ${analysisResult.score > 80 ? 'text-green-500' : 'text-yellow-500'}`}>
+                  {analysisResult.score}%
+                </span>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-foreground mb-3">Strengths</h4>
+                <ul className="space-y-2">
+                  {analysisResult.strengths.map((s, i) => (
+                    <li key={i} className="text-sm text-muted flex items-start gap-2">
+                      <span className="text-green-500 mt-0.5">✓</span> {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-foreground mb-3">Areas to Improve</h4>
+                <ul className="space-y-2">
+                  {analysisResult.improvements.map((s, i) => (
+                    <li key={i} className="text-sm text-muted flex items-start gap-2">
+                      <span className="text-yellow-500 mt-0.5">!</span> {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-8 flex gap-4">
+              <button 
+                onClick={() => setShowAnalysisModal(false)}
+                className="flex-1 py-3 bg-overlay hover:bg-overlay-hover border border-border text-foreground font-bold rounded-xl transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => {
+                  setShowAnalysisModal(false);
+                  handleDownloadPdf();
+                }}
+                className="flex-1 py-3 bg-accent-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-colors"
+              >
+                Download PDF
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
     </div>
   );
 }

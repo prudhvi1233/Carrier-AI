@@ -31,11 +31,11 @@ export default function ToastNotification({ show, message, type = 'success', onC
             <AlertCircle className="text-red-400" size={20} />
           )}
           
-          <p className="text-sm font-medium text-white pr-4">{message}</p>
+          <p className="text-sm font-medium text-foreground pr-4">{message}</p>
           
           <button 
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-muted hover:text-foreground transition-colors"
           >
             <X size={16} />
           </button>

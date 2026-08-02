@@ -17,14 +17,14 @@ export default function EmptyState() {
         <FileText size={40} className="text-accent-blue relative z-10" />
       </div>
       
-      <h3 className="text-2xl font-bold text-white mb-3">No Resume Analyses Yet</h3>
-      <p className="text-gray-400 max-w-md mb-8 leading-relaxed">
+      <h3 className="text-2xl font-bold text-foreground mb-3">No Resume Analyses Yet</h3>
+      <p className="text-muted max-w-md mb-8 leading-relaxed">
         You haven't analyzed any resumes. Upload your first resume to get detailed AI-powered insights, ATS compatibility scores, and actionable feedback.
       </p>
 
       <button 
         onClick={() => navigate('/upload')}
-        className="flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-medium shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all hover:-translate-y-0.5 group"
+        className="flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-foreground font-medium shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all hover:-translate-y-0.5 group"
       >
         Analyze Your First Resume
         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

@@ -9,8 +9,8 @@ export default function CareerProgressWidget({ score = 65, level = "Intermediate
   const strokeDashoffset = circumference - (score / 100) * circumference;
 
   return (
-    <div className="glass-card p-6 flex flex-col items-center justify-center h-full relative overflow-hidden">
-      <h3 className="text-lg font-bold text-white mb-2 self-start w-full">Career Readiness</h3>
+    <div className="glass-card p-6 flex flex-col items-center justify-center h-full relative overflow-hidden bg-gradient-to-br from-accent-blue/10 to-transparent">
+      <h3 className="text-lg font-bold text-foreground mb-2 self-start w-full">Career Readiness</h3>
       
       <div className="relative flex items-center justify-center mt-4">
         {/* SVG Circle Progress */}
@@ -35,8 +35,8 @@ export default function CareerProgressWidget({ score = 65, level = "Intermediate
 
         {/* Center Text */}
         <div className="absolute flex flex-col items-center justify-center">
-          <span className="text-4xl font-bold text-white tracking-tighter">{score}</span>
-          <span className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Score</span>
+          <span className="text-4xl font-bold text-foreground tracking-tighter">{score}</span>
+          <span className="text-[10px] text-muted uppercase tracking-widest mt-1">Score</span>
         </div>
       </div>
 
@@ -44,7 +44,7 @@ export default function CareerProgressWidget({ score = 65, level = "Intermediate
         <div className="flex items-center gap-2 text-accent-blue bg-accent-blue/10 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
           <Trophy size={14} /> {level} Level
         </div>
-        <p className="text-xs text-gray-400 max-w-[200px]">
+        <p className="text-xs text-muted max-w-[200px]">
           You are 35 points away from the 'Ready' tier. Keep improving your ATS score and practicing interviews!
         </p>
       </div>

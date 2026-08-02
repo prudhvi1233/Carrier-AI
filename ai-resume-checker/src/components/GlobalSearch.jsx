@@ -31,7 +31,7 @@ export default function GlobalSearch() {
   return (
     <div className="relative w-full max-w-md hidden md:block">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <Search size={16} className="text-gray-400" />
+        <Search size={16} className="text-muted" />
       </div>
       <input
         type="text"
@@ -40,7 +40,7 @@ export default function GlobalSearch() {
         onChange={handleSearch}
         onFocus={() => query.length > 2 && setIsOpen(true)}
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}
-        className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-accent-blue focus:bg-white/10 transition-all"
+        className="w-full pl-10 pr-4 py-2 bg-overlay border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-accent-blue focus:bg-overlay-hover transition-all"
       />
 
       <AnimatePresence>
@@ -49,26 +49,26 @@ export default function GlobalSearch() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-secondary border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50"
+            className="absolute top-full left-0 right-0 mt-2 bg-secondary border border-border rounded-xl shadow-2xl overflow-hidden z-50"
           >
             {loading ? (
-              <div className="p-4 flex items-center justify-center text-gray-400">
+              <div className="p-4 flex items-center justify-center text-muted">
                 <Loader2 size={20} className="animate-spin" />
               </div>
             ) : results.length > 0 ? (
               <div className="flex flex-col">
                 {results.map((res, idx) => (
-                  <button key={idx} className="flex flex-col text-left px-4 py-3 hover:bg-white/5 border-b border-white/5 last:border-0 transition-colors">
+                  <button key={idx} className="flex flex-col text-left px-4 py-3 hover:bg-overlay border-b border-border last:border-0 transition-colors">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-white">{res.title}</span>
+                      <span className="text-sm font-semibold text-foreground">{res.title}</span>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-accent-blue bg-accent-blue/10 px-2 py-0.5 rounded">{res.type}</span>
                     </div>
-                    <span className="text-xs text-gray-400 mt-1">{res.detail}</span>
+                    <span className="text-xs text-muted mt-1">{res.detail}</span>
                   </button>
                 ))}
               </div>
             ) : (
-              <div className="p-4 text-center text-sm text-gray-400">
+              <div className="p-4 text-center text-sm text-muted">
                 No results found for "{query}"
               </div>
             )}

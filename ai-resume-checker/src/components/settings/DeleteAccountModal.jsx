@@ -26,7 +26,7 @@ export default function DeleteAccountModal({ isOpen, onClose, onConfirm }) {
 
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+            className="absolute top-4 right-4 text-muted hover:text-foreground transition-colors"
           >
             <X size={20} />
           </button>
@@ -36,22 +36,22 @@ export default function DeleteAccountModal({ isOpen, onClose, onConfirm }) {
               <AlertTriangle size={32} className="text-red-400" />
             </div>
             
-            <h3 className="text-xl font-bold text-white mb-2">Delete Account</h3>
+            <h3 className="text-xl font-bold text-foreground mb-2">Delete Account</h3>
             
-            <p className="text-sm text-gray-400 mb-6">
+            <p className="text-sm text-muted mb-6">
               Are you absolutely sure you want to permanently delete your account? This action cannot be undone and all your data, including analyzed resumes, will be lost forever.
             </p>
 
             <div className="flex gap-4 w-full">
               <button 
                 onClick={onClose}
-                className="flex-1 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10 transition-colors"
+                className="flex-1 px-4 py-3 rounded-xl bg-overlay hover:bg-overlay-hover text-foreground font-medium border border-border transition-colors"
               >
                 Cancel
               </button>
               <button 
                 onClick={onConfirm}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium shadow-lg hover:shadow-red-500/25 transition-all"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-foreground font-medium shadow-lg hover:shadow-red-500/25 transition-all"
               >
                 <Trash2 size={18} />
                 Delete

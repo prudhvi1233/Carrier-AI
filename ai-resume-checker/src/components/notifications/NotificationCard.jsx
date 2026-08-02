@@ -51,7 +51,7 @@ export default function NotificationCard({ notification, onMarkAsRead, onDelete 
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
       className={`group relative flex gap-3 p-3 rounded-xl mb-1 transition-colors ${
-        notification.is_read ? 'hover:bg-white/5 opacity-80' : 'bg-white/5 hover:bg-white/10 border border-white/5'
+        notification.is_read ? 'hover:bg-overlay opacity-80' : 'bg-overlay hover:bg-overlay-hover border border-border'
       }`}
     >
       <div className={`shrink-0 w-10 h-10 rounded-full border flex items-center justify-center mt-1 ${getColorClass(notification.type)}`}>
@@ -59,10 +59,10 @@ export default function NotificationCard({ notification, onMarkAsRead, onDelete 
       </div>
       
       <div className="flex-1 min-w-0 pr-8">
-        <h4 className={`text-sm truncate mb-0.5 ${notification.is_read ? 'text-gray-300' : 'text-white font-bold'}`}>
+        <h4 className={`text-sm truncate mb-0.5 ${notification.is_read ? 'text-muted' : 'text-foreground font-bold'}`}>
           {notification.title}
         </h4>
-        <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed">
+        <p className="text-xs text-muted line-clamp-2 leading-relaxed">
           {notification.message}
         </p>
         <span className="text-[10px] text-gray-500 mt-1 block">
@@ -75,7 +75,7 @@ export default function NotificationCard({ notification, onMarkAsRead, onDelete 
         {!notification.is_read && (
           <button 
             onClick={onMarkAsRead}
-            className="p-1.5 text-gray-400 hover:text-green-400 hover:bg-green-400/10 rounded-lg transition-colors"
+            className="p-1.5 text-muted hover:text-green-400 hover:bg-green-400/10 rounded-lg transition-colors"
             title="Mark as read"
           >
             <Check size={14} />
@@ -83,7 +83,7 @@ export default function NotificationCard({ notification, onMarkAsRead, onDelete 
         )}
         <button 
           onClick={onDelete}
-          className="p-1.5 text-gray-400 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-colors"
+          className="p-1.5 text-muted hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-colors"
           title="Delete"
         >
           <Trash2 size={14} />

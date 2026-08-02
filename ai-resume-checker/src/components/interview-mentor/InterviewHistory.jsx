@@ -1,12 +1,12 @@
 import React from 'react';
 import { History, Eye, RotateCcw, Trash2 } from 'lucide-react';
 
-export default function InterviewHistory({ history, onDelete }) {
+export default function InterviewHistory({ history, onDelete, onViewReport }) {
   return (
     <div className="glass-card overflow-hidden">
-      <div className="p-4 border-b border-white/10 bg-white/5 flex items-center gap-2">
+      <div className="p-4 border-b border-border bg-overlay flex items-center gap-2">
         <History className="text-accent-purple" size={18} />
-        <h3 className="font-bold text-white">Previous Interviews</h3>
+        <h3 className="font-bold text-foreground">Previous Interviews</h3>
       </div>
       
       <div className="divide-y divide-white/5">
@@ -23,15 +23,18 @@ export default function InterviewHistory({ history, onDelete }) {
             </div>
             
             <div className="flex items-center gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              <button className="flex-1 flex items-center justify-center gap-1.5 py-1.5 bg-white/5 hover:bg-white/10 rounded text-xs font-medium text-gray-300 transition-colors">
+              <button 
+                onClick={() => onViewReport && onViewReport(item.id)}
+                className="flex-1 flex items-center justify-center gap-1.5 py-1.5 bg-overlay hover:bg-overlay-hover rounded text-xs font-medium text-muted hover:text-foreground transition-colors"
+              >
                 <Eye size={14} /> Report
               </button>
-              <button className="flex items-center justify-center p-1.5 bg-white/5 hover:bg-white/10 rounded text-gray-400 hover:text-white transition-colors">
+              <button className="flex items-center justify-center p-1.5 bg-overlay hover:bg-overlay-hover rounded text-muted hover:text-foreground transition-colors">
                 <RotateCcw size={14} />
               </button>
               <button 
                 onClick={() => onDelete(item.id)}
-                className="flex items-center justify-center p-1.5 bg-white/5 hover:bg-red-500/20 rounded text-gray-400 hover:text-red-400 transition-colors"
+                className="flex items-center justify-center p-1.5 bg-overlay hover:bg-red-500/20 rounded text-muted hover:text-red-400 transition-colors"
                 title="Delete History"
               >
                 <Trash2 size={14} />

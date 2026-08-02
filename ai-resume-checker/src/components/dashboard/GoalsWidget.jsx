@@ -38,14 +38,14 @@ export default function GoalsWidget() {
   };
 
   return (
-    <div className="glass-card p-6 h-full flex flex-col">
+    <div className="glass-card p-6 h-full flex flex-col bg-gradient-to-br from-orange-500/5 to-transparent">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-bold text-white flex items-center gap-2">
+        <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
           <Target className="text-accent-blue" size={20} /> Career Goals
         </h3>
         <button 
           onClick={() => setIsModalOpen(true)}
-          className="text-sm text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
+          className="text-sm text-muted hover:text-foreground flex items-center gap-1 transition-colors"
         >
           <Plus size={16} /> Add Goal
         </button>
@@ -53,11 +53,11 @@ export default function GoalsWidget() {
 
       <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
         {loading ? (
-          <div className="text-gray-400 text-sm text-center py-4">Loading goals...</div>
+          <div className="text-muted text-sm text-center py-4">Loading goals...</div>
         ) : (
           <div className="flex flex-col gap-5">
             {goals.length === 0 ? (
-              <div className="text-gray-400 text-sm text-center py-4">No goals set yet.</div>
+              <div className="text-muted text-sm text-center py-4">No goals set yet.</div>
             ) : (
               goals.map(goal => {
                 const progress = Math.min(100, Math.round((goal.current_value / goal.target_value) * 100));
@@ -65,9 +65,9 @@ export default function GoalsWidget() {
                   <div key={goal.id} className="flex flex-col gap-2">
                     <div className="flex justify-between text-sm">
                       <span className="font-medium text-gray-200">{goal.title}</span>
-                      <span className="text-gray-400">{goal.current_value} / {goal.target_value}</span>
+                      <span className="text-muted">{goal.current_value} / {goal.target_value}</span>
                     </div>
-                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-2 w-full bg-overlay rounded-full overflow-hidden">
                       <div 
                         className={`h-full rounded-full transition-all duration-1000 ${goal.is_completed ? 'bg-green-500' : 'bg-gradient-to-r from-accent-blue to-accent-purple'}`}
                         style={{ width: `${progress}%` }}

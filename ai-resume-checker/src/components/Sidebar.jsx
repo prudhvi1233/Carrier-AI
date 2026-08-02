@@ -29,20 +29,20 @@ export default function Sidebar({ isOpen, setIsOpen }) {
   const jobsItems = [
     { name: 'Job Match', path: '/job-match', icon: Target },
     { name: 'Opportunities', path: '/job-recommendations', icon: Briefcase },
-    { name: 'Saved Jobs', path: '#', icon: Heart },
+    { name: 'Saved Jobs', path: '/job-tracker', icon: Heart },
   ];
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-secondary/95 backdrop-blur-3xl border-r border-white/10 p-6 shadow-2xl relative z-40 overflow-y-auto custom-scrollbar">
+    <div className="flex flex-col h-full bg-secondary backdrop-blur-3xl border-r border-border p-6 shadow-2xl relative z-40 overflow-y-auto custom-scrollbar">
       <div className="flex items-center justify-between mb-12">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center font-bold text-white shadow-lg shadow-accent-blue/20">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center font-bold text-foreground shadow-lg shadow-accent-blue/20">
             AI
           </div>
-          <span className="font-bold text-xl tracking-tight text-white hidden md:block">CareerAI</span>
+          <span className="font-bold text-xl tracking-tight text-foreground hidden md:block">CareerAI</span>
         </div>
         <button 
-          className="md:hidden text-gray-400 hover:text-white bg-white/5 p-2 rounded-xl"
+          className="md:hidden text-muted hover:text-foreground bg-overlay p-2 rounded-xl"
           onClick={() => setIsOpen(false)}
         >
           <X size={20} />
@@ -55,7 +55,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           to={navItems[0].path}
           onClick={() => setIsOpen(false)}
           className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group ${
-            location.pathname === navItems[0].path ? 'text-white bg-white/10 border border-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5'
+            location.pathname === navItems[0].path ? 'text-foreground bg-overlay-hover border border-border' : 'text-muted hover:text-foreground hover:bg-overlay'
           }`}
         >
           <navItems[0].icon size={20} className={location.pathname === navItems[0].path ? 'text-accent-blue' : ''} />
@@ -67,7 +67,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           <button
             onClick={() => setJobsOpen(!jobsOpen)}
             className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 group ${
-              isJobsActive || jobsOpen ? 'text-white bg-white/5 border border-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5'
+              isJobsActive || jobsOpen ? 'text-foreground bg-overlay border border-border' : 'text-muted hover:text-foreground hover:bg-overlay'
             }`}
           >
             <div className="flex items-center gap-3">
@@ -91,7 +91,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                     to={item.path}
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 group ${
-                      location.pathname === item.path ? 'text-white bg-white/10' : 'text-gray-500 hover:text-white hover:bg-white/5'
+                      location.pathname === item.path ? 'text-foreground bg-overlay-hover' : 'text-gray-500 hover:text-foreground hover:bg-overlay'
                     }`}
                   >
                     <item.icon size={16} className={location.pathname === item.path ? 'text-accent-blue' : ''} />
@@ -113,7 +113,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               to={item.path}
               onClick={() => setIsOpen(false)}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group ${
-                isActive ? 'text-white bg-white/10 border border-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5'
+                isActive ? 'text-foreground bg-overlay-hover border border-border' : 'text-muted hover:text-foreground hover:bg-overlay'
               }`}
             >
               <Icon size={20} className={isActive ? 'text-accent-blue' : ''} />

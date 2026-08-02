@@ -9,13 +9,13 @@ export default function CareerAssistantLayout() {
   const [activeChat, setActiveChat] = useState(null); // null means Empty State
 
   return (
-    <div className="flex h-full w-full relative bg-secondary text-white overflow-hidden">
+    <div className="flex h-full w-full relative bg-transparent text-foreground overflow-hidden rounded-2xl border border-border shadow-2xl">
       
       {/* Mobile Toggles */}
       <div className="absolute top-4 left-4 z-50 md:hidden">
         <button 
           onClick={() => setLeftSidebarOpen(!leftSidebarOpen)}
-          className="p-2 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-md border border-white/10 text-white transition-colors"
+          className="p-2 bg-overlay-hover hover:bg-white/20 rounded-xl backdrop-blur-md border border-border text-foreground transition-colors"
         >
           {leftSidebarOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -39,7 +39,7 @@ export default function CareerAssistantLayout() {
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-              className={`fixed md:relative inset-y-0 left-0 w-72 bg-secondary/95 backdrop-blur-xl border-r border-white/10 z-40 md:z-auto flex flex-col`}
+              className={`fixed md:relative inset-y-0 left-0 w-72 bg-secondary/95 backdrop-blur-xl border-r border-border z-40 md:z-auto flex flex-col`}
             >
               <ConversationSidebar activeChat={activeChat} setActiveChat={setActiveChat} closeMobile={() => setLeftSidebarOpen(false)} />
             </motion.div>
@@ -48,7 +48,7 @@ export default function CareerAssistantLayout() {
       </AnimatePresence>
 
       {/* Center Chat Window */}
-      <div className="flex-1 flex flex-col h-full bg-[#0a0a0f] relative min-w-0">
+      <div className="flex-1 flex flex-col h-full glass-card rounded-r-2xl md:rounded-l-none rounded-l-2xl relative min-w-0">
         <ChatWindow activeChat={activeChat} />
       </div>
 

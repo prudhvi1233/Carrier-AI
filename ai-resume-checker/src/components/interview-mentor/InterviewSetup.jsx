@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Play, Settings2, Code, Users, Briefcase, Target, Monitor, Languages, Clock } from 'lucide-react';
 import EmptyState from './EmptyState';
+import CustomSelect from '../ui/CustomSelect';
 
 export default function InterviewSetup({ onStart }) {
   const [config, setConfig] = useState({
@@ -43,89 +44,78 @@ export default function InterviewSetup({ onStart }) {
             <Settings2 className="text-accent-blue" size={24} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-white">Interview Configuration</h2>
-            <p className="text-gray-400 text-sm">Tailor the AI mentor to your specific needs.</p>
+            <h2 className="text-2xl font-bold text-foreground">Interview Configuration</h2>
+            <p className="text-muted text-sm">Tailor the AI mentor to your specific needs.</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
           
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+            <label className="text-sm font-medium text-muted flex items-center gap-2">
               <Briefcase size={16} /> Target Role
             </label>
-            <select 
+            <CustomSelect 
               value={config.role} 
-              onChange={e => setConfig({...config, role: e.target.value})}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-accent-blue/50 outline-none appearance-none"
-            >
-              {roles.map(r => <option key={r} value={r}>{r}</option>)}
-              <option value="custom">Custom Role...</option>
-            </select>
+              onChange={val => setConfig({...config, role: val})}
+              options={[...roles, { label: 'Custom Role...', value: 'custom' }]}
+            />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+            <label className="text-sm font-medium text-muted flex items-center gap-2">
               <Target size={16} /> Difficulty
             </label>
-            <select 
+            <CustomSelect 
               value={config.difficulty} 
-              onChange={e => setConfig({...config, difficulty: e.target.value})}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-accent-blue/50 outline-none appearance-none"
-            >
-              {difficulties.map(d => <option key={d} value={d}>{d}</option>)}
-            </select>
+              onChange={val => setConfig({...config, difficulty: val})}
+              options={difficulties}
+            />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+            <label className="text-sm font-medium text-muted flex items-center gap-2">
               <Code size={16} /> Interview Type
             </label>
-            <select 
+            <CustomSelect 
               value={config.type} 
-              onChange={e => setConfig({...config, type: e.target.value})}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-accent-blue/50 outline-none appearance-none"
-            >
-              {types.map(t => <option key={t} value={t}>{t}</option>)}
-            </select>
+              onChange={val => setConfig({...config, type: val})}
+              options={types}
+            />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+            <label className="text-sm font-medium text-muted flex items-center gap-2">
               <Clock size={16} /> Duration
             </label>
-            <select 
+            <CustomSelect 
               value={config.duration} 
-              onChange={e => setConfig({...config, duration: e.target.value})}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-accent-blue/50 outline-none appearance-none"
-            >
-              {durations.map(d => <option key={d} value={d}>{d}</option>)}
-            </select>
+              onChange={val => setConfig({...config, duration: val})}
+              options={durations}
+            />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+            <label className="text-sm font-medium text-muted flex items-center gap-2">
               <Users size={16} /> Interviewer Persona
             </label>
-            <select 
+            <CustomSelect 
               value={config.persona} 
-              onChange={e => setConfig({...config, persona: e.target.value})}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-accent-blue/50 outline-none appearance-none"
-            >
-              {personas.map(p => <option key={p} value={p}>{p}</option>)}
-            </select>
+              onChange={val => setConfig({...config, persona: val})}
+              options={personas}
+            />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400 flex items-center gap-2">
+            <label className="text-sm font-medium text-muted flex items-center gap-2">
               <Monitor size={16} /> Communication Mode
             </label>
-            <div className="flex gap-2 bg-black/40 p-1 rounded-xl border border-white/10">
+            <div className="flex gap-2 bg-overlay p-1 rounded-xl border border-border">
               {modes.map(mode => (
                 <button
                   key={mode}
                   onClick={() => setConfig({...config, mode})}
-                  className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${config.mode === mode ? 'bg-accent-blue/20 text-accent-blue shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                  className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${config.mode === mode ? 'bg-accent-blue/20 text-accent-blue shadow-sm' : 'text-muted hover:text-foreground'}`}
                 >
                   {mode}
                 </button>
@@ -135,10 +125,10 @@ export default function InterviewSetup({ onStart }) {
 
         </div>
 
-        <div className="mt-8 pt-8 border-t border-white/10 flex justify-end">
+        <div className="mt-8 pt-8 border-t border-border flex justify-end">
           <button 
             onClick={handleStart}
-            className="flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-accent-blue to-accent-purple hover:from-blue-500 hover:to-purple-500 text-white font-bold text-lg rounded-xl transition-all shadow-lg shadow-accent-blue/25 hover:scale-[1.02] active:scale-[0.98]"
+            className="flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-accent-blue to-accent-purple hover:from-blue-500 hover:to-purple-500 text-foreground font-bold text-lg rounded-xl transition-all shadow-lg shadow-accent-blue/25 hover:scale-[1.02] active:scale-[0.98]"
           >
             <Play size={20} className="fill-white" />
             Start AI Interview

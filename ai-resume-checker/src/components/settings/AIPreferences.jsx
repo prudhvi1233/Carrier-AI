@@ -12,8 +12,8 @@ export default function AIPreferences({ data, onSave }) {
   return (
     <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-2">
-        <h2 className="text-2xl font-bold text-white mb-2">AI Preferences</h2>
-        <p className="text-gray-400 text-sm">Customize how the AI analyzes and scores your resumes.</p>
+        <h2 className="text-2xl font-bold text-foreground mb-2">AI Preferences</h2>
+        <p className="text-muted text-sm">Customize how the AI analyzes and scores your resumes.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -25,15 +25,15 @@ export default function AIPreferences({ data, onSave }) {
               <Bot size={20} className="text-blue-400" />
             </div>
             <div>
-              <h3 className="font-bold text-white">Preferred AI Model</h3>
-              <p className="text-xs text-gray-400">Select the engine powering your analysis.</p>
+              <h3 className="font-bold text-foreground">Preferred AI Model</h3>
+              <p className="text-xs text-muted">Select the engine powering your analysis.</p>
             </div>
           </div>
-          <div className="flex gap-2 p-1 bg-black/20 rounded-xl border border-white/10">
+          <div className="flex gap-2 p-1 bg-overlay rounded-xl border border-border">
             <button
               onClick={() => updateSetting('model', 'gemini')}
               className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                settings.model === 'gemini' ? 'bg-white/10 text-white shadow-lg' : 'text-gray-400 hover:text-white'
+                settings.model === 'gemini' ? 'bg-overlay-hover text-foreground shadow-lg' : 'text-muted hover:text-foreground'
               }`}
             >
               Gemini
@@ -41,7 +41,7 @@ export default function AIPreferences({ data, onSave }) {
             <button
               onClick={() => updateSetting('model', 'openai')}
               className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                settings.model === 'openai' ? 'bg-white/10 text-white shadow-lg' : 'text-gray-400 hover:text-white'
+                settings.model === 'openai' ? 'bg-overlay-hover text-foreground shadow-lg' : 'text-muted hover:text-foreground'
               }`}
             >
               OpenAI
@@ -56,14 +56,14 @@ export default function AIPreferences({ data, onSave }) {
               <Zap size={20} className="text-purple-400" />
             </div>
             <div>
-              <h3 className="font-bold text-white">Analysis Depth</h3>
-              <p className="text-xs text-gray-400">Balance between speed and detail.</p>
+              <h3 className="font-bold text-foreground">Analysis Depth</h3>
+              <p className="text-xs text-muted">Balance between speed and detail.</p>
             </div>
           </div>
           <select
             value={settings.depth}
             onChange={(e) => updateSetting('depth', e.target.value)}
-            className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent-blue"
+            className="w-full bg-overlay border border-border rounded-xl px-4 py-2.5 text-foreground text-sm focus:outline-none focus:border-accent-blue"
           >
             <option value="quick">Quick (1-2 mins)</option>
             <option value="standard">Standard (3-5 mins)</option>
@@ -78,14 +78,14 @@ export default function AIPreferences({ data, onSave }) {
               <Globe size={20} className="text-emerald-400" />
             </div>
             <div>
-              <h3 className="font-bold text-white">Target Language</h3>
-              <p className="text-xs text-gray-400">Language for the generated feedback.</p>
+              <h3 className="font-bold text-foreground">Target Language</h3>
+              <p className="text-xs text-muted">Language for the generated feedback.</p>
             </div>
           </div>
           <select
             value={settings.language}
             onChange={(e) => updateSetting('language', e.target.value)}
-            className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent-blue"
+            className="w-full bg-overlay border border-border rounded-xl px-4 py-2.5 text-foreground text-sm focus:outline-none focus:border-accent-blue"
           >
             <option value="english">English (US)</option>
             <option value="english_uk">English (UK)</option>
@@ -102,15 +102,15 @@ export default function AIPreferences({ data, onSave }) {
               <FileText size={20} className="text-rose-400" />
             </div>
             <div>
-              <h3 className="font-bold text-white">Report Format</h3>
-              <p className="text-xs text-gray-400">How you prefer to view results.</p>
+              <h3 className="font-bold text-foreground">Report Format</h3>
+              <p className="text-xs text-muted">How you prefer to view results.</p>
             </div>
           </div>
-          <div className="flex gap-2 p-1 bg-black/20 rounded-xl border border-white/10">
+          <div className="flex gap-2 p-1 bg-overlay rounded-xl border border-border">
             <button
               onClick={() => updateSetting('format', 'visual')}
               className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                settings.format === 'visual' ? 'bg-white/10 text-white shadow-lg' : 'text-gray-400 hover:text-white'
+                settings.format === 'visual' ? 'bg-overlay-hover text-foreground shadow-lg' : 'text-muted hover:text-foreground'
               }`}
             >
               Visual Dashboard
@@ -118,7 +118,7 @@ export default function AIPreferences({ data, onSave }) {
             <button
               onClick={() => updateSetting('format', 'text')}
               className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                settings.format === 'text' ? 'bg-white/10 text-white shadow-lg' : 'text-gray-400 hover:text-white'
+                settings.format === 'text' ? 'bg-overlay-hover text-foreground shadow-lg' : 'text-muted hover:text-foreground'
               }`}
             >
               Text Document

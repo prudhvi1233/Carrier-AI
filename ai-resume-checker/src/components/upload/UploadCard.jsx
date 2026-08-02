@@ -114,7 +114,7 @@ export default function UploadCard() {
             <div className="flex justify-end">
               <button
                 onClick={handleAnalyze}
-                className="group relative px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-purple rounded-xl text-white font-semibold text-lg overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(59,130,246,0.3)] w-full md:w-auto flex items-center justify-center gap-3"
+                className="group relative px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-purple rounded-xl text-foreground font-semibold text-lg overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(59,130,246,0.3)] w-full md:w-auto flex items-center justify-center gap-3"
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                 <UploadIcon size={20} className="relative z-10 group-hover:-translate-y-1 transition-transform" />
@@ -160,8 +160,8 @@ export default function UploadCard() {
             <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
               <CheckCircle2 size={40} className="text-green-400" />
             </div>
-            <h2 className="text-2xl font-bold text-white">Analysis Complete!</h2>
-            <p className="text-gray-400 text-center">Redirecting to your dashboard...</p>
+            <h2 className="text-2xl font-bold text-foreground">Analysis Complete!</h2>
+            <p className="text-muted text-center">Redirecting to your dashboard...</p>
           </motion.div>
         )}
 

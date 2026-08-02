@@ -17,13 +17,13 @@ export default function ApplicationTable({ data, updateData }) {
       <div className="overflow-x-auto custom-scrollbar">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-white/10 bg-white/5">
-              <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Company</th>
-              <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Role & Location</th>
-              <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Applied</th>
-              <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Status</th>
-              <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Next Step</th>
-              <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider text-right">Actions</th>
+            <tr className="border-b border-border bg-overlay">
+              <th className="p-4 text-xs font-bold text-muted uppercase tracking-wider">Company</th>
+              <th className="p-4 text-xs font-bold text-muted uppercase tracking-wider">Role & Location</th>
+              <th className="p-4 text-xs font-bold text-muted uppercase tracking-wider">Applied</th>
+              <th className="p-4 text-xs font-bold text-muted uppercase tracking-wider">Status</th>
+              <th className="p-4 text-xs font-bold text-muted uppercase tracking-wider">Next Step</th>
+              <th className="p-4 text-xs font-bold text-muted uppercase tracking-wider text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
@@ -37,14 +37,14 @@ export default function ApplicationTable({ data, updateData }) {
                   <td className="p-4">
                     <div className="flex items-center gap-3">
                       <img src={app.companyLogo} alt={app.company} className="w-8 h-8 rounded-lg bg-white" />
-                      <span className="font-bold text-white">{app.company}</span>
+                      <span className="font-bold text-foreground">{app.company}</span>
                     </div>
                   </td>
                   <td className="p-4">
                     <p className="font-medium text-gray-200">{app.role}</p>
                     <p className="text-xs text-gray-500">{app.location}</p>
                   </td>
-                  <td className="p-4 text-sm text-gray-400">{app.appliedDate || '-'}</td>
+                  <td className="p-4 text-sm text-muted">{app.appliedDate || '-'}</td>
                   <td className="p-4">
                     <StatusDropdown currentStatus={app.status} onChange={(newStatus) => handleStatusChange(app.id, newStatus)} />
                   </td>
@@ -60,15 +60,15 @@ export default function ApplicationTable({ data, updateData }) {
                   </td>
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button className="p-1.5 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors" title="View Notes">
+                      <button className="p-1.5 text-muted hover:text-foreground bg-overlay hover:bg-overlay-hover rounded-lg transition-colors" title="View Notes">
                         <FileText size={14} />
                       </button>
-                      <button className="p-1.5 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors" title="Job Link">
+                      <button className="p-1.5 text-muted hover:text-foreground bg-overlay hover:bg-overlay-hover rounded-lg transition-colors" title="Job Link">
                         <ExternalLink size={14} />
                       </button>
                       <button 
                         onClick={() => handleDelete(app.id)}
-                        className="p-1.5 text-gray-400 hover:text-red-400 bg-white/5 hover:bg-red-500/10 rounded-lg transition-colors" title="Delete"
+                        className="p-1.5 text-muted hover:text-red-400 bg-overlay hover:bg-red-500/10 rounded-lg transition-colors" title="Delete"
                       >
                         <Trash2 size={14} />
                       </button>

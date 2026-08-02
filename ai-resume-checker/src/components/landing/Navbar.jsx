@@ -25,16 +25,16 @@ export default function Navbar() {
   return (
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-primary/80 backdrop-blur-xl border-b border-white/10 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'bg-transparent py-6'
+        isScrolled ? 'bg-black/80 backdrop-blur-xl border-b border-border py-4 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 border border-white/10 group-hover:border-purple-500/50 transition-colors">
+          <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 border border-border group-hover:border-purple-500/50 transition-colors">
             <Brain className="w-6 h-6 text-purple-400 group-hover:text-blue-400 transition-colors" />
           </div>
-          <span className="font-bold text-xl tracking-tight text-white">CareerAI</span>
+          <span className="font-bold text-xl tracking-tight text-foreground">CareerAI</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -43,7 +43,7 @@ export default function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
-              className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              className="text-sm font-medium text-muted hover:text-foreground transition-colors"
             >
               {link.name}
             </a>
@@ -54,13 +54,13 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-4">
           <Link 
             to="/login"
-            className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
+            className="text-sm font-medium text-muted hover:text-foreground transition-colors px-4 py-2"
           >
             Log In
           </Link>
           <Link 
             to="/signup"
-            className="relative px-5 py-2 text-sm font-medium text-white rounded-xl overflow-hidden group"
+            className="relative px-5 py-2 text-sm font-medium text-foreground rounded-xl overflow-hidden group"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-90 group-hover:opacity-100 transition-opacity" />
             <span className="relative z-10">Get Started</span>
@@ -69,7 +69,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button 
-          className="lg:hidden p-2 text-gray-300 hover:text-white"
+          className="lg:hidden p-2 text-muted hover:text-foreground"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -81,29 +81,29 @@ export default function Navbar() {
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden absolute top-full left-0 w-full bg-primary/95 backdrop-blur-xl border-b border-white/10 flex flex-col p-6 gap-4 shadow-2xl"
+          className="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-b border-border flex flex-col p-6 gap-4 shadow-2xl"
         >
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="text-lg font-medium text-gray-300 hover:text-white"
+              className="text-lg font-medium text-muted hover:text-foreground"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
             </a>
           ))}
-          <div className="h-px bg-white/10 my-2" />
+          <div className="h-px bg-overlay-hover my-2" />
           <Link 
             to="/login"
-            className="text-lg font-medium text-gray-300 hover:text-white"
+            className="text-lg font-medium text-muted hover:text-foreground"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Log In
           </Link>
           <Link 
             to="/signup"
-            className="mt-2 text-center py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-medium text-white shadow-lg"
+            className="mt-2 text-center py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-medium text-foreground shadow-lg"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Get Started Free
